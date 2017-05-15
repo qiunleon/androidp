@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.evideo.client"
+        minSdkVersion 22
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    testCompile 'junit:junit:4.12'
+}
+
+//这里拷贝的是未签名的apk，如果有配置签名信息，则以下改为拷贝已签名的文件
+task swigTask(type:Exec) {
+    commandLine 'cmd', '/c', 'swig'
+    args '-java', '-package', 'com.evideo.client.swig', '-outdir', "${projectDir}/src/main/java/com/evideo/client/swig", '-o', "${projectDir}/src/main/jni/example.c", "${projectDir}/src/main/jni/example.i"
+}
+
+tasks.getByPath('assemble').doLast() {
+        copy{
+            from 'build/outputs/apk/client-debug.apk'//menu->build->generate_signed_apk should changed apk output path first
+            into 'D:/'
+            rename 'client-debug.apk', 'cbb.apk'
+        }
+}
+
+project.afterEvaluate(){
+//    disableDebugBuild()
+}
+
+def disableDebugBuild(){
+    //project.tasks包含了所有的tasks，下面的findAll是寻找那些名字中带debug的Task。
+    //返回值保存到targetTasks容器中
+    def targetTasks = project.tasks.findAll{task ->
+        task.name.contains("Debug")
+    }
+    //对满足条件的task，设置它为disable。如此这般，这个Task就不会被执行
+    targetTasks.each{
+        println"disable debug task  :${it.name}"
+        it.setEnabled false
+    }
+}
+

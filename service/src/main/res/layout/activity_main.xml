@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activity.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/button_llyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Dialog"/>
+
+        <Button
+            android:id="@+id/button_asynctask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_dialog"
+            android:text="Start AsyncTask"/>
+
+        <Button
+            android:id="@+id/button_broadcast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_asynctask"
+            android:text="Send BroadCast"/>
+
+        <Button
+            android:id="@+id/button_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_broadcast"
+            android:text="Post" />
+
+        <Button
+            android:id="@+id/button_shell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_post"
+            android:text="Run Shell" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageview_get"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:scaleType="centerInside"
+                android:layout_below="@+id/button_post" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageview_expand"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:visibility="gone"/>
+</RelativeLayout>

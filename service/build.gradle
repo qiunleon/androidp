@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "25.0.0"
+
+    defaultConfig {
+        applicationId "com.evideo.service"
+        minSdkVersion 22
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        ndk{
+//            moduleName "FFmpegRecordUtils"
+//            ldLibs "log -L./src/main/jniLibs/armeabi-v7a -lavcodec-57 -lavfilter-6 -lavformat-57 -lavutil-55 -lswresample-2 -lswscale-4"
+//            cFlags "-I./src/main/jni/include"
+//            abiFilters "armeabi-v7a"
+//        }
+        splits {
+            abi {
+                enable true
+                reset()
+                include 'x86', 'armeabi-v7a'
+                universalApk true
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+//    sourceSets{
+//        main {
+//            jniLibs.srcDir('libs')
+//        }
+//    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.squareup.picasso:picasso:2.3.2'
+    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
+    compile files('libs/okhttp-3.2.0.jar')
+}
+
+project.afterEvaluate(){
+//    disableDebugBuild()
+}

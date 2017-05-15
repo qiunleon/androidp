@@ -1,0 +1,4 @@
+Path		D:\Android-Development\swig-3.0.12
+JAVA_BIN	C:\Program Files\Java\jdk1.8.0_92\bin
+JAVA_INCLUDE	C:\Program Files\Java\jdk1.8.0_92\include
+swig -java -package com.evideo.client.swig -outdir F:/Learn/Practice/client/src/main/java/com/evideo/client/swig -o  F:/Learn/Practice/client/src/main/jni/example.c  F:/Learn/Practice/client/src/main/jni/example.i
