@@ -1,2 +1,2 @@
-# practice
-only practice
+# androidp
+An android project for practice.
