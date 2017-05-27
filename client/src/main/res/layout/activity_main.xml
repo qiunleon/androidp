@@ -149,8 +149,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/button_exit"
-        android:orientation="vertical">
-
-
+        android:orientation="vertical"
+        android:visibility="gone">
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button_load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_llyt"
+        android:text="LOAD" />
 </RelativeLayout>

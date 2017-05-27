@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
     private Button mStart;
     private Button mStop;
     private Button mExit;
+    private Button mLoad;
     private Switch mWifiSwitch;
     private Switch mApSwitch;
     private WifiManager mWifiManager;
@@ -56,6 +57,7 @@ public class MainActivity extends Activity {
         mStop = (Button) findViewById(R.id.button_stop);
         mExit = (Button) findViewById(R.id.button_exit);
         mView = (LinearLayout) findViewById(R.id.view_llyt);
+        mLoad = (Button) findViewById(R.id.button_load);
 
         mView.addView(new PanelView(this));
 
@@ -166,6 +168,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        mLoad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ImageActivity.class);
+                startActivity(intent);
             }
         });
     }

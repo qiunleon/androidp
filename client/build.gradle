@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.hugo'
 
 android {
     compileSdkVersion 22
@@ -29,6 +30,8 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:22.1.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }
 
 //这里拷贝的是未签名的apk，如果有配置签名信息，则以下改为拷贝已签名的文件
