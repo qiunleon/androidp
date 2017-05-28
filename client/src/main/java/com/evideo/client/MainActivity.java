@@ -35,7 +35,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = MainActivity.class.getName();
     private Button mStart;
     private Button mStop;
     private Button mExit;
