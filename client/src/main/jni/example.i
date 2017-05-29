@@ -1,7 +1,6 @@
-%module "example"
+/* File : example.i */
 
-%{
-#include "example.h"
-%}
+%module example
 
-#include "example.h"
+int gcd(int x, int y);
+

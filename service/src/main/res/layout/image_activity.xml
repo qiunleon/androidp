@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:fitsSystemWindows="true"
-    tools:context="com.evideo.service.activity.ImageActivity">
+    tools:context="com.example.service.activity.ImageActivity">
     <!--工具栏-->
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
