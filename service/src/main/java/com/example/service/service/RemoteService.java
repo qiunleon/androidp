@@ -9,15 +9,21 @@ import android.os.Message;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 
+import com.example.service.aidl.Book;
 import com.example.service.aidl.IRemoteCallback;
 import com.example.service.aidl.IRemoteService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class RemoteService extends Service {
 
     private static final String TAG = RemoteService.class.getName();
 
-    final RemoteCallbackList<IRemoteCallback> mRemoteCallBackList = new RemoteCallbackList<>();
+    private final RemoteCallbackList<IRemoteCallback> mRemoteCallBackList = new RemoteCallbackList<>();
+
+    private List<Book> mBookList = new ArrayList<>();
 
     @Override
     public void onCreate() {
@@ -42,6 +48,13 @@ public class RemoteService extends Service {
         public void unregisterCallback(IRemoteCallback notifyRemoteCallBack) {
             if (notifyRemoteCallBack != null) {
                 mRemoteCallBackList.unregister(notifyRemoteCallBack);
+            }
+        }
+
+        @Override
+        public void addBook(Book book){
+            if (!mBookList.contains(book)) {
+                mBookList.add(book);
             }
         }
     };

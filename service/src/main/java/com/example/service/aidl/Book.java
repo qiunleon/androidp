@@ -1,4 +1,4 @@
-package com.example.client.model;
+package com.example.service.aidl;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -30,13 +30,13 @@ public class Book implements Parcelable {
         dest.writeString(this.author);
     }
 
-    private Book(Parcel in) {
+    public Book(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
         this.author = in.readString();
     }
 
-    public static final Parcelable.Creator<Book> CREATOR = new Parcelable.Creator<Book>() {
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
         @Override
         public Book createFromParcel(Parcel source) {
             return new Book(source);

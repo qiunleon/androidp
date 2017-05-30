@@ -2,6 +2,7 @@
 package com.example.service.aidl;
 
 import com.example.service.aidl.IRemoteCallback;
+import com.example.service.aidl.Book;
 
 // Declare any non-default types here with import statements
 
@@ -17,5 +18,5 @@ interface IRemoteService {
      /* 注销客户端回调 */
      void unregisterCallback(IRemoteCallback callback);
 
-//     void addBook(in Book book);
+     void addBook(in Book book);
 }
