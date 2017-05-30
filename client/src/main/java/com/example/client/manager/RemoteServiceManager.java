@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 
 import com.example.client.application.ClientApp;
+import com.example.service.aidl.Book;
 import com.example.service.aidl.IRemoteCallback;
 import com.example.service.aidl.IRemoteService;
 
@@ -107,9 +108,13 @@ public class RemoteServiceManager {
         return mIsBound;
     }
 
-//    public void addBook() {
-//        if (mRemoteService != null) {
-//            mRemoteService.
-//        }
-//    }
+    public void addBook() {
+        if (mRemoteService != null) {
+            try {
+                mRemoteService.addBook(new Book("0001", "Android", "Man"));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

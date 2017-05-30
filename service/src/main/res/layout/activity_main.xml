@@ -13,32 +13,71 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button_dialog"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show Dialog"/>
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_asynctask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button_dialog"
-            android:text="Start AsyncTask"/>
+            <Button
+                android:id="@+id/button_dialog"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Show Dialog"/>
 
+            <Button
+                android:id="@+id/button_asynctask"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_dialog"
+                android:text="Start AsyncTask"/>
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/button_broadcast"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button_asynctask"
             android:text="Send BroadCast"/>
 
         <Button
             android:id="@+id/button_post"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button_broadcast"
             android:text="Post" />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/button_compute"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_asynctask"
+                android:text="COMPUTE"/>
+
+            <Button
+                android:id="@+id/button_encrypt"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_broadcast"
+                android:text="ENCRYPT" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_shell"

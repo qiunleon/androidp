@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        RemoteServiceManager.getInstance().bindRemoteService();
     }
 
     @OnClick(R.id.button_start)
@@ -73,7 +74,7 @@ public class MainActivity extends Activity {
 
     @OnClick(R.id.button_binder)
     public void onClickBinder() {
-
+        RemoteServiceManager.getInstance().addBook();
     }
 
     @OnCheckedChanged(R.id.switch_wifi)
@@ -95,6 +96,12 @@ public class MainActivity extends Activity {
         mStartButton.setEnabled(true);
         mStopButton.setEnabled(false);
         mWifiSwitch.setChecked(NetworkManager.getInstance().getWifiEnabled());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RemoteServiceManager.getInstance().unBindRemoteService();
     }
 
     static {

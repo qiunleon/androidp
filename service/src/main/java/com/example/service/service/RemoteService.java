@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.example.service.aidl.Book;
 import com.example.service.aidl.IRemoteCallback;
@@ -55,6 +56,7 @@ public class RemoteService extends Service {
         public void addBook(Book book){
             if (!mBookList.contains(book)) {
                 mBookList.add(book);
+                Log.d(TAG, book.toString());
             }
         }
     };

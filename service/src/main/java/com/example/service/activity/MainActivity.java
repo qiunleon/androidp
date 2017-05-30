@@ -7,7 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -16,10 +19,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.service.aidl.ICompute;
+import com.example.service.aidl.ISecurityCenter;
 import com.example.service.application.ServiceApp;
+import com.example.service.binder.ComputeImpl;
+import com.example.service.binder.SecurityCenterImpl;
 import com.example.service.dialog.BaseDialog;
 import com.example.service.callback.CommonCallBack;
 import com.example.service.R;
+import com.example.service.manager.BinderPoolManager;
 import com.example.service.receiver.DynamicReceiver;
 import com.example.service.util.HttpUtil;
 
@@ -37,6 +45,10 @@ public class MainActivity extends Activity implements CommonCallBack {
     private Button mSendBroadCast;
 
     private Button mPostUrl;
+
+    private Button mCompute;
+
+    private Button mEncrypt;
 
     private Button mRunShell;
 
@@ -92,6 +104,47 @@ public class MainActivity extends Activity implements CommonCallBack {
                 ServiceApp.getInstance().sendBroadcast(secondIntent);
             }
         });
+
+        mCompute = (Button) findViewById(R.id.button_compute);
+        mCompute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        BinderPoolManager binderPoolManager = BinderPoolManager.getInstance(MainActivity.this);
+                        IBinder computeBinder = binderPoolManager.queryBinderByCode(0);
+                        ICompute mCompute = ComputeImpl.asInterface(computeBinder);
+                        try {
+                            Log.d(TAG, String.valueOf(mCompute.add(1, 2)));
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
+
+        mEncrypt = (Button) findViewById(R.id.button_encrypt);
+        mEncrypt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        BinderPoolManager binderPoolManager = BinderPoolManager.getInstance(MainActivity.this);
+                        IBinder computeBinder = binderPoolManager.queryBinderByCode(1);
+                        ISecurityCenter mSecurity = SecurityCenterImpl.asInterface(computeBinder);
+                        try {
+                            Log.d(TAG, String.valueOf(mSecurity.encrypt("001")));
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
+
 
         mPostUrl = (Button) findViewById(R.id.button_post);
         mPostUrl.setOnClickListener(new View.OnClickListener() {
