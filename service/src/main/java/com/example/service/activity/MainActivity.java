@@ -16,9 +16,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.service.application.BaseApplication;
+import com.example.service.application.ServiceApp;
 import com.example.service.dialog.BaseDialog;
-import com.example.service.callback.clickCallBack;
+import com.example.service.callback.CommonCallBack;
 import com.example.service.R;
 import com.example.service.receiver.DynamicReceiver;
 import com.example.service.util.HttpUtil;
@@ -26,7 +26,7 @@ import com.example.service.util.HttpUtil;
 import java.io.File;
 import java.io.IOException;
 
-public class MainActivity extends Activity implements clickCallBack {
+public class MainActivity extends Activity implements CommonCallBack {
 
     private static final String TAG = "MainActivity";
 
@@ -72,7 +72,7 @@ public class MainActivity extends Activity implements clickCallBack {
                     @Override
                     protected void onPostExecute(Boolean result) {
                         Log.i(TAG, "AsyncTask onPostExecute result: " + result);
-                        Toast.makeText(BaseApplication.getInstance().getApplicationContext(), "AsyncTask executed successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ServiceApp.getInstance().getApplicationContext(), "AsyncTask executed successfully", Toast.LENGTH_SHORT).show();
                     }
                 }.execute();
             }
@@ -85,11 +85,11 @@ public class MainActivity extends Activity implements clickCallBack {
                 Intent firstIntent = new Intent();
                 firstIntent.setAction("android.net.ethernet.ETHERNET_STATE_CHANGED");
                 firstIntent.putExtra("ethernet_state", 2);
-                BaseApplication.getInstance().sendBroadcast(firstIntent);
+                ServiceApp.getInstance().sendBroadcast(firstIntent);
 
                 Intent secondIntent = new Intent();
                 secondIntent.setAction("com.evideo.service.second");
-                BaseApplication.getInstance().sendBroadcast(secondIntent);
+                ServiceApp.getInstance().sendBroadcast(secondIntent);
             }
         });
 
@@ -143,8 +143,8 @@ public class MainActivity extends Activity implements clickCallBack {
                 }
                 final ScaleAnimation animation = new ScaleAnimation(1.0f, scaleY, 1.0f, scaleY,
                         Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1.15f);
-                animation.setDuration(1000);//设置动画持续时间
-                animation.setFillAfter(false);//动画执行完后是否停留在执行完的状态
+                animation.setDuration(1000);
+                animation.setFillAfter(false);
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
@@ -179,9 +179,9 @@ public class MainActivity extends Activity implements clickCallBack {
             public void onClick(View v) {
                 try {
                     Runtime runtime = Runtime.getRuntime();
-                    Process proc =  runtime.exec("ip route add dev eth0 dev wlan0");
-                    if (proc.waitFor() != 0) {
-                        Log.d(TAG, "exit 2 value: " + proc.waitFor());
+                    Process process =  runtime.exec("ip route add dev eth0 dev wlan0");
+                    if (process.waitFor() != 0) {
+                        Log.d(TAG, "exit 2 value: " + process.waitFor());
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

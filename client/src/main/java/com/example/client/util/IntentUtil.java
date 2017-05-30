@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 
-import com.example.client.application.BaseApp;
+import com.example.client.application.ClientApp;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public final class IntentUtil {
 
     public static Intent getExplicitIntent(Intent implicitIntent) {
         // Retrieve all services that can match the given intent
-        PackageManager pm = BaseApp.getInstance().getApplicationContext().getPackageManager();
+        PackageManager pm = ClientApp.getInstance().getApplicationContext().getPackageManager();
         List<ResolveInfo> resolveInfo = pm.queryIntentServices(implicitIntent, 0);
         // Make sure only one match was found
         if (resolveInfo == null || resolveInfo.size() != 1) {

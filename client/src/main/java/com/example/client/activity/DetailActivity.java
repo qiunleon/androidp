@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.client.R;
-import com.example.client.application.BaseApp;
+import com.example.client.application.ClientApp;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -41,7 +41,7 @@ public class DetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(BaseApp.getInstance().getApplicationContext())
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(ClientApp.getInstance().getApplicationContext())
                 .memoryCacheExtraOptions(480, 800) // default = device screen dimensions
                 .diskCacheExtraOptions(480, 800, null)
                 .threadPoolSize(3) // default
@@ -55,7 +55,7 @@ public class DetailActivity extends Activity {
                 .diskCacheSize(50 * 1024 * 1024)
                 .diskCacheFileCount(100)
                 .diskCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
-                .imageDownloader(new BaseImageDownloader(BaseApp.getInstance().getApplicationContext())) // default
+                .imageDownloader(new BaseImageDownloader(ClientApp.getInstance().getApplicationContext())) // default
                 .imageDecoder(new BaseImageDecoder(true)) // default
                 .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
                 .writeDebugLogs()

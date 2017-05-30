@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import com.example.client.application.BaseApp;
+import com.example.client.application.ClientApp;
 import com.example.service.aidl.IRemoteCallback;
 import com.example.service.aidl.IRemoteService;
 
@@ -45,25 +45,25 @@ public class RemoteServiceManager {
         Intent intent = new Intent("com.example.service.service.IRemoteService");
         ComponentName componentName = new ComponentName("com.example.service", "com.example.service.service.RemoteService");
         intent.setComponent(componentName);
-        BaseApp.getInstance().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+        ClientApp.getInstance().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    public void unBindRemoteService() {
+        ClientApp.getInstance().unbindService(mConnection);
     }
 
     public void startRemoteService() {
         Intent intent = new Intent("com.example.service.service.IRemoteService");
         ComponentName componentName = new ComponentName("com.example.service", "com.example.service.service.RemoteService");
         intent.setComponent(componentName);
-        BaseApp.getInstance().startService(intent);
+        ClientApp.getInstance().startService(intent);
     }
 
     public void stopRemoteService() {
         Intent intent = new Intent("com.example.service.service.IRemoteService");
         ComponentName componentName = new ComponentName("com.example.service", "com.example.service.service.RemoteService");
         intent.setComponent(componentName);
-        BaseApp.getInstance().stopService(intent);
-    }
-
-    public void unBindRemoteService() {
-        BaseApp.getInstance().unbindService(mConnection);
+        ClientApp.getInstance().stopService(intent);
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -96,7 +96,7 @@ public class RemoteServiceManager {
 
     private IRemoteCallback mRemoteCallback = new IRemoteCallback.Stub() {
         public void actionPerformed(int value) {
-            SharedPreferences sp = BaseApp.getInstance().getSharedPreferences(FILE_NAME_OF_SHARE_DATA_, MODE_PRIVATE);
+            SharedPreferences sp = ClientApp.getInstance().getSharedPreferences(FILE_NAME_OF_SHARE_DATA_, MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt(KEY_NAME_OF_VALUE, value);
             editor.apply();
@@ -106,4 +106,10 @@ public class RemoteServiceManager {
     public boolean isBound() {
         return mIsBound;
     }
+
+//    public void addBook() {
+//        if (mRemoteService != null) {
+//            mRemoteService.
+//        }
+//    }
 }

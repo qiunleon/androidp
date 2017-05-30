@@ -30,6 +30,9 @@ public class MainActivity extends Activity {
     @BindView(R.id.button_load)
     Button mLoadButton;
 
+    @BindView(R.id.button_binder)
+    Button mGetBinderButton;
+
     @BindView(R.id.switch_wifi)
     Switch mWifiSwitch;
 
@@ -66,6 +69,11 @@ public class MainActivity extends Activity {
     public void onClickLoad() {
         Intent intent = new Intent(MainActivity.this, ImageActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.button_binder)
+    public void onClickBinder() {
+
     }
 
     @OnCheckedChanged(R.id.switch_wifi)

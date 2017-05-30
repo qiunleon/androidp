@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import com.example.service.activity.MainActivity;
 import com.example.service.adapter.CommonAdapter;
-import com.example.service.application.BaseApplication;
+import com.example.service.application.ServiceApp;
 import com.example.service.manager.NotifyManager;
 import com.example.service.R;
 
@@ -56,7 +56,7 @@ public class BaseDialog extends Dialog implements NotifyManager.ISomethingChange
         mData.add("B");
         mData.add("C");
         mListView = (ListView) findViewById(R.id.dialog_listview);
-        mCommonAdapter = new CommonAdapter(BaseApplication.getInstance().getApplicationContext(), mData);
+        mCommonAdapter = new CommonAdapter(ServiceApp.getInstance().getApplicationContext(), mData);
         mListView.setAdapter(mCommonAdapter);
     }
 

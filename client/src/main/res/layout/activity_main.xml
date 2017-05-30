@@ -13,19 +13,20 @@
         android:id="@+id/start_stop_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/button_start"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Start Service" />
 
         <Button
             android:id="@+id/button_stop"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/button_start"
+            android:layout_weight="1"
             android:text="Stop Service" />
     </LinearLayout>
 
@@ -39,11 +40,11 @@
         <LinearLayout
             android:id="@+id/llyt_wifi"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="40dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:background="#22000000"
             android:orientation="horizontal">
 
@@ -68,11 +69,11 @@
         <LinearLayout
             android:id="@+id/llyt_ap"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="40dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:background="#22000000"
             android:orientation="horizontal">
 
@@ -96,12 +97,28 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/button_load"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/switch_wifi_ap"
-        android:text="LOAD IMAGE" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_load"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="LOAD IMAGE" />
+
+        <Button
+            android:id="@+id/button_binder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/button_load"
+            android:layout_weight="1"
+            android:text="GET BINDER" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/button_exit"

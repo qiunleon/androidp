@@ -11,21 +11,24 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//        ndk{
-//            moduleName "FFmpegRecordUtils"
+
+        ndk{
+//            moduleName "record"
 //            ldLibs "log -L./src/main/jniLibs/armeabi-v7a -lavcodec-57 -lavfilter-6 -lavformat-57 -lavutil-55 -lswresample-2 -lswscale-4"
 //            cFlags "-I./src/main/jni/include"
-//            abiFilters "armeabi-v7a"
-//        }
-        splits {
-            abi {
-                enable true
-                reset()
-                include 'x86', 'armeabi-v7a'
-                universalApk true
-            }
+            abiFilters "armeabi-v7a"
         }
+
+//        splits {
+//            abi {
+//                enable true
+//                reset()
+//                include 'x86', 'armeabi-v7a'
+//                universalApk true
+//            }
+//        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -33,11 +36,17 @@ android {
         }
     }
 
-//    sourceSets{
-//        main {
-//            jniLibs.srcDir('libs')
-//        }
-//    }
+    sourceSets{
+        main {
+            jniLibs.srcDir('src/main/libs')
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
 }
 
 dependencies {
@@ -52,6 +61,6 @@ dependencies {
     compile files('libs/okhttp-3.2.0.jar')
 }
 
-project.afterEvaluate(){
+project.afterEvaluate() {
 //    disableDebugBuild()
 }

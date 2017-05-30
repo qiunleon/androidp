@@ -6,7 +6,7 @@ import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
-import com.example.client.application.BaseApp;
+import com.example.client.application.ClientApp;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -30,7 +30,7 @@ public class NetworkManager {
     private Context mContext;
 
     private NetworkManager() {
-        mContext = BaseApp.getInstance().getBaseContext();
+        mContext = ClientApp.getInstance().getBaseContext();
         mWifiManager = (WifiManager) mContext.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
     }
 

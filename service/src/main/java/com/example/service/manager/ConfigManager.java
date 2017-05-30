@@ -5,7 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
-import com.example.service.application.BaseApplication;
+import com.example.service.application.ServiceApp;
 import com.example.service.constant.ConfigConstant;
 
 public class ConfigManager {
@@ -30,7 +30,7 @@ public class ConfigManager {
     }
 
     private boolean put(String key, String value) {
-        ContentResolver cr = BaseApplication.getInstance().getContentResolver();
+        ContentResolver cr = ServiceApp.getInstance().getContentResolver();
         if (cr == null) {
             return false;
         }
@@ -46,7 +46,7 @@ public class ConfigManager {
     }
 
     private boolean contain(String key) {
-        ContentResolver cr = BaseApplication.getInstance().getContentResolver();
+        ContentResolver cr = ServiceApp.getInstance().getContentResolver();
         Cursor c = cr.query(SELECT_URI, null, SELECT, new String[]{key}, null, null);
         if (c == null) {
             return false;
@@ -60,7 +60,7 @@ public class ConfigManager {
     }
 
     public boolean getBoolean(String key, boolean def) {
-        ContentResolver cr = BaseApplication.getInstance().getContentResolver();
+        ContentResolver cr = ServiceApp.getInstance().getContentResolver();
         Cursor c = cr.query(SELECT_URI, null, SELECT, new String[]{key}, null, null);
         if (c == null) {
             return def;

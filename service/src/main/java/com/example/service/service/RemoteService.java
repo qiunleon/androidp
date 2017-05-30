@@ -9,8 +9,8 @@ import android.os.Message;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 
-import com.example.service.aidl.IRemoteService;
 import com.example.service.aidl.IRemoteCallback;
+import com.example.service.aidl.IRemoteService;
 
 @SuppressWarnings("unused")
 public class RemoteService extends Service {

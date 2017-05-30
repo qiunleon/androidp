@@ -16,4 +16,6 @@ interface IRemoteService {
 
      /* 注销客户端回调 */
      void unregisterCallback(IRemoteCallback callback);
+
+//     void addBook(in Book book);
 }
