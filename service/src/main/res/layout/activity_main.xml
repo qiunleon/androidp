@@ -21,62 +21,84 @@
             <Button
                 android:id="@+id/button_dialog"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Show Dialog"/>
+                android:layout_weight="1"
+                android:text="Show Dialog" />
 
             <Button
                 android:id="@+id/button_asynctask"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/button_dialog"
-                android:text="Start AsyncTask"/>
+                android:layout_weight="1"
+                android:text="Start AsyncTask" />
         </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/button_broadcast"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button_asynctask"
-            android:text="Send BroadCast"/>
-
-        <Button
-            android:id="@+id/button_post"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button_broadcast"
-            android:text="Post" />
-
-    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_broadcast"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_asynctask"
+                android:layout_weight="1"
+                android:text="Send BroadCast" />
+
+            <Button
+                android:id="@+id/button_post"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_broadcast"
+                android:layout_weight="1"
+                android:text="Post" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/button_compute"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/button_asynctask"
-                android:text="COMPUTE"/>
+                android:layout_weight="1"
+                android:text="COMPUTE" />
 
             <Button
                 android:id="@+id/button_encrypt"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/button_broadcast"
+                android:layout_weight="1"
                 android:text="ENCRYPT" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/button_start_record"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_post"
+                android:layout_weight="1"
+                android:text="Start Record" />
+
+            <Button
+                android:id="@+id/button_stop_record"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_post"
+                android:layout_weight="1"
+                android:text="Stop Record" />
         </LinearLayout>
 
         <Button
@@ -95,8 +117,8 @@
                 android:id="@+id/imageview_get"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:scaleType="centerInside"
-                android:layout_below="@+id/button_post" />
+                android:layout_below="@+id/button_post"
+                android:scaleType="centerInside" />
         </LinearLayout>
 
     </LinearLayout>
@@ -106,5 +128,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitCenter"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 </RelativeLayout>

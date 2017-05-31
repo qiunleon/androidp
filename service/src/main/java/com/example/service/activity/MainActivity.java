@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -27,6 +28,7 @@ import com.example.service.binder.SecurityCenterImpl;
 import com.example.service.dialog.BaseDialog;
 import com.example.service.callback.CommonCallBack;
 import com.example.service.R;
+import com.example.service.jni.record;
 import com.example.service.manager.BinderPoolManager;
 import com.example.service.receiver.DynamicReceiver;
 import com.example.service.util.HttpUtil;
@@ -51,6 +53,10 @@ public class MainActivity extends Activity implements CommonCallBack {
     private Button mEncrypt;
 
     private Button mRunShell;
+
+    private Button mStartRecord;
+
+    private Button mStopRecord;
 
     private ImageView mGetView;
 
@@ -243,6 +249,25 @@ public class MainActivity extends Activity implements CommonCallBack {
                 }
             }
         });
+
+        mStartRecord = (Button) findViewById(R.id.button_start_record);
+        mStartRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String source = "rtsp://192.168.1.112:8088/ch1/2";
+                String destation = Environment.getExternalStorageDirectory().getPath() + "/kmbox/records/a.mp4";
+                record.start(source, destation);
+            }
+        });
+
+        mStopRecord = (Button) findViewById(R.id.button_stop_record);
+        mStopRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                record.stop();
+            }
+        });
+
     }
 
     /* 若此Activity处于onPause()时用户返回此Activity, 则调用该方法 */
@@ -303,5 +328,9 @@ public class MainActivity extends Activity implements CommonCallBack {
 
     public void callback() {
         Toast.makeText(MainActivity.this, "Callback", Toast.LENGTH_SHORT).show();
+    }
+
+    static {
+        System.loadLibrary("record");
     }
 }

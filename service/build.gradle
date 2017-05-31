@@ -12,21 +12,21 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-//        ndk{
-////            moduleName "record"
-////            ldLibs "log -L./src/main/jniLibs/armeabi-v7a -lavcodec-57 -lavfilter-6 -lavformat-57 -lavutil-55 -lswresample-2 -lswscale-4"
-////            cFlags "-I./src/main/jni/include"
-//            abiFilters "armeabi-v7a"
-//        }
+        ndk{
+//            moduleName "record"
+//            ldLibs "log -L./src/main/jniLibs/armeabi-v7a -lavcodec-57 -lavfilter-6 -lavformat-57 -lavutil-55 -lswresample-2 -lswscale-4"
+//            cFlags "-I./src/main/jni/include"
+            abiFilters "armeabi-v7a"
+        }
 
-//        splits {
-//            abi {
-//                enable true
-//                reset()
-//                include 'x86', 'armeabi-v7a'
-//                universalApk true
-//            }
-//        }
+        splits {
+            abi {
+                enable true
+                reset()
+                include 'x86', 'armeabi-v7a'
+                universalApk true
+            }
+        }
     }
 
     buildTypes {
@@ -36,17 +36,17 @@ android {
         }
     }
 
-//    sourceSets{
-//        main {
-//            jniLibs.srcDir('src/main/libs')
-//        }
-//    }
+    sourceSets{
+        main {
+            jniLibs.srcDir('src/main/libs')
+        }
+    }
 
-//    externalNativeBuild {
-//        ndkBuild {
-//            path 'src/main/jni/Android.mk'
-//        }
-//    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
 }
 
 dependencies {
