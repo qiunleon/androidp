@@ -5,15 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.example.service.constant.BroadcastConstant;
+import com.example.service.constant.ConfigConstant;
 import com.example.service.manager.ConfigManager;
 
 /**
- * Created by alienware on 2017/2/19.
+ * 动态注册的广播接收
+ * Created by yunliangqiu on 2017/2/19.
  */
-
 public class DynamicReceiver extends BroadcastReceiver {
 
-    private static final String TAG = "DynamicReceiver";
+    private static final String TAG = DynamicReceiver.class.getName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -21,9 +23,9 @@ public class DynamicReceiver extends BroadcastReceiver {
             return;
         }
         String action = intent.getAction();
-        if (action.equals("com.evideo.service.second")) {
-            ConfigManager.getInstance().putBoolean("config", false);
-            Log.i(TAG, "Config value: " + ConfigManager.getInstance().getBoolean("config", true));
+        if (action.equals(BroadcastConstant.ACTION_DYNAMIC)) {
+            ConfigManager.getInstance().putBoolean(ConfigConstant.KEY_SAVE_VALUE, false);
+            Log.i(TAG, "Config value: " + ConfigManager.getInstance().getBoolean(ConfigConstant.KEY_SAVE_VALUE, true));
         }
     }
 }

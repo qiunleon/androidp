@@ -14,4 +14,5 @@ public class ConfigConstant {
 
     public static final String VALUE = "value";
 
+    public static final String KEY_SAVE_VALUE = "config";
 }

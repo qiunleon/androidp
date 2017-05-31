@@ -16,6 +16,7 @@ import com.example.service.service.BinderPoolService;
 import java.util.concurrent.CountDownLatch;
 
 import static com.example.service.constant.BinderPoolConstant.BINDER_COMPUTE;
+import static com.example.service.constant.BinderPoolConstant.BINDER_NONE;
 import static com.example.service.constant.BinderPoolConstant.BINDER_SECURITY_CENTER;
 
 /**
@@ -110,11 +111,13 @@ public class BinderPoolManager {
         public IBinder queryBinderByCode(int binderCode) throws RemoteException {
             IBinder binder = null;
             switch (binderCode) {
+                case BINDER_COMPUTE:
+                    binder = new ComputeImpl();
+                    break;
                 case BINDER_SECURITY_CENTER:
                     binder = new SecurityCenterImpl();
                     break;
-                case BINDER_COMPUTE:
-                    binder = new ComputeImpl();
+                case BINDER_NONE:
                     break;
                 default:
                     break;

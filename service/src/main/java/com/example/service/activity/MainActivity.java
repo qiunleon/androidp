@@ -25,6 +25,7 @@ import com.example.service.aidl.ISecurityCenter;
 import com.example.service.application.ServiceApp;
 import com.example.service.binder.ComputeImpl;
 import com.example.service.binder.SecurityCenterImpl;
+import com.example.service.constant.BroadcastConstant;
 import com.example.service.dialog.BaseDialog;
 import com.example.service.callback.CommonCallBack;
 import com.example.service.R;
@@ -178,7 +179,7 @@ public class MainActivity extends Activity implements CommonCallBack {
         mGetView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scalse);
+                // Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scalse);
                 WindowManager windowManager = MainActivity.this.getWindowManager();
                 int widthDisplay = windowManager.getDefaultDisplay().getWidth();
                 int heightDisplay = windowManager.getDefaultDisplay().getHeight();
@@ -240,7 +241,7 @@ public class MainActivity extends Activity implements CommonCallBack {
                     Runtime runtime = Runtime.getRuntime();
                     Process process =  runtime.exec("ip route add dev eth0 dev wlan0");
                     if (process.waitFor() != 0) {
-                        Log.d(TAG, "exit 2 value: " + process.waitFor());
+                        Log.d(TAG, "Exit value: " + process.waitFor());
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -276,7 +277,7 @@ public class MainActivity extends Activity implements CommonCallBack {
         super.onStart();
         mDynamicReceiver = new DynamicReceiver();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.evideo.service.second");
+        intentFilter.addAction(BroadcastConstant.ACTION_DYNAMIC);
         this.registerReceiver(mDynamicReceiver, intentFilter);
         Log.i(TAG, "onStart()");
     }
@@ -331,6 +332,12 @@ public class MainActivity extends Activity implements CommonCallBack {
     }
 
     static {
+        System.loadLibrary("avutil-55");
+        System.loadLibrary("swresample-2");
+        System.loadLibrary("avcodec-57");
+        System.loadLibrary("avformat-57");
+        System.loadLibrary("swscale-4");
+        System.loadLibrary("avfilter-6");
         System.loadLibrary("record");
     }
 }
