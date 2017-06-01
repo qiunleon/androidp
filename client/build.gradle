@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
+apply from: "${rootDir}/gradle/version.gradle"
 
 android {
     compileSdkVersion 22
@@ -28,6 +29,18 @@ android {
             path 'src/main/jni/Android.mk'
         }
     }
+
+    // Rename APK files
+    applicationVariants.all { variant ->
+        def output = variant.outputs.get(0)
+        File apk = output.outputFile
+        String newName = output.outputFile.name
+//                .replace("-release", "")
+//                .replace("-debug", "")
+                .replace(".apk", "-${variant.mergedFlavor.versionName}-${project.ext.versionInfo.build}.apk")
+                .replace("app-", "${variant.mergedFlavor.applicationId}-")
+        output.outputFile = new File(apk.parentFile, newName)
+    }
 }
 
 dependencies {
@@ -48,12 +61,9 @@ task swigTask(type:Exec) {
     args '-java', '-package', 'com.evideo.client.swig', '-outdir', "${projectDir}/src/main/java/com/evideo/client/swig", '-o', "${projectDir}/src/main/jni/example.c", "${projectDir}/src/main/jni/example.i"
 }
 
-tasks.getByPath('assemble').doLast() {
-        copy{
-            from 'build/outputs/apk/client-debug.apk'//menu->build->generate_signed_apk should changed apk output path first
-            into 'D:/'
-            rename 'client-debug.apk', 'cbb.apk'
-        }
+task testBatTask(type:Exec,description:'Eecute CMD'){
+    workingDir 'nboxSoFile'
+    commandLine 'cmd',"/c","executeEnhanceSoFileTask"
 }
 
 project.afterEvaluate(){
@@ -72,4 +82,3 @@ def disableDebugBuild(){
         it.setEnabled false
     }
 }
-
