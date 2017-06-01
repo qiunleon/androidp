@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.Switch;
 
 import com.example.client.R;
+import com.example.client.jni.exampleJNI;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
 

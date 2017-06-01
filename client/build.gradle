@@ -55,23 +55,6 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
 }
 
-//这里拷贝的是未签名的apk，如果有配置签名信息，则以下改为拷贝已签名的文件
-task swigTask(type:Exec, description:'Eecute CMD') {
-    workingDir 'D:\\Android\\swig-3.0.12'
-    def command = [
-            'swig', '-java',
-            '-package','com.example.client.jni',
-            '-outdir', "${projectDir}/client/src/main/java/com/example/client/jni",
-            '-o', "${projectDir}/client/src/main/jni/example_wrap.c", "${projectDir}/client/src/main/jni/example.i"
-            ]
-    commandLine command
-}
-
-task testBatTask(type:Exec,description:'Eecute CMD'){
-    workingDir 'D:\\Android\\swig-3.0.12'
-    commandLine 'cmd',"/c","executeEnhanceSoFileTask"
-}
-
 afterEvaluate {
     tasks.getByName('assembleDebug').doLast {
         copy {
@@ -82,24 +65,22 @@ afterEvaluate {
     }
 }
 
-def coreWrapperDir = new File("${projectDir}/client/src/main/java/com/example/client/jni")
+def coreWrapperDir = new File("${projectDir}/src/main/java/com/example/client/jni")
 
 task createCoreWrapperDir {
     coreWrapperDir.mkdirs()
 }
 
 // For this to work, it's assumed SWIG is installed
-// TODO: This only works when called from Command Line (gradlew runSwig)
-task runSwig(type:Exec, dependsOn: ['preBuild']) {
-
+// FIXME: This only works when called from Command Line (gradlew runSwig)
+task swig(type:Exec, dependsOn: ['createCoreWrapperDir']) {
     String osName = System.getProperty("os.name").toLowerCase();
     if (osName.contains("windows")) {
         commandLine 'cmd', '/c', 'swig'
-        args '-java', '-package', 'com.example.client.jni', '-outdir', "${projectDir}/src/main/java/com/example/client/jni", '-o', "${projectDir}/src/main/jni/example_wrap.c", "${projectDir}/src/main/jni/example.i"
+        args '-java', '-package', 'com.example.client.jni', '-outdir', coreWrapperDir.absolutePath, '-o', "${projectDir}/src/main/jni/example_wrap.c", "${projectDir}/src/main/jni/example.i"
     }
     else {
         commandLine 'swig'
-        args '-c++', '-java', '-package', 'com.sureshjoshi.core', '-outdir', coreWrapperDir.absolutePath, "${projectDir}/src/main/jni/SeePlusPlus.i"
+        args '-c++', '-java', '-package', 'com.example.client.jni', '-outdir', coreWrapperDir.absolutePath, "${projectDir}/src/main/jni/SeePlusPlus.i"
     }
-
 }

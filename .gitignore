@@ -12,6 +12,7 @@
 bin/
 gen/
 out/
+client/src/version/
 
 # Gradle files
 .gradle/
