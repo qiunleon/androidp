@@ -20,6 +20,8 @@ android {
 
     sourceSets{
         main {
+            java.srcDir('src/main/java')
+            jni.srcDir('src/main/jni')
             jniLibs.srcDir('src/main/jniLibs')
         }
     }
@@ -35,8 +37,6 @@ android {
         def output = variant.outputs.get(0)
         File apk = output.outputFile
         String newName = output.outputFile.name
-//                .replace("-release", "")
-//                .replace("-debug", "")
                 .replace(".apk", "-${variant.mergedFlavor.versionName}-${project.ext.versionInfo.build}.apk")
                 .replace("app-", "${variant.mergedFlavor.applicationId}-")
         output.outputFile = new File(apk.parentFile, newName)
@@ -72,7 +72,7 @@ task createCoreWrapperDir {
 }
 
 // For this to work, it's assumed SWIG is installed
-// FIXME: This only works when called from Command Line (gradlew runSwig)
+// FIXME: This only works when called from Command Line (gradlew swig)
 task swig(type:Exec, dependsOn: ['createCoreWrapperDir']) {
     String osName = System.getProperty("os.name").toLowerCase();
     if (osName.contains("windows")) {
