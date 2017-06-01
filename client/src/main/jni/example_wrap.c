@@ -210,7 +210,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT jint JNICALL Java_com_example_client_swig_exampleJNI_gcd(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
+SWIGEXPORT jint JNICALL Java_com_example_client_jni_exampleJNI_gcd(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
   jint jresult = 0 ;
   int arg1 ;
   int arg2 ;

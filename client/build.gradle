@@ -48,37 +48,58 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:multidex:1.0.0'
-    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:appcompat-v7:22.1.0'
     testCompile 'junit:junit:4.12'
     compile 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.android.support:multidex:1.0.1'
 }
 
 //这里拷贝的是未签名的apk，如果有配置签名信息，则以下改为拷贝已签名的文件
-task swigTask(type:Exec) {
-    commandLine 'cmd', '/c', 'swig'
-    args '-java', '-package', 'com.evideo.client.swig', '-outdir', "${projectDir}/src/main/java/com/evideo/client/swig", '-o', "${projectDir}/src/main/jni/example.c", "${projectDir}/src/main/jni/example.i"
+task swigTask(type:Exec, description:'Eecute CMD') {
+    workingDir 'D:\\Android\\swig-3.0.12'
+    def command = [
+            'swig', '-java',
+            '-package','com.example.client.jni',
+            '-outdir', "${projectDir}/client/src/main/java/com/example/client/jni",
+            '-o', "${projectDir}/client/src/main/jni/example_wrap.c", "${projectDir}/client/src/main/jni/example.i"
+            ]
+    commandLine command
 }
 
 task testBatTask(type:Exec,description:'Eecute CMD'){
-    workingDir 'nboxSoFile'
+    workingDir 'D:\\Android\\swig-3.0.12'
     commandLine 'cmd',"/c","executeEnhanceSoFileTask"
 }
 
-project.afterEvaluate(){
-//    disableDebugBuild()
+afterEvaluate {
+    tasks.getByName('assembleDebug').doLast {
+        copy {
+            from 'build/outputs/apk/client-debug-1.0-1aa599f.apk'
+            into rootDir.absolutePath
+            rename 'client-debug-1.0-1aa599f.apk', 'cbb.apk'
+        }
+    }
 }
 
-def disableDebugBuild(){
-    //project.tasks包含了所有的tasks，下面的findAll是寻找那些名字中带debug的Task。
-    //返回值保存到targetTasks容器中
-    def targetTasks = project.tasks.findAll{task ->
-        task.name.contains("Debug")
+def coreWrapperDir = new File("${projectDir}/client/src/main/java/com/example/client/jni")
+
+task createCoreWrapperDir {
+    coreWrapperDir.mkdirs()
+}
+
+// For this to work, it's assumed SWIG is installed
+// TODO: This only works when called from Command Line (gradlew runSwig)
+task runSwig(type:Exec, dependsOn: ['preBuild']) {
+
+    String osName = System.getProperty("os.name").toLowerCase();
+    if (osName.contains("windows")) {
+        commandLine 'cmd', '/c', 'swig'
+        args '-java', '-package', 'com.example.client.jni', '-outdir', "${projectDir}/src/main/java/com/example/client/jni", '-o', "${projectDir}/src/main/jni/example_wrap.c", "${projectDir}/src/main/jni/example.i"
     }
-    //对满足条件的task，设置它为disable。如此这般，这个Task就不会被执行
-    targetTasks.each{
-        println"disable debug task  :${it.name}"
-        it.setEnabled false
+    else {
+        commandLine 'swig'
+        args '-c++', '-java', '-package', 'com.sureshjoshi.core', '-outdir', coreWrapperDir.absolutePath, "${projectDir}/src/main/jni/SeePlusPlus.i"
     }
+
 }

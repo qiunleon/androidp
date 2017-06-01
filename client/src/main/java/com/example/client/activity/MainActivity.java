@@ -9,7 +9,6 @@ import android.widget.Switch;
 import com.example.client.R;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
-import com.example.client.jni.exampleJNI;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
