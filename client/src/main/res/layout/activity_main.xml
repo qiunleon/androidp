@@ -98,6 +98,7 @@
 
 
     <LinearLayout
+        android:id="@+id/llyt_image_binder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/switch_wifi_ap"
@@ -119,6 +120,50 @@
             android:text="GET BINDER" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/llyt_linear_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llyt_image_binder"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_linear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="LINEAR" />
+
+        <Button
+            android:id="@+id/button_linear_scroll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/button_load"
+            android:layout_weight="1"
+            android:text="LINEAR SCROLL" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llyt_linear_scroll"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_grid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="GRID" />
+
+        <Button
+            android:id="@+id/button_staggered"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/button_load"
+            android:layout_weight="1"
+            android:text="STAGGERED" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_exit"

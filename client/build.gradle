@@ -2,19 +2,30 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 apply from: "${rootDir}/version.gradle"
 
-def apkName
-
 android {
-    compileSdkVersion 22
+    compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.client"
-        minSdkVersion 22
-        targetSdkVersion 22
+        minSdkVersion 17
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+        ndk{
+            abiFilters "x86"
+        }
+
+        splits {
+            abi {
+                enable true
+                reset()
+                include 'x86'
+                universalApk true
+            }
+        }
     }
 
     signingConfigs {
@@ -27,11 +38,6 @@ android {
     }
 
     buildTypes {
-        debug {
-            applicationIdSuffix ".debug"
-            versionNameSuffix "-debug"
-        }
-
         release {
             signingConfig signingConfigs.release
         }
@@ -39,9 +45,7 @@ android {
 
     sourceSets{
         main {
-            java.srcDir('src/main/java')
-            jni.srcDir('src/main/jni')
-            jniLibs.srcDir('src/main/jniLibs')
+            jniLibs.srcDir('src/main/libs')
         }
     }
 
@@ -68,11 +72,16 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:22.1.0'
+
     testCompile 'junit:junit:4.12'
     compile 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     compile 'com.android.support:multidex:1.0.1'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:design:25.3.1'
 }
 
 afterEvaluate {

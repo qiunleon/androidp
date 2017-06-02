@@ -1,14 +1,9 @@
-package com.example.service.data;
+package com.example.client.data;
 
 /**
- * Created by alienware on 2017/3/14.
+ * Created by yunliangqiu on 2017/6/3.
  */
-
 public class Image {
-
-    private String url;//图片地址
-    private int page;//页数
-
     public String getUrl() {
         return url;
     }
@@ -17,6 +12,8 @@ public class Image {
         this.url = url;
     }
 
+    private String url;
+
     public int getPage() {
         return page;
     }
@@ -24,4 +21,6 @@ public class Image {
     public void setPage(int page) {
         this.page = page;
     }
+
+    private int page;
 }

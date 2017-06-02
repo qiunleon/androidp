@@ -27,15 +27,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.example.client.activity.ImageActivity"
             android:launchMode="singleTask">
         </activity>
-
         <activity
             android:name="com.example.client.activity.DetailActivity"
             android:launchMode="singleTask">
+        </activity>
+        <activity
+            android:name="com.example.client.activity.LinearActivity"
+            android:label="@string/title_activity_line"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.LinearScrollActivity"
+            android:label="滑动显示隐藏布局"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.example.client.activity.GridActivity"
+            android:label="@string/title_activity_grid"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.example.client.activity.StaggeredActivity"
+            android:label="@string/title_activity_staggered"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <receiver android:name="com.example.client.receiver.BootCompletedReceiver">
