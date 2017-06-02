@@ -108,4 +108,3 @@ public class MainActivity extends Activity {
         System.loadLibrary("example");
     }
 }
-
