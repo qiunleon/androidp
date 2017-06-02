@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
-apply from: "${rootDir}/gradle/version.gradle"
+apply from: "${rootDir}/version.gradle"
 
 def apkName
 
