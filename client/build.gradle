@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 apply from: "${rootDir}/gradle/version.gradle"
 
+def apkName
+
 android {
     compileSdkVersion 22
     buildToolsVersion "25.0.2"
@@ -15,7 +17,24 @@ android {
         multiDexEnabled true
     }
 
+    signingConfigs {
+        release {
+                storeFile file("${rootDir.absolutePath}/androidp.keystore")
+                keyAlias rootProject.name
+                storePassword rootProject.name
+                keyPassword rootProject.name
+        }
+    }
+
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+
+        release {
+            signingConfig signingConfigs.release
+        }
     }
 
     sourceSets{
@@ -39,6 +58,7 @@ android {
         String newName = output.outputFile.name
                 .replace(".apk", "-${variant.mergedFlavor.versionName}-${project.ext.versionInfo.build}.apk")
                 .replace("app-", "${variant.mergedFlavor.applicationId}-")
+        ext.apkName = newName
         output.outputFile = new File(apk.parentFile, newName)
     }
 }
@@ -56,11 +76,17 @@ dependencies {
 }
 
 afterEvaluate {
-    tasks.getByName('assembleDebug').doLast {
+    tasks.getByName('assembleRelease').doLast {
         copy {
-            from 'build/outputs/apk/client-debug-1.0-1aa599f.apk'
+            from "build/outputs/apk/client-release-1.0-e13f9e4.apk"
             into rootDir.absolutePath
-            rename 'client-debug-1.0-1aa599f.apk', 'cbb.apk'
+            rename 'client-release-1.0-e13f9e4.apk', 'client.apk'
+        }
+    }
+
+    tasks.getByName('assembleRelease').doLast {
+        delete {
+            delete "${projectDir.absolutePath}/build"
         }
     }
 }
