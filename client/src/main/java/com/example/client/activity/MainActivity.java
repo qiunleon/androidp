@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.Switch;
 
 import com.example.client.R;
-import com.example.client.jni.exampleJNI;
+import com.example.client.jni.ExampleJNI;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
 
@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
         RemoteServiceManager.getInstance().unBindRemoteService();
         mStartButton.setEnabled(true);
         mStopButton.setEnabled(false);
-        mStartButton.setText(String.valueOf(exampleJNI.gcd(2, 4)));
+        mStartButton.setText(String.valueOf(ExampleJNI.gcd(2, 4)));
     }
 
     @OnClick(R.id.button_exit)

@@ -103,10 +103,10 @@ task swig(type:Exec, dependsOn: ['createCoreWrapperDir']) {
     String osName = System.getProperty("os.name").toLowerCase();
     if (osName.contains("windows")) {
         commandLine 'cmd', '/c', 'swig'
-        args '-java', '-package', 'com.example.client.jni', '-outdir', coreWrapperDir.absolutePath, '-o', "${projectDir}/src/main/jni/example_wrap.c", "${projectDir}/src/main/jni/example.i"
+        args '-java', '-package', 'com.example.client.jni', '-outdir', coreWrapperDir.absolutePath, '-o', "${projectDir}/src/main/jni/example_wrap.c", "${projectDir}/src/main/jni/Example.i"
     }
     else {
         commandLine 'swig'
-        args '-c++', '-java', '-package', 'com.example.client.jni', '-outdir', coreWrapperDir.absolutePath, "${projectDir}/src/main/jni/SeePlusPlus.i"
+        args '-c++', '-java', '-package', 'com.example.client.jni', '-outdir', coreWrapperDir.absolutePath, '-o', "${projectDir}/src/main/jni/example_wrap.c", "${projectDir}/src/main/jni/Example.i"
     }
 }

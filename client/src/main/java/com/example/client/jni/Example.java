@@ -8,9 +8,9 @@
 
 package com.example.client.jni;
 
-public class example {
+public class Example {
   public static int gcd(int x, int y) {
-    return exampleJNI.gcd(x, y);
+    return ExampleJNI.gcd(x, y);
   }
 
 }

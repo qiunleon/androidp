@@ -8,6 +8,6 @@
 
 package com.example.client.jni;
 
-public class exampleJNI {
+public class ExampleJNI {
   public final static native int gcd(int jarg1, int jarg2);
 }

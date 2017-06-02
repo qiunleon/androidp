@@ -1,6 +1,5 @@
 /* File : example.i */
 
-%module example
+%module Example
 
 int gcd(int x, int y);
-
