@@ -27,15 +27,15 @@ import java.util.List;
 
 public class StaggeredActivity extends AppCompatActivity {
 
-    private static RecyclerView recyclerview;
-    private CoordinatorLayout coordinatorLayout;
-    private GridImageAdapter mAdapter;
+    private RecyclerView mRecyclerView;
+    private CoordinatorLayout mCoordinatorLayout;
+    private GridAdapter mAdapter;
     private List<Image> Images;
     private StaggeredGridLayoutManager mLayoutManager;
-    private int lastVisibleItem;
-    private int page = 1;
-    private ItemTouchHelper itemTouchHelper;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private int mLastVisibleItem;
+    private int mPage = 1;
+    private ItemTouchHelper mItemTouchHelper;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,32 +48,28 @@ public class StaggeredActivity extends AppCompatActivity {
         setListener();
 
         new GetData().execute("http://gank.io/api/data/福利/10/1");
-
     }
 
     private void initView() {
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.staggered_coordinatorLayout);
-
-        recyclerview = (RecyclerView) findViewById(R.id.staggered_recycler);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.staggered_coordinatorLayout);
+        mRecyclerView = (RecyclerView) findViewById(R.id.staggered_recycler);
         mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        recyclerview.setLayoutManager(mLayoutManager);
-
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.staggered_swipe_refresh);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent);
-        swipeRefreshLayout.setProgressViewOffset(false, 0, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
-
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.staggered_swipe_refresh);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent);
+        mSwipeRefreshLayout.setProgressViewOffset(false, 0, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
     }
 
     private void setListener() {
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                page = 1;
+                mPage = 1;
                 new GetData().execute("http://gank.io/api/data/福利/10/1");
             }
         });
 
-        itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
+        mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
             @Override
             public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
                 int dragFlags = 0;
@@ -105,14 +101,15 @@ public class StaggeredActivity extends AppCompatActivity {
             }
         });
 
-        recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-//                0：当前屏幕停止滚动；1时：屏幕在滚动 且 用户仍在触碰或手指还在屏幕上；2时：随用户的操作，屏幕上产生的惯性滑动；
-                if (newState == RecyclerView.SCROLL_STATE_IDLE
-                        && lastVisibleItem + 2 >= mLayoutManager.getItemCount()) {
-                    new GetData().execute("http://gank.io/api/data/福利/10/" + (++page));
+                // 0, 当前屏幕停止滚动;
+                // 1, 屏幕在滚动且用户仍在触碰或手指还在屏幕上;
+                // 2, 随用户的操作,屏幕上产生的惯性滑动.
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && mLastVisibleItem + 2 >= mLayoutManager.getItemCount()) {
+                    new GetData().execute("http://gank.io/api/data/福利/10/" + (++mPage));
                 }
             }
 
@@ -120,7 +117,7 @@ public class StaggeredActivity extends AppCompatActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 int[] positions = mLayoutManager.findLastVisibleItemPositions(null);
-                lastVisibleItem = Math.max(positions[0], positions[1]);
+                mLastVisibleItem = Math.max(positions[0], positions[1]);
             }
         });
     }
@@ -129,13 +126,11 @@ public class StaggeredActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-            swipeRefreshLayout.setRefreshing(true);
+            mSwipeRefreshLayout.setRefreshing(true);
         }
 
         @Override
         protected String doInBackground(String... params) {
-
             return okHttpUtil.get(params[0]);
         }
 
@@ -154,44 +149,38 @@ public class StaggeredActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 if (Images == null || Images.size() == 0) {
-                    Images = gson.fromJson(jsonData, new TypeToken<List<Image>>() {
-                    }.getType());
+                    Images = gson.fromJson(jsonData, new TypeToken<List<Image>>() {}.getType());
                     Image pages = new Image();
-                    pages.setPage(page);
+                    pages.setPage(mPage);
                     Images.add(pages);
                 } else {
-                    List<Image> more = gson.fromJson(jsonData, new TypeToken<List<Image>>() {
-                    }.getType());
+                    List<Image> more = gson.fromJson(jsonData, new TypeToken<List<Image>>() {}.getType());
                     Images.addAll(more);
                     Image pages = new Image();
-                    pages.setPage(page);
+                    pages.setPage(mPage);
                     Images.add(pages);
                 }
 
                 if (mAdapter == null) {
-                    recyclerview.setAdapter(mAdapter = new GridImageAdapter(StaggeredActivity.this, Images));
-
-                    //设置点击监听
-                    mAdapter.setOnItemClickListener(new GridImageAdapter.OnRecyclerViewItemClickListener() {
+                    mRecyclerView.setAdapter(mAdapter = new GridAdapter(StaggeredActivity.this, Images));
+                    mAdapter.setOnItemClickListener(new GridAdapter.OnRecyclerViewItemClickListener() {
                         @Override
                         public void onItemClick(View view) {
-                            int position = recyclerview.getChildAdapterPosition(view);
-                            SnackbarUtil.ShortSnackbar(coordinatorLayout, "点击第" + position + "个", SnackbarUtil.Info).show();
+                            int position = mRecyclerView.getChildAdapterPosition(view);
+                            SnackbarUtil.ShortSnackbar(mCoordinatorLayout, String.valueOf(position), SnackbarUtil.Info).show();
                         }
 
                         @Override
                         public void onItemLongClick(View view) {
-                            itemTouchHelper.startDrag(recyclerview.getChildViewHolder(view));
+                            mItemTouchHelper.startDrag(mRecyclerView.getChildViewHolder(view));
                         }
                     });
-
-                    itemTouchHelper.attachToRecyclerView(recyclerview);
+                    mItemTouchHelper.attachToRecyclerView(mRecyclerView);
                 } else {
                     mAdapter.notifyDataSetChanged();
                 }
             }
-            swipeRefreshLayout.setRefreshing(false);
+            mSwipeRefreshLayout.setRefreshing(false);
         }
     }
-
 }

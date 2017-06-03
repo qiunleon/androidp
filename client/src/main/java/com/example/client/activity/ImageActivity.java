@@ -15,11 +15,7 @@ import hugo.weaving.DebugLog;
 /**
  * Created by alienware on 2017/5/26.
  */
-
 public class ImageActivity extends Activity {
-
-    @BindView(R.id.button_start)
-    Button mStart;
 
     @DebugLog
     @Override
