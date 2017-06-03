@@ -3,15 +3,16 @@ package com.example.client.activity.own;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.example.client.R;
 import com.example.client.activity.introduction.ScrollViewMainActivity;
-import com.example.client.jni.ExampleJNI;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
+import com.example.client.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -94,7 +95,10 @@ public class MainActivity extends Activity {
 
     @OnClick(R.id.button_jni)
     public void onClickJni() {
-        Toast.makeText(this, "GCD(12, 49) = " + String.valueOf(ExampleJNI.gcd(2, 4)), Toast.LENGTH_SHORT).show();
+        View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.spinner_item, null);
+        new ToastUtil(MainActivity.this, view, 3000)
+//                .Short(MainActivity.this, "GCD(12, 49) = " + String.valueOf(ExampleJNI.gcd(2, 4)))
+                .show();
     }
 
     @OnClick(R.id.button_scrollview)
