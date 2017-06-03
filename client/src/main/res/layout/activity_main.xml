@@ -7,34 +7,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.MainActivity">
-
-    <LinearLayout
-        android:id="@+id/start_stop_service"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/button_start"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Start Service" />
-
-        <Button
-            android:id="@+id/button_stop"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/button_start"
-            android:layout_weight="1"
-            android:text="Stop Service" />
-    </LinearLayout>
+    tools:context=".activity.own.MainActivity">
 
     <LinearLayout
         android:id="@+id/switch_wifi_ap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/start_stop_service"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -96,12 +74,34 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/start_stop_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switch_wifi_ap">
+
+        <Button
+            android:id="@+id/button_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Start Service" />
+
+        <Button
+            android:id="@+id/button_stop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/button_start"
+            android:layout_weight="1"
+            android:text="Stop Service" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/llyt_image_binder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/switch_wifi_ap"
+        android:layout_below="@+id/start_stop_service"
         android:orientation="horizontal">
 
         <Button
@@ -144,6 +144,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llyt_grid_staggered"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/llyt_linear_scroll"
@@ -163,6 +164,29 @@
             android:layout_toRightOf="@+id/button_load"
             android:layout_weight="1"
             android:text="STAGGERED" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llyt_jni_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llyt_grid_staggered"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_jni"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="JNI" />
+
+        <Button
+            android:id="@+id/button_scrollview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/button_load"
+            android:layout_weight="1"
+            android:text="SCROLL VIEW" />
     </LinearLayout>
 
     <Button

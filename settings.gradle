@@ -1,2 +1,2 @@
-include ':service', ':client'
+include ':service', ':client', ':scrollview'
 

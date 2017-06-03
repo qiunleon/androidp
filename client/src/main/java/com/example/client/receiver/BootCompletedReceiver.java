@@ -17,7 +17,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         if (action.equals("android.intent.action.BOOT_COMPLETED")) {
             Intent newIntent = new Intent();
             newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            ComponentName componentName = new ComponentName("com.example.client", "com.example.client.activity.MainActivity");
+            ComponentName componentName = new ComponentName("com.example.client", "com.example.client.activity.own.MainActivity");
             newIntent.setComponent(componentName);
             newIntent.setAction("android.intent.action.MAIN");
             context.startActivity(newIntent);
