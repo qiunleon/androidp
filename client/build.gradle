@@ -68,7 +68,6 @@ android {
         abortOnError false
     }
 
-    // Rename APK files
     applicationVariants.all { variant ->
         def output = variant.outputs.get(0)
         File apk = output.outputFile
@@ -153,27 +152,21 @@ task swig(type: Exec, dependsOn: ['createCoreWrapperDir']) {
 }
 
 // adb install [-r] [xxx.apk]
-// FIXME: This only works when called from Command Line (gradlew install)
 def install() {
     String cmd = "adb -s 192.168.193.101:5555 install -r ${rootDir.absolutePath}\\apk\\${project.name}.apk"
-    cmd.execute()
+    cmd.execute().text.trim()
 //    commandLine 'cmd', '/c', 'adb', '-s', '192.168.193.101:5555', 'install', '-r', rootDir.absolutePath + "\\apk\\${project.name}.apk"
 }
 
 // adb push [xxx.apk] [destination]
-// FIXME: This only works when called from Command Line (gradlew push)
 task push(type: Exec, dependsOn: ['remount']) {
     commandLine 'cmd', '/c', 'adb', 'push', rootDir.absolutePath + "\\apk\\${project.name}.apk", 'system/app'
 }
 
 // adb remount
-task remount(type: Exec, dependsOn: ['killServer']) {
+task remount(type: Exec) {
     commandLine 'cmd', '/c', 'adb', 'remount'
 }
-
-//task killServer(type: Exec){
-//    commandLine 'cmd', '/c', 'adb', 'kill-server'
-//}
 
 //task deleteApk(type: Delete) {
 //    delete "${rootDir.absolutePath}/apk"
