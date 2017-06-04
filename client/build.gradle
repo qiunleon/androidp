@@ -29,6 +29,12 @@ android {
     }
 
     signingConfigs {
+        debug {
+            storeFile file("${rootDir.absolutePath}/androidp.keystore")
+            keyAlias rootProject.name
+            storePassword rootProject.name
+            keyPassword rootProject.name
+        }
         release {
             storeFile file("${rootDir.absolutePath}/androidp.keystore")
             keyAlias rootProject.name
@@ -38,6 +44,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             signingConfig signingConfigs.release
         }
@@ -55,15 +64,17 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     // Rename APK files
     applicationVariants.all { variant ->
         def output = variant.outputs.get(0)
         File apk = output.outputFile
-        String newName = output.outputFile.name
-                .replace(".apk", "-${variant.mergedFlavor.versionName}-${project.ext.versionInfo.build}.apk")
-                .replace("app-", "${variant.mergedFlavor.applicationId}-")
-        project.ext.apkName = newName
-        output.outputFile = new File(apk.parentFile, newName)
+        String Name = output.outputFile.name
+                .replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
+        output.outputFile = new File(apk.parentFile, Name)
     }
 
 //    project.tasks.whenTaskAdded { task ->
@@ -101,27 +112,25 @@ dependencies {
 }
 
 afterEvaluate {
-    tasks.getByName('assembleDebug').doLast {
+    tasks.getByName("assembleRelease").doLast {
         copy {
-            from "build/outputs/apk/${project.ext.apkName}"
-            into rootDir.absolutePath
-            rename project.ext.apkName, "${project.name}.apk"
+            from("$buildDir/outputs/apk") {
+                exclude '**/*unsigned.apk', '**/*unaligned.apk'
+                include "**/${project.name}*.apk"
+            }
+            into "${rootDir.absolutePath}\\apk"
+            rename(/(.)*\.apk/, "${project.name}.apk")
         }
-
-//        // Copy APKs to another folder
-//        task copyApks(type: Copy) {
-//            from("$buildDir/outputs/apk") {
-//                exclude '**/*unsigned.apk', '**/*unaligned.apk'
-//            }
-//            into '../apks'
-//        }
+        println install()
     }
 
-//    tasks.getByName('assembleDebug').doLast {
-//        delete {
-//            delete "${projectDir.absolutePath}/build"
-//        }
-//    }
+    tasks.getByName("assembleRelease").doLast {
+        delete "${projectDir.absolutePath}/build"
+    }
+}
+
+static def buildTime() {
+    return new Date().format("yyyy-MM-dd-HH-mm-ss", TimeZone.getTimeZone("GMT+8"))
 }
 
 def coreWrapperDir = new File("${projectDir}/src/main/java/com/example/client/jni")
@@ -145,17 +154,27 @@ task swig(type: Exec, dependsOn: ['createCoreWrapperDir']) {
 
 // adb install [-r] [xxx.apk]
 // FIXME: This only works when called from Command Line (gradlew install)
-task install(type: Exec) {
-    commandLine 'cmd', '/c', 'adb', 'install', '-r', rootDir.absolutePath + "\\${project.name}.apk"
+def install() {
+    String cmd = "adb -s 192.168.193.101:5555 install -r ${rootDir.absolutePath}\\apk\\${project.name}.apk"
+    cmd.execute()
+//    commandLine 'cmd', '/c', 'adb', '-s', '192.168.193.101:5555', 'install', '-r', rootDir.absolutePath + "\\apk\\${project.name}.apk"
 }
 
-// adb remount
 // adb push [xxx.apk] [destination]
 // FIXME: This only works when called from Command Line (gradlew push)
 task push(type: Exec, dependsOn: ['remount']) {
-    commandLine 'cmd', '/c', 'adb', 'push', rootDir.absolutePath + "\\${project.name}.apk", 'system/app'
+    commandLine 'cmd', '/c', 'adb', 'push', rootDir.absolutePath + "\\apk\\${project.name}.apk", 'system/app'
 }
 
-task remount(type: Exec) {
+// adb remount
+task remount(type: Exec, dependsOn: ['killServer']) {
     commandLine 'cmd', '/c', 'adb', 'remount'
 }
+
+//task killServer(type: Exec){
+//    commandLine 'cmd', '/c', 'adb', 'kill-server'
+//}
+
+//task deleteApk(type: Delete) {
+//    delete "${rootDir.absolutePath}/apk"
+//}
