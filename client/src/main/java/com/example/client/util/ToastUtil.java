@@ -9,17 +9,11 @@ import android.widget.Toast;
 /**
  * Created by alienware on 2017/6/4.
  */
+@SuppressWarnings("unused")
 public class ToastUtil {
 
     private Toast toast;
     private LinearLayout toastView;
-
-    /**
-     * 修改原布局的Toast
-     */
-    public ToastUtil() {
-
-    }
 
     /**
      * 完全自定义布局Toast
@@ -43,7 +37,6 @@ public class ToastUtil {
     public ToastUtil addView(View view, int postion) {
         toastView = (LinearLayout) toast.getView();
         toastView.addView(view, postion);
-
         return this;
     }
 
@@ -179,22 +172,11 @@ public class ToastUtil {
         return this;
     }
 
-    /**
-     * 显示Toast
-     *
-     * @return
-     */
     public ToastUtil show() {
         toast.show();
-
         return this;
     }
 
-    /**
-     * 获取Toast
-     *
-     * @return
-     */
     public Toast getToast() {
         return toast;
     }

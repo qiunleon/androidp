@@ -111,7 +111,7 @@ dependencies {
 }
 
 afterEvaluate {
-    tasks.getByName("assembleRelease").doLast {
+    tasks.getByName("assembleDebug").doLast {
         copy {
             from("$buildDir/outputs/apk") {
                 exclude '**/*unsigned.apk', '**/*unaligned.apk'
@@ -123,9 +123,9 @@ afterEvaluate {
         println install()
     }
 
-    tasks.getByName("assembleRelease").doLast {
-        delete "${projectDir.absolutePath}/build"
-    }
+//    tasks.getByName("assembleRelease").doLast {
+//        delete "${projectDir.absolutePath}/build"
+//    }
 }
 
 static def buildTime() {

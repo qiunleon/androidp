@@ -60,7 +60,7 @@
         </activity>
 
         <activity
-            android:name=".activity.introduction.ScrollViewMainActivity"
+            android:name=".activity.imported.ScrollViewMainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
@@ -68,541 +68,541 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.AboutActivity"
+            android:name=".activity.imported.AboutActivity"
             android:label="@string/title_activity_about" />
         <activity
-            android:name=".activity.introduction.ActionBarControlGridViewActivity"
+            android:name=".activity.imported.ActionBarControlGridViewActivity"
             android:label="@string/title_activity_actionbarcontrolgridview">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ActionBarControlListViewActivity"
+            android:name=".activity.imported.ActionBarControlListViewActivity"
             android:label="@string/title_activity_actionbarcontrollistview">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ActionBarControlRecyclerViewActivity"
+            android:name=".activity.imported.ActionBarControlRecyclerViewActivity"
             android:label="@string/title_activity_actionbarcontrolrecyclerview">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ActionBarControlScrollViewActivity"
+            android:name=".activity.imported.ActionBarControlScrollViewActivity"
             android:label="@string/title_activity_actionbarcontrolscrollview">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ActionBarControlWebViewActivity"
+            android:name=".activity.imported.ActionBarControlWebViewActivity"
             android:label="@string/title_activity_actionbarcontrolwebview">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FillGap2ListViewActivity"
+            android:name=".activity.imported.FillGap2ListViewActivity"
             android:label="@string/title_activity_fillgaplistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FillGap2RecyclerViewActivity"
+            android:name=".activity.imported.FillGap2RecyclerViewActivity"
             android:label="@string/title_activity_fillgaprecyclerview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FillGap2ScrollViewActivity"
+            android:name=".activity.imported.FillGap2ScrollViewActivity"
             android:label="@string/title_activity_fillgapscrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FillGap3ListViewActivity"
+            android:name=".activity.imported.FillGap3ListViewActivity"
             android:label="@string/title_activity_fillgap3listview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FillGap3RecyclerViewActivity"
+            android:name=".activity.imported.FillGap3RecyclerViewActivity"
             android:label="@string/title_activity_fillgap3recyclerview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FillGap3ScrollViewActivity"
+            android:name=".activity.imported.FillGap3ScrollViewActivity"
             android:label="@string/title_activity_fillgap3scrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FillGapListViewActivity"
+            android:name=".activity.imported.FillGapListViewActivity"
             android:label="@string/title_activity_fillgaplistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FillGapRecyclerViewActivity"
+            android:name=".activity.imported.FillGapRecyclerViewActivity"
             android:label="@string/title_activity_fillgaprecyclerview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FillGapScrollViewActivity"
+            android:name=".activity.imported.FillGapScrollViewActivity"
             android:label="@string/title_activity_fillgapscrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FlexibleSpaceToolbarScrollViewActivity"
+            android:name=".activity.imported.FlexibleSpaceToolbarScrollViewActivity"
             android:label="@string/title_activity_flexiblespacetoolbarscrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FlexibleSpaceWithImageGridViewActivity"
+            android:name=".activity.imported.FlexibleSpaceWithImageGridViewActivity"
             android:label="@string/title_activity_flexiblespacewithimagegridview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FlexibleSpaceWithImageScrollViewActivity"
+            android:name=".activity.imported.FlexibleSpaceWithImageScrollViewActivity"
             android:label="@string/title_activity_flexiblespacewithimagescrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FlexibleSpaceWithImageRecyclerViewActivity"
+            android:name=".activity.imported.FlexibleSpaceWithImageRecyclerViewActivity"
             android:label="@string/title_activity_flexiblespacewithimageRecyclerview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FlexibleSpaceWithImageWithViewPagerTabActivity"
+            android:name=".activity.imported.FlexibleSpaceWithImageWithViewPagerTabActivity"
             android:label="@string/title_activity_flexiblespacewithimagewithviewpagertab"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FlexibleSpaceWithImageWithViewPagerTab2Activity"
+            android:name=".activity.imported.FlexibleSpaceWithImageWithViewPagerTab2Activity"
             android:label="@string/title_activity_flexiblespacewithimagewithviewpagertab2"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FlexibleSpaceWithImageListViewActivity"
+            android:name=".activity.imported.FlexibleSpaceWithImageListViewActivity"
             android:label="@string/title_activity_flexiblespacewithimagelistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FlexibleSpaceToolbarWebViewActivity"
+            android:name=".activity.imported.FlexibleSpaceToolbarWebViewActivity"
             android:label="@string/title_activity_flexiblespacewithwebview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FragmentActionBarControlListViewActivity"
+            android:name=".activity.imported.FragmentActionBarControlListViewActivity"
             android:label="@string/title_activity_fragmentactionbarcontrollistview"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.FragmentTransitionActivity"
+            android:name=".activity.imported.FragmentTransitionActivity"
             android:label="@string/title_activity_fragmenttransition"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.HandleTouchGridViewActivity"
+            android:name=".activity.imported.HandleTouchGridViewActivity"
             android:label="@string/title_activity_handletouchgridview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.HandleTouchListViewActivity"
+            android:name=".activity.imported.HandleTouchListViewActivity"
             android:label="@string/title_activity_handletouchlistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.HandleTouchRecyclerViewActivity"
+            android:name=".activity.imported.HandleTouchRecyclerViewActivity"
             android:label="@string/title_activity_handletouchrecyclerview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.HandleTouchScrollViewActivity"
+            android:name=".activity.imported.HandleTouchScrollViewActivity"
             android:label="@string/title_activity_handletouchscrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.HandleTouchWebViewActivity"
+            android:name=".activity.imported.HandleTouchWebViewActivity"
             android:label="@string/title_activity_handletouchwebview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ParallaxToolbarGridViewActivity"
+            android:name=".activity.imported.ParallaxToolbarGridViewActivity"
             android:label="@string/title_activity_parallaxtoolbargridview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ParallaxToolbarListViewActivity"
+            android:name=".activity.imported.ParallaxToolbarListViewActivity"
             android:label="@string/title_activity_parallaxtoolbarlistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ParallaxToolbarScrollViewActivity"
+            android:name=".activity.imported.ParallaxToolbarScrollViewActivity"
             android:label="@string/title_activity_parallaxtoolbarscrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ScrollFromBottomListViewActivity"
+            android:name=".activity.imported.ScrollFromBottomListViewActivity"
             android:label="@string/title_activity_scrollfrombottomlistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ScrollFromBottomRecyclerViewActivity"
+            android:name=".activity.imported.ScrollFromBottomRecyclerViewActivity"
             android:label="@string/title_activity_scrollfrombottomrecyclerview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.SlidingUpGridViewActivity"
+            android:name=".activity.imported.SlidingUpGridViewActivity"
             android:label="@string/title_activity_slidingupgridview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.SlidingUpListViewActivity"
+            android:name=".activity.imported.SlidingUpListViewActivity"
             android:label="@string/title_activity_slidinguplistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.SlidingUpRecyclerViewActivity"
+            android:name=".activity.imported.SlidingUpRecyclerViewActivity"
             android:label="@string/title_activity_slidinguprecyclerview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.SlidingUpScrollViewActivity"
+            android:name=".activity.imported.SlidingUpScrollViewActivity"
             android:label="@string/title_activity_slidingupscrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.SlidingUpWebViewActivity"
+            android:name=".activity.imported.SlidingUpWebViewActivity"
             android:label="@string/title_activity_slidingupwebview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.StickyHeaderListViewActivity"
+            android:name=".activity.imported.StickyHeaderListViewActivity"
             android:label="@string/title_activity_stickyheaderlistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.StickyHeaderRecyclerViewActivity"
+            android:name=".activity.imported.StickyHeaderRecyclerViewActivity"
             android:label="@string/title_activity_stickyheaderrecyclerview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.StickyHeaderScrollViewActivity"
+            android:name=".activity.imported.StickyHeaderScrollViewActivity"
             android:label="@string/title_activity_stickyheaderscrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.StickyHeaderWebViewActivity"
+            android:name=".activity.imported.StickyHeaderWebViewActivity"
             android:label="@string/title_activity_stickyheaderwebview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ToolbarControlGridViewActivity"
+            android:name=".activity.imported.ToolbarControlGridViewActivity"
             android:label="@string/title_activity_toolbarcontrolgridview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ToolbarControlListViewActivity"
+            android:name=".activity.imported.ToolbarControlListViewActivity"
             android:label="@string/title_activity_toolbarcontrollistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ToolbarControlRecyclerViewActivity"
+            android:name=".activity.imported.ToolbarControlRecyclerViewActivity"
             android:label="@string/title_activity_toolbarcontrolrecyclerview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ToolbarControlScrollViewActivity"
+            android:name=".activity.imported.ToolbarControlScrollViewActivity"
             android:label="@string/title_activity_toolbarcontrolscrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ToolbarControlWebViewActivity"
+            android:name=".activity.imported.ToolbarControlWebViewActivity"
             android:label="@string/title_activity_toolbarcontrolwebview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ViewPagerTab2Activity"
+            android:name=".activity.imported.ViewPagerTab2Activity"
             android:label="@string/title_activity_viewpagertab2"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ViewPagerTabActivity"
+            android:name=".activity.imported.ViewPagerTabActivity"
             android:label="@string/title_activity_viewpagertab"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ViewPagerTabFragmentActivity"
+            android:name=".activity.imported.ViewPagerTabFragmentActivity"
             android:label="@string/title_activity_viewpagertabfragment"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ViewPagerTabListViewActivity"
+            android:name=".activity.imported.ViewPagerTabListViewActivity"
             android:label="@string/title_activity_viewpagertablistview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ViewPagerTabScrollViewActivity"
+            android:name=".activity.imported.ViewPagerTabScrollViewActivity"
             android:label="@string/title_activity_viewpagertabscrollview"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.introduction.ViewPagerTabScrollViewWithFabActivity"
+            android:name=".activity.imported.ViewPagerTabScrollViewWithFabActivity"
             android:label="@string/title_activity_viewpagertabscrollviewwithfab"
             android:theme="@style/AppTheme.Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="com.example.client.activity.introduction" />
+                <category android:name="com.example.client.activity.imported" />
             </intent-filter>
         </activity>
 
