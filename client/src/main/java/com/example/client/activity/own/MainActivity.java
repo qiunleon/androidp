@@ -11,7 +11,6 @@ import android.widget.Switch;
 import com.example.client.R;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
-import com.example.client.ui.custom.CustomToast;
 import com.example.client.ui.dialog.CustomDialog;
 
 import butterknife.BindView;
@@ -38,8 +37,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        CustomDialog customDialog = new CustomDialog(this);
-        customDialog.show();
     }
 
     @OnClick(R.id.button_start)
@@ -99,16 +96,16 @@ public class MainActivity extends Activity {
     @OnClick(R.id.button_jni)
     public void onClickJni() {
         View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.spinner_item, null);
-        new CustomToast().setContext(this).setCustomView(null).setDuration(1000).create().show();
+//        new CustomToast().setContext(this).setCustomView(null).setDuration(1000).create().show();
     }
 
-//    @OnClick(R.id.button_scrollview)
-//    public void onClickScrollView() {
+    @OnClick(R.id.button_scrollview)
+    public void onClickScrollView() {
 //        Intent intent = new Intent(this, ScrollViewMainActivity.class);
 //        startActivity(intent);
-//        CustomDialog customDialog = new CustomDialog(this);
-//        customDialog.show();
-//    }
+        CustomDialog customDialog = new CustomDialog(this);
+        customDialog.show();
+    }
 
     @OnCheckedChanged(R.id.switch_wifi)
     public void onCheckedChangedWifiMode(boolean isChecked) {

@@ -57,12 +57,13 @@ public class LoadView extends View {
         int height = this.getHeight() / 2;
         int radio = 60;
         int r = 8;
+        int index = 0;
         p.setColor(getResources().getColor(android.R.color.white));
         for (int i = 0; i < VALUE_MAX_POINT_NUMBER; i++) {
             if (i < VALUE_MAX_POINT_NUMBER - mIndex) {
                 p.setAlpha(VALUE_MAX_COLOR_ALPHA - VALUE_COLOR_ALPHA_DEGRESSION * mIndex - VALUE_COLOR_ALPHA_DEGRESSION * i);
             }else {
-                p.setAlpha(VALUE_MAX_COLOR_ALPHA - VALUE_COLOR_ALPHA_DEGRESSION * mIndex);
+                p.setAlpha(VALUE_MAX_COLOR_ALPHA - VALUE_COLOR_ALPHA_DEGRESSION * index++);
             }
             canvas.drawCircle(
                     (float) (width - radio * Math.sin(30.0 * i * Math.PI / 180.0)),
