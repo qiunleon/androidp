@@ -9,10 +9,10 @@ import android.widget.Button;
 import android.widget.Switch;
 
 import com.example.client.R;
-import com.example.client.activity.imported.ScrollViewMainActivity;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
-import com.example.client.ui.widget.CustomToast;
+import com.example.client.ui.custom.CustomToast;
+import com.example.client.ui.dialog.CustomDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +38,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        CustomDialog customDialog = new CustomDialog(this);
+        customDialog.show();
     }
 
     @OnClick(R.id.button_start)
@@ -100,11 +102,13 @@ public class MainActivity extends Activity {
         new CustomToast().setContext(this).setCustomView(null).setDuration(1000).create().show();
     }
 
-    @OnClick(R.id.button_scrollview)
-    public void onClickScrollView() {
-        Intent intent = new Intent(this, ScrollViewMainActivity.class);
-        startActivity(intent);
-    }
+//    @OnClick(R.id.button_scrollview)
+//    public void onClickScrollView() {
+//        Intent intent = new Intent(this, ScrollViewMainActivity.class);
+//        startActivity(intent);
+//        CustomDialog customDialog = new CustomDialog(this);
+//        customDialog.show();
+//    }
 
     @OnCheckedChanged(R.id.switch_wifi)
     public void onCheckedChangedWifiMode(boolean isChecked) {

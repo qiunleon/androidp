@@ -15,7 +15,7 @@ android {
         multiDexEnabled true
 
         ndk {
-            abiFilters "x86"
+            abiFilters "armeabi-v7a", "x86"
         }
 
 //        splits {
@@ -111,17 +111,17 @@ dependencies {
 }
 
 afterEvaluate {
-    tasks.getByName("assembleDebug").doLast {
-        copy {
-            from("$buildDir/outputs/apk") {
-                exclude '**/*unsigned.apk', '**/*unaligned.apk'
-                include "**/${project.name}*.apk"
-            }
-            into "${rootDir.absolutePath}\\apk"
-            rename(/(.)*\.apk/, "${project.name}.apk")
-        }
-        println install()
-    }
+//    tasks.getByName("assembleDebug").doLast {
+//        copy {
+//            from("$buildDir/outputs/apk") {
+//                exclude '**/*unsigned.apk', '**/*unaligned.apk'
+//                include "**/${project.name}*.apk"
+//            }
+//            into "${rootDir.absolutePath}\\apk"
+//            rename(/(.)*\.apk/, "${project.name}.apk")
+//        }
+//        println install()
+//    }
 
 //    tasks.getByName("assembleRelease").doLast {
 //        delete "${projectDir.absolutePath}/build"
