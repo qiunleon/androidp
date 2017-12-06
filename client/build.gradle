@@ -45,9 +45,13 @@ android {
 
     buildTypes {
         debug {
+//            minifyEnabled true
+//            shrinkResources true
             signingConfig signingConfigs.debug
         }
         release {
+//            minifyEnabled true
+//            shrinkResources true
             signingConfig signingConfigs.release
         }
     }
@@ -63,6 +67,10 @@ android {
             path 'src/main/jni/Android.mk'
         }
     }
+
+//    aaptOptions{
+//        cruncherEnabled false
+//    }
 
     lintOptions {
         abortOnError false
@@ -169,6 +177,19 @@ task remount(type: Exec) {
     commandLine 'cmd', '/c', 'adb', 'remount'
 }
 
-//task deleteApk(type: Delete) {
-//    delete "${rootDir.absolutePath}/apk"
-//}
+task deleteApk(type: Delete) {
+    delete "${rootDir.absolutePath}/apk"
+}
+
+task makeJar(type: Jar, dependsOn: ['build']){
+    delete 'libs/sdk.jar'
+    baseName 'sdk'
+    from('build/intermediates/classes/debug/com/example')
+    into('com/example/')
+    exclude('test/', 'BuildConfig.class', 'R.class')
+    exclude{it.nama.startsWith('R$');}
+}
+
+// call deleteApk when makeJar finished
+makeJar.finalizedBy deleteApk
+
