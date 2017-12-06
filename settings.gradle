@@ -1,2 +1,2 @@
-include ':service', ':client', ':scrollview'
+include ':service', ':client', ':scrollview', ':diskinfolib-debug'
 

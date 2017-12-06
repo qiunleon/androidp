@@ -1,17 +1,19 @@
 package com.example.client.activity.own;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 
 import com.example.client.R;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
+import com.example.client.sqlite.SQLiteDatabaseHelper;
 import com.example.client.ui.dialog.CustomDialog;
+import com.example.client.ui.dialog.EvProgressDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -95,8 +97,10 @@ public class MainActivity extends Activity {
 
     @OnClick(R.id.button_jni)
     public void onClickJni() {
-        View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.spinner_item, null);
+//        View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.spinner_item, null);
 //        new CustomToast().setContext(this).setCustomView(null).setDuration(1000).create().show();
+        EvProgressDialog dialog = new EvProgressDialog(MainActivity.this);
+        dialog.show();
     }
 
     @OnClick(R.id.button_scrollview)
@@ -105,6 +109,16 @@ public class MainActivity extends Activity {
 //        startActivity(intent);
         CustomDialog customDialog = new CustomDialog(this);
         customDialog.show();
+    }
+
+    @OnClick(R.id.button_sqlite)
+    public void onClickCreateSQLite() {
+        SQLiteDatabaseHelper sqLiteDatabaseHelper = new SQLiteDatabaseHelper(getBaseContext());
+        SQLiteDatabase db = sqLiteDatabaseHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", "john");
+        values.put("age", 18);
+        db.insert("person", null, values);
     }
 
     @OnCheckedChanged(R.id.switch_wifi)

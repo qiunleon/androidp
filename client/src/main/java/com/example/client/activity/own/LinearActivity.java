@@ -1,6 +1,7 @@
 package com.example.client.activity.own;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -24,12 +25,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.client.R;
+import com.example.client.application.ClientApp;
 import com.example.client.data.Image;
 import com.example.client.util.SnackbarUtil;
 import com.example.client.util.okHttpUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Picasso;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +46,7 @@ public class LinearActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private CoordinatorLayout mCoordinatorLayout;
     private ViewAdapter mAdapter;
-    private List<Image> Images;
+    private List<Image> ImageList;
     private LinearLayoutManager mLayoutManager;
     private int mLastVisibleItem;
     private int mPage = 1;
@@ -60,7 +64,7 @@ public class LinearActivity extends AppCompatActivity {
         initView();
         setListener();
 
-        new GetData().execute("http://gank.io/api/data/福利/10/1");
+        new GetDataTask().execute("http://gank.io/api/data/福利/10/1");
 
         //获取屏幕宽度
         WindowManager wm = (WindowManager) LinearActivity.this.getSystemService(Context.WINDOW_SERVICE);
@@ -84,7 +88,7 @@ public class LinearActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 mPage = 1;
-                new GetData().execute("http://gank.io/api/data/福利/10/1");
+                new GetDataTask().execute("http://gank.io/api/data/福利/10/1");
             }
         });
 
@@ -106,7 +110,7 @@ public class LinearActivity extends AppCompatActivity {
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 int from = viewHolder.getAdapterPosition();
                 int to = target.getAdapterPosition();
-                Collections.swap(Images, from, to);
+                Collections.swap(ImageList, from, to);
                 mAdapter.notifyItemMoved(from, to);
                 return true;
             }
@@ -114,7 +118,6 @@ public class LinearActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
-
             }
 
             @Override
@@ -147,7 +150,7 @@ public class LinearActivity extends AppCompatActivity {
                 // 2, 随用户的操作，屏幕上产生的惯性滑动;
                 // 滑动状态停止并且剩余两个item时自动加载
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && mLastVisibleItem + 2 >= mLayoutManager.getItemCount()) {
-                    new GetData().execute("http://gank.io/api/data/福利/10/" + (++mPage));
+                    new GetDataTask().execute("http://gank.io/api/data/福利/10/" + (++mPage));
                 }
             }
 
@@ -161,7 +164,7 @@ public class LinearActivity extends AppCompatActivity {
     }
 
 
-    private class GetData extends AsyncTask<String, Integer, String> {
+    private class GetDataTask extends AsyncTask<String, Integer, String> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -173,33 +176,32 @@ public class LinearActivity extends AppCompatActivity {
             return okHttpUtil.get(params[0]);
         }
 
+        @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (!TextUtils.isEmpty(result)) {
-
                 JSONObject jsonObject;
                 Gson gson = new Gson();
                 String jsonData = null;
-
                 try {
                     jsonObject = new JSONObject(result);
                     jsonData = jsonObject.getString("results");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                if (Images == null || Images.size() == 0) {
-                    Images = gson.fromJson(jsonData, new TypeToken<List<Image>>() {
+                if (ImageList == null || ImageList.size() == 0) {
+                    ImageList = gson.fromJson(jsonData, new TypeToken<List<Image>>() {
                     }.getType());
-                    Image mPages = new Image();
-                    mPages.setPage(mPage);
-                    Images.add(mPages);
+                    Image image = new Image();
+                    image.setPage(mPage);
+                    ImageList.add(image);
                 } else {
                     List<Image> more = gson.fromJson(jsonData, new TypeToken<List<Image>>() {
                     }.getType());
-                    Images.addAll(more);
-                    Image mPages = new Image();
-                    mPages.setPage(mPage);
-                    Images.add(mPages);
+                    ImageList.addAll(more);
+                    Image image = new Image();
+                    image.setPage(mPage);
+                    ImageList.add(image);
                 }
 
                 if (mAdapter == null) {
@@ -224,14 +226,26 @@ public class LinearActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.text.setText(String.valueOf(position));
-            Picasso.with(LinearActivity.this).load(Images.get(position).getUrl()).into(holder.image);
+//            ImageLoaderUtil.init();
+//            holder.image.setImageBitmap(ImageLoaderUtil.loadImage(ImageList.get(position).getUrl()));
+            ImageLoaderConfiguration configuration = ImageLoaderConfiguration
+                    .createDefault(ClientApp.getInstance().getApplicationContext());
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
+            //Initialize ImageLoader with configuration.
+            ImageLoader.getInstance().init(configuration);
+            ImageLoader.getInstance().displayImage(ImageList.get(position).getUrl(),holder.image, options);
+//            Picasso.with(LinearActivity.this).load(ImageList.get(position).getUrl()).into(holder.image);
         }
 
         @Override
         public int getItemCount() {
-            return Images.size();
+            return ImageList.size();
         }
 
         @Override
@@ -252,14 +266,14 @@ public class LinearActivity extends AppCompatActivity {
         }
 
         void addItem(Image Image, int position) {
-            Images.add(position, Image);
+            ImageList.add(position, Image);
             notifyItemInserted(position);
             mRecyclerView.scrollToPosition(position);
         }
 
         void removeItem(final int position) {
-            final Image removed = Images.get(position);
-            Images.remove(position);
+            final Image removed = ImageList.get(position);
+            ImageList.remove(position);
             notifyItemRemoved(position);
             SnackbarUtil.ShortSnackbar(mCoordinatorLayout, String.valueOf(position), SnackbarUtil.Warning).setAction("撤销", new View.OnClickListener() {
                 @Override

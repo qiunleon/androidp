@@ -11,4 +11,5 @@
     <color name="white">#FFFFFF</color>
     <color name="dialog_background">#104B99</color>
 
-</resources>
+    <color name="transparent">#00104B99</color>
+    </resources>
