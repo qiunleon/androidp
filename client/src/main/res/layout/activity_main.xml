@@ -230,6 +230,29 @@
                     android:layout_weight="1"
                     android:text="TOUCH EVENT" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llyt_sync_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llyt_grid_staggered"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_sync_thread_a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="THREAD A" />
+
+                <Button
+                    android:id="@+id/button_sync_thread_b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_sync_thread_a"
+                    android:layout_weight="1"
+                    android:text="THREAD B" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -15,6 +15,8 @@ import com.example.client.sqlite.SQLiteDatabaseHelper;
 import com.example.client.ui.dialog.CustomDialog;
 import com.example.client.ui.dialog.EvProgressDialog;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
@@ -39,6 +41,109 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    private boolean isStop = true;
+
+    @OnClick(R.id.button_sync_thread_b)
+    public void onClickStopThread() {
+        isStop = true;
+    }
+
+    @OnClick(R.id.button_sync_thread_a)
+    public void onClickStartThread() {
+        isStop = false;
+//        final Object[] objectses = {new Object(), new Object(), new Object(), new Object(), new Object()};
+//        for (Object o : objectses) {
+//            EvLog.w("SynchronizedTest", "object: " + o.toString());
+//        }
+//        final Random random = new Random();
+//
+//        Thread thread1 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (!isStop) {
+//                    SynchronizedTest.getInstance().addElement(objectses[random.nextInt(objectses.length)]);
+//                    try {
+//                        Thread.sleep(800);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }, "add");
+//        Thread thread2 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (!isStop) {
+//                    SynchronizedTest.getInstance().removeElement(objectses[random.nextInt(objectses.length)]);
+//                    try {
+//                        Thread.sleep(400);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }, "remove");
+//        Thread thread3 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (!isStop) {
+//                    SynchronizedTest.getInstance().showElement();
+//                    try {
+//                        Thread.sleep(500);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }, "show");
+//        thread1.start();
+//        thread2.start();
+//        thread3.start();
+
+        Ticket ticket = new Ticket(10);
+        Thread window01 = new Thread(ticket, "窗口01");
+        Thread window02 = new Thread(ticket, "窗口02");
+        Thread window03 = new Thread(ticket, "窗口03");
+        window01.start();
+        window02.start();
+        window03.start();
+    }
+
+
+    public class Ticket implements Runnable {
+        private int num;//票数量
+        private boolean flag = true;//若为false则售票停止
+        private ReentrantLock lock = new ReentrantLock();
+
+        public Ticket(int num) {
+            this.num = num;
+        }
+
+        @Override
+        public void run() {
+            while (flag) {
+                ticket();
+            }
+        }
+
+        private void ticket() {
+            System.out.println(Thread.currentThread().getName() + "准备卖，票数：" + num);
+            lock.lock();
+            if (num <= 0) {
+                flag = false;
+                return;
+            }
+            try {
+                Thread.sleep(10);//模拟延时操作
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //输出当前窗口号以及出票序列号
+            System.out.println(Thread.currentThread().getName() + "售出票序列号：" + num--);
+            lock.unlock();
+        }
     }
 
     @OnClick(R.id.button_start)
