@@ -16,7 +16,7 @@ import android.view.View;
 import com.example.client.R;
 import com.example.client.data.Image;
 import com.example.client.util.SnackbarUtil;
-import com.example.client.util.okHttpUtil;
+import com.example.client.util.okHttpUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -131,7 +131,7 @@ public class StaggeredActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            return okHttpUtil.get(params[0]);
+            return okHttpUtils.get(params[0]);
         }
 
         protected void onPostExecute(String result) {

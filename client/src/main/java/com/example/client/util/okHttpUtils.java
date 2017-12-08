@@ -9,7 +9,7 @@ import okhttp3.Response;
 /**
  * Created by alienware on 2017/6/3.
  */
-public class okHttpUtil {
+public class okHttpUtils {
 
     public static OkHttpClient client = new OkHttpClient();
 

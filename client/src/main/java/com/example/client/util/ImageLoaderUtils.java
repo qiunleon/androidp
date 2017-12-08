@@ -19,7 +19,7 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
  * Created by alienware on 2017/6/12.
  */
 
-public class ImageLoaderUtil {
+public class ImageLoaderUtils {
 
     private static ImageLoader imageLoader = ImageLoader.getInstance();
 

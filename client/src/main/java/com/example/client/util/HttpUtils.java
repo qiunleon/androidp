@@ -8,13 +8,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 @SuppressWarnings("unused")
-public class HttpUtil {
+public class HttpUtils {
 
     private static class HttpUtilHolder {
-        private static HttpUtil sInstance = new HttpUtil();
+        private static HttpUtils sInstance = new HttpUtils();
     }
 
-    public HttpUtil getInstance() {
+    public HttpUtils getInstance() {
         return HttpUtilHolder.sInstance;
     }
 

@@ -28,7 +28,7 @@ import com.example.client.R;
 import com.example.client.application.ClientApp;
 import com.example.client.data.Image;
 import com.example.client.util.SnackbarUtil;
-import com.example.client.util.okHttpUtil;
+import com.example.client.util.okHttpUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -173,7 +173,7 @@ public class LinearActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            return okHttpUtil.get(params[0]);
+            return okHttpUtils.get(params[0]);
         }
 
         @Override
@@ -228,8 +228,8 @@ public class LinearActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.text.setText(String.valueOf(position));
-//            ImageLoaderUtil.init();
-//            holder.image.setImageBitmap(ImageLoaderUtil.loadImage(ImageList.get(position).getUrl()));
+//            ImageLoaderUtils.init();
+//            holder.image.setImageBitmap(ImageLoaderUtils.loadImage(ImageList.get(position).getUrl()));
             ImageLoaderConfiguration configuration = ImageLoaderConfiguration
                     .createDefault(ClientApp.getInstance().getApplicationContext());
             DisplayImageOptions options = new DisplayImageOptions.Builder()
