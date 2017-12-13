@@ -1,0 +1,86 @@
+mkdir /media/Share
+mount -t vboxsf Share /media/Share
+
+unzip android-ndk-r14b-linux-x86_64.zip
+chmod a+x android-ndk-r14b
+git clone https://git.ffmpeg.org/ffmpeg.git FFmpeg
+cd FFmpeg/
+chmod 777 build_android.sh
+./build_android.sh
+
+
+
+#!/bin/bash
+#Change NDK to your Android NDK location
+NDK=/home/qiunleon/android-ndk-r14b
+PLATFORM=$NDK/platforms/android-19/arch-x86/
+PREBUILT=$NDK/toolchains/x86-4.9/prebuilt/linux-x86_64
+
+
+GENERAL="\
+--enable-small \
+--enable-cross-compile \
+--extra-libs="-lgcc" \
+--cc=$PREBUILT/bin/i686-linux-android-gcc \
+--cross-prefix=$PREBUILT/bin/i686-linux-android- \
+--nm=$PREBUILT/bin/i686-linux-android-nm"
+
+MODULES="\
+--enable-gpl"
+
+
+function build_x86
+{
+  ./configure \
+  --logfile=conflog.txt \
+  --target-os=linux \
+  --prefix=./android/x86 \
+  --arch=x86 \
+  ${GENERAL} \
+  --sysroot=$PLATFORM \
+  --extra-cflags=" -O3 -DANDROID -Dipv6mr_interface=ipv6mr_ifindex -fasm -Wno-psabi -fno-short-enums -fno-strict-aliasing -fomit-frame-pointer -march=k8" \
+  --disable-shared \
+  --disable-yasm \
+  --enable-static \
+  --enable-small \
+  --disable-ffmpeg \
+  --disable-ffplay \
+  --disable-ffserver \
+  --disable-ffprobe \
+  --disable-filters \
+  --enable-muxers \
+  --enable-demuxers \
+  --extra-cflags="-march=i686 -mtune=intel -mssse3 -mfpmath=sse -m32" \
+  --extra-ldflags="-Wl,-rpath-link=$PLATFORM/usr/lib -L$PLATFORM/usr/lib -nostdlib -lc -lm -ldl -llog" \
+  --enable-zlib \
+  --disable-doc \
+  ${MODULES}
+
+  make clean
+  make
+  make install
+
+$PREBUILT/bin/i686-linux-android-ld \
+-rpath-link=$PLATFORM/usr/lib \
+-L$PLATFORM/usr/lib \
+-L$PREFIX/lib \
+-soname libffmpeg.so -shared -nostdlib -Bsymbolic --whole-archive -o \
+$PREFIX/libffmpeg.so \
+    libavcodec/libavcodec.a \
+    libavfilter/libavfilter.a \
+    libswresample/libswresample.a \
+    libavformat/libavformat.a \
+    libavutil/libavutil.a \
+    libswscale/libswscale.a \
+    libavdevice/libavdevice.a \
+    libpostproc/libpostproc.a \
+    -lc -lm -lz -ldl -llog --dynamic-linker=/system/bin/linker \
+    $PREBUILT/lib/gcc/i686-linux-android/4.9.x/libgcc.a
+}
+
+PREFIX=/home/qiunleon/FFmpeg/android/x86
+
+build_x86
+
+
+echo Android X86 builds finished
