@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,190 +9,250 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activity.own.MainActivity">
 
-    <LinearLayout
-        android:id="@+id/switch_wifi_ap"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/llyt_wifi"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:background="#22000000"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.2"
-                android:gravity="center"
-                android:text="WIFI"
-                android:textColor="#000000" />
 
-            <Switch
-                android:id="@+id/switch_wifi"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/button_exit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:paddingRight="10dp"
-                android:textOff="OFF"
-                android:textOn="ON" />
-        </LinearLayout>
+                android:layout_alignParentBottom="true"
+                android:text="EXIT" />
 
-        <LinearLayout
-            android:id="@+id/llyt_ap"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:background="#22000000"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.2"
-                android:gravity="center"
-                android:text="AP"
-                android:textColor="#000000" />
-
-            <Switch
-                android:id="@+id/switch_ap"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/switch_wifi_ap"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingRight="10dp"
-                android:textOff="OFF"
-                android:textOn="ON" />
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/llyt_wifi"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="#22000000"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="WIFI"
+                        android:textColor="#000000" />
+
+                    <Switch
+                        android:id="@+id/switch_wifi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingRight="10dp"
+                        android:textOff="OFF"
+                        android:textOn="ON" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llyt_ap"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="#22000000"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="AP"
+                        android:textColor="#000000" />
+
+                    <Switch
+                        android:id="@+id/switch_ap"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingRight="10dp"
+                        android:textOff="OFF"
+                        android:textOn="ON" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/start_stop_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/switch_wifi_ap">
+
+                <Button
+                    android:id="@+id/button_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Start Service" />
+
+                <Button
+                    android:id="@+id/button_stop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_start"
+                    android:layout_weight="1"
+                    android:text="Stop Service" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llyt_image_binder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/start_stop_service"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_load"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="LOAD IMAGE" />
+
+                <Button
+                    android:id="@+id/button_binder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_load"
+                    android:layout_weight="1"
+                    android:text="GET BINDER" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llyt_linear_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llyt_image_binder"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_linear"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="LINEAR" />
+
+                <Button
+                    android:id="@+id/button_linear_scroll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_load"
+                    android:layout_weight="1"
+                    android:text="LINEAR SCROLL" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llyt_grid_staggered"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llyt_linear_scroll"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_grid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="GRID" />
+
+                <Button
+                    android:id="@+id/button_staggered"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_load"
+                    android:layout_weight="1"
+                    android:text="STAGGERED" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llyt_jni_scrollview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llyt_grid_staggered"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_jni"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="JNI" />
+
+                <Button
+                    android:id="@+id/button_scrollview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_load"
+                    android:layout_weight="1"
+                    android:text="SCROLL VIEW" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llyt_sqlite_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llyt_grid_staggered"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_sqlite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SQLITE" />
+
+                <Button
+                    android:id="@+id/button_touch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_load"
+                    android:layout_weight="1"
+                    android:text="TOUCH EVENT" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llyt_sync_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llyt_grid_staggered"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_sync_thread_a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="THREAD A" />
+
+                <Button
+                    android:id="@+id/button_sync_thread_b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_sync_thread_a"
+                    android:layout_weight="1"
+                    android:text="THREAD B" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/start_stop_service"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/switch_wifi_ap">
-
-        <Button
-            android:id="@+id/button_start"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Start Service" />
-
-        <Button
-            android:id="@+id/button_stop"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/button_start"
-            android:layout_weight="1"
-            android:text="Stop Service" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/llyt_image_binder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/start_stop_service"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button_load"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="LOAD IMAGE" />
-
-        <Button
-            android:id="@+id/button_binder"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/button_load"
-            android:layout_weight="1"
-            android:text="GET BINDER" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llyt_linear_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/llyt_image_binder"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button_linear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="LINEAR" />
-
-        <Button
-            android:id="@+id/button_linear_scroll"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/button_load"
-            android:layout_weight="1"
-            android:text="LINEAR SCROLL" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llyt_grid_staggered"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/llyt_linear_scroll"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button_grid"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="GRID" />
-
-        <Button
-            android:id="@+id/button_staggered"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/button_load"
-            android:layout_weight="1"
-            android:text="STAGGERED" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llyt_jni_scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/llyt_grid_staggered"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button_jni"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="JNI" />
-
-        <Button
-            android:id="@+id/button_scrollview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/button_load"
-            android:layout_weight="1"
-            android:text="SCROLL VIEW" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_exit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="EXIT" />
-</RelativeLayout>
+    </ScrollView>
+</LinearLayout>

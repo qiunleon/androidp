@@ -19,14 +19,14 @@ android {
             abiFilters "armeabi-v7a"
         }
 
-        splits {
-            abi {
-                enable true
-                reset()
-                include 'x86', 'armeabi-v7a'
-                universalApk true
-            }
-        }
+//        splits {
+//            abi {
+//                enable true
+//                reset()
+//                include 'x86', 'armeabi-v7a'
+//                universalApk true
+//            }
+//        }
     }
 
     buildTypes {
@@ -59,6 +59,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:design:24.2.0'
     compile files('libs/okhttp-3.2.0.jar')
+
 }
 
 project.afterEvaluate() {

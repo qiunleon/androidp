@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:visibility="gone">
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        android:src="@android:color/holo_red_light"
+        android:id="@+id/view_beat_img"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/view_beat_img"
+        android:layout_alignParentLeft="true"
+
+        android:gravity="left|center_vertical"
+        android:text="能量："
+        android:textColor="@android:color/black"
+        android:id="@+id/text_show_power"
+        android:enabled="false"/>
+
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/text_show_power"
+        android:layout_below="@id/view_beat_img"
+        android:gravity="left|center_vertical"
+        android:text="节拍："
+        android:textColor="@android:color/black"
+        android:id="@+id/text_show_speed"
+        android:enabled="false"/>
+
+</RelativeLayout>
