@@ -189,6 +189,16 @@ task makeJar(type: Jar, dependsOn: ['build']){
     exclude{it.nama.startsWith('R$');}
 }
 
+task makeJar2(type: Jar, dependsOn: ['compileReleaseJavaWithJavac']){
+    archiveName 'sdk.jar'
+    from('build/intermediates/classes/release')
+    from(project.zipTree("libs/universal-image-loader-1.9.5.jar"))
+    destinationDir = file('build/libs')
+    exclude('**/R.class')
+    include('com/example/client/**')
+    into('com/example/')
+}
+
 // call deleteApk when makeJar finished
 makeJar.finalizedBy deleteApk
 

@@ -1,12 +1,9 @@
 package com.example.client.manager;
 
-import android.text.TextUtils;
-
-import com.evideo.disk.manager.EvLog;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Qiu on 2017/12/7.
@@ -32,7 +29,7 @@ public class SynchronizedTest {
             if (!mList.contains(objects)) {
                 //EvLog.d(TAG, "before add: " + content + ", size: " + mList.size());
                 mList.add(objects);
-                EvLog.d(TAG, "after add: " + objects + ", size: " + mList.size());
+                Log.d(TAG, "after add: " + objects + ", size: " + mList.size());
             }
 //        }
     }
@@ -46,7 +43,7 @@ public class SynchronizedTest {
             if (mList.contains(objects)) {
                 //EvLog.d(TAG, "before remove: " + content + ", size: " + mList.size());
                 mList.remove(objects);
-                EvLog.d(TAG, "after remove: " + objects + ", size: " + mList.size());
+                Log.d(TAG, "after remove: " + objects + ", size: " + mList.size());
             }
 //        }
     }
@@ -61,7 +58,7 @@ public class SynchronizedTest {
             //EvLog.d(TAG, "before start show, size: " + mList.size());
             for (int i = 0; i < size; i++) {
                 //EvLog.d(TAG, "before show: " + mList.get(i) + ", size: " + mList.size());
-                EvLog.e(TAG, "i: " + i + ", content: " + mList.get(i) + ", size: " + mList.size());
+                Log.e(TAG, "i: " + i + ", content: " + mList.get(i) + ", size: " + mList.size());
                 //EvLog.d(TAG, "after show: " + mList.get(i) + ", size: " + mList.size());
             }
 //        }

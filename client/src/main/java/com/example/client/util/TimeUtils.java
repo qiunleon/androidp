@@ -1,6 +1,6 @@
 package com.example.client.util;
 
-import com.blankj.utilcode.constant.TimeConstants;
+import com.example.client.constant.TimeConstant;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -313,15 +313,15 @@ public final class TimeUtils {
      * @param time1 时间字符串 1
      * @param unit  单位类型
      *              <ul>
-     *              <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *              <li>{@link TimeConstants#SEC }: 秒</li>
-     *              <li>{@link TimeConstants#MIN }: 分</li>
-     *              <li>{@link TimeConstants#HOUR}: 小时</li>
-     *              <li>{@link TimeConstants#DAY }: 天</li>
+     *              <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *              <li>{@link TimeConstant#SEC }: 秒</li>
+     *              <li>{@link TimeConstant#MIN }: 分</li>
+     *              <li>{@link TimeConstant#HOUR}: 小时</li>
+     *              <li>{@link TimeConstant#DAY }: 天</li>
      *              </ul>
      * @return unit 时间戳
      */
-    public static long getTimeSpan(final String time0, final String time1, @TimeConstants.Unit final int unit) {
+    public static long getTimeSpan(final String time0, final String time1, @TimeConstant.Unit final int unit) {
         return getTimeSpan(time0, time1, DEFAULT_FORMAT, unit);
     }
 
@@ -334,15 +334,15 @@ public final class TimeUtils {
      * @param format 时间格式
      * @param unit   单位类型
      *               <ul>
-     *               <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *               <li>{@link TimeConstants#SEC }: 秒</li>
-     *               <li>{@link TimeConstants#MIN }: 分</li>
-     *               <li>{@link TimeConstants#HOUR}: 小时</li>
-     *               <li>{@link TimeConstants#DAY }: 天</li>
+     *               <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *               <li>{@link TimeConstant#SEC }: 秒</li>
+     *               <li>{@link TimeConstant#MIN }: 分</li>
+     *               <li>{@link TimeConstant#HOUR}: 小时</li>
+     *               <li>{@link TimeConstant#DAY }: 天</li>
      *               </ul>
      * @return unit 时间戳
      */
-    public static long getTimeSpan(final String time0, final String time1, final DateFormat format, @TimeConstants.Unit final int unit) {
+    public static long getTimeSpan(final String time0, final String time1, final DateFormat format, @TimeConstant.Unit final int unit) {
         return millis2TimeSpan(Math.abs(string2Millis(time0, format) - string2Millis(time1, format)), unit);
     }
 
@@ -353,15 +353,15 @@ public final class TimeUtils {
      * @param date1 Date 类型时间 1
      * @param unit  单位类型
      *              <ul>
-     *              <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *              <li>{@link TimeConstants#SEC }: 秒</li>
-     *              <li>{@link TimeConstants#MIN }: 分</li>
-     *              <li>{@link TimeConstants#HOUR}: 小时</li>
-     *              <li>{@link TimeConstants#DAY }: 天</li>
+     *              <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *              <li>{@link TimeConstant#SEC }: 秒</li>
+     *              <li>{@link TimeConstant#MIN }: 分</li>
+     *              <li>{@link TimeConstant#HOUR}: 小时</li>
+     *              <li>{@link TimeConstant#DAY }: 天</li>
      *              </ul>
      * @return unit 时间戳
      */
-    public static long getTimeSpan(final Date date0, final Date date1, @TimeConstants.Unit final int unit) {
+    public static long getTimeSpan(final Date date0, final Date date1, @TimeConstant.Unit final int unit) {
         return millis2TimeSpan(Math.abs(date2Millis(date0) - date2Millis(date1)), unit);
     }
 
@@ -372,15 +372,15 @@ public final class TimeUtils {
      * @param millis1 毫秒时间戳 1
      * @param unit    单位类型
      *                <ul>
-     *                <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                <li>{@link TimeConstants#SEC }: 秒</li>
-     *                <li>{@link TimeConstants#MIN }: 分</li>
-     *                <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                <li>{@link TimeConstants#DAY }: 天</li>
+     *                <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                <li>{@link TimeConstant#SEC }: 秒</li>
+     *                <li>{@link TimeConstant#MIN }: 分</li>
+     *                <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                <li>{@link TimeConstant#DAY }: 天</li>
      *                </ul>
      * @return unit 时间戳
      */
-    public static long getTimeSpan(final long millis0, final long millis1, @TimeConstants.Unit final int unit) {
+    public static long getTimeSpan(final long millis0, final long millis1, @TimeConstant.Unit final int unit) {
         return millis2TimeSpan(Math.abs(millis0 - millis1), unit);
     }
 
@@ -505,15 +505,15 @@ public final class TimeUtils {
      * @param time 时间字符串
      * @param unit 单位类型
      *             <ul>
-     *             <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *             <li>{@link TimeConstants#SEC }: 秒</li>
-     *             <li>{@link TimeConstants#MIN }: 分</li>
-     *             <li>{@link TimeConstants#HOUR}: 小时</li>
-     *             <li>{@link TimeConstants#DAY }: 天</li>
+     *             <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *             <li>{@link TimeConstant#SEC }: 秒</li>
+     *             <li>{@link TimeConstant#MIN }: 分</li>
+     *             <li>{@link TimeConstant#HOUR}: 小时</li>
+     *             <li>{@link TimeConstant#DAY }: 天</li>
      *             </ul>
      * @return unit 时间戳
      */
-    public static long getTimeSpanByNow(final String time, @TimeConstants.Unit final int unit) {
+    public static long getTimeSpanByNow(final String time, @TimeConstant.Unit final int unit) {
         return getTimeSpan(getNowString(), time, DEFAULT_FORMAT, unit);
     }
 
@@ -525,15 +525,15 @@ public final class TimeUtils {
      * @param format 时间格式
      * @param unit   单位类型
      *               <ul>
-     *               <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *               <li>{@link TimeConstants#SEC }: 秒</li>
-     *               <li>{@link TimeConstants#MIN }: 分</li>
-     *               <li>{@link TimeConstants#HOUR}: 小时</li>
-     *               <li>{@link TimeConstants#DAY }: 天</li>
+     *               <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *               <li>{@link TimeConstant#SEC }: 秒</li>
+     *               <li>{@link TimeConstant#MIN }: 分</li>
+     *               <li>{@link TimeConstant#HOUR}: 小时</li>
+     *               <li>{@link TimeConstant#DAY }: 天</li>
      *               </ul>
      * @return unit 时间戳
      */
-    public static long getTimeSpanByNow(final String time, final DateFormat format, @TimeConstants.Unit final int unit) {
+    public static long getTimeSpanByNow(final String time, final DateFormat format, @TimeConstant.Unit final int unit) {
         return getTimeSpan(getNowString(format), time, format, unit);
     }
 
@@ -543,15 +543,15 @@ public final class TimeUtils {
      * @param date Date 类型时间
      * @param unit 单位类型
      *             <ul>
-     *             <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *             <li>{@link TimeConstants#SEC }: 秒</li>
-     *             <li>{@link TimeConstants#MIN }: 分</li>
-     *             <li>{@link TimeConstants#HOUR}: 小时</li>
-     *             <li>{@link TimeConstants#DAY }: 天</li>
+     *             <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *             <li>{@link TimeConstant#SEC }: 秒</li>
+     *             <li>{@link TimeConstant#MIN }: 分</li>
+     *             <li>{@link TimeConstant#HOUR}: 小时</li>
+     *             <li>{@link TimeConstant#DAY }: 天</li>
      *             </ul>
      * @return unit 时间戳
      */
-    public static long getTimeSpanByNow(final Date date, @TimeConstants.Unit final int unit) {
+    public static long getTimeSpanByNow(final Date date, @TimeConstant.Unit final int unit) {
         return getTimeSpan(new Date(), date, unit);
     }
 
@@ -561,15 +561,15 @@ public final class TimeUtils {
      * @param millis 毫秒时间戳
      * @param unit   单位类型
      *               <ul>
-     *               <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *               <li>{@link TimeConstants#SEC }: 秒</li>
-     *               <li>{@link TimeConstants#MIN }: 分</li>
-     *               <li>{@link TimeConstants#HOUR}: 小时</li>
-     *               <li>{@link TimeConstants#DAY }: 天</li>
+     *               <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *               <li>{@link TimeConstant#SEC }: 秒</li>
+     *               <li>{@link TimeConstant#MIN }: 分</li>
+     *               <li>{@link TimeConstant#HOUR}: 小时</li>
+     *               <li>{@link TimeConstant#DAY }: 天</li>
      *               </ul>
      * @return unit 时间戳
      */
-    public static long getTimeSpanByNow(final long millis, @TimeConstants.Unit final int unit) {
+    public static long getTimeSpanByNow(final long millis, @TimeConstant.Unit final int unit) {
         return getTimeSpan(System.currentTimeMillis(), millis, unit);
     }
 
@@ -734,16 +734,16 @@ public final class TimeUtils {
             return String.format("%tc", millis);// U can read http://www.apihome.cn/api/java/Formatter.html to understand it.
         if (span < 1000) {
             return "刚刚";
-        } else if (span < TimeConstants.MIN) {
-            return String.format(Locale.getDefault(), "%d秒前", span / TimeConstants.SEC);
-        } else if (span < TimeConstants.HOUR) {
-            return String.format(Locale.getDefault(), "%d分钟前", span / TimeConstants.MIN);
+        } else if (span < TimeConstant.MIN) {
+            return String.format(Locale.getDefault(), "%d秒前", span / TimeConstant.SEC);
+        } else if (span < TimeConstant.HOUR) {
+            return String.format(Locale.getDefault(), "%d分钟前", span / TimeConstant.MIN);
         }
         // 获取当天 00:00
         long wee = getWeeOfToday();
         if (millis >= wee) {
             return String.format("今天%tR", millis);
-        } else if (millis >= wee - TimeConstants.DAY) {
+        } else if (millis >= wee - TimeConstant.DAY) {
             return String.format("昨天%tR", millis);
         } else {
             return String.format("%tF", millis);
@@ -766,15 +766,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间戳
      */
-    public static long getMillis(final long millis, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static long getMillis(final long millis, final long timeSpan, @TimeConstant.Unit final int unit) {
         return millis + timeSpan2Millis(timeSpan, unit);
     }
 
@@ -786,15 +786,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间戳
      */
-    public static long getMillis(final String time, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static long getMillis(final String time, final long timeSpan, @TimeConstant.Unit final int unit) {
         return getMillis(time, DEFAULT_FORMAT, timeSpan, unit);
     }
 
@@ -807,15 +807,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间戳
      */
-    public static long getMillis(final String time, final DateFormat format, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static long getMillis(final String time, final DateFormat format, final long timeSpan, @TimeConstant.Unit final int unit) {
         return string2Millis(time, format) + timeSpan2Millis(timeSpan, unit);
     }
 
@@ -826,15 +826,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间戳
      */
-    public static long getMillis(final Date date, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static long getMillis(final Date date, final long timeSpan, @TimeConstant.Unit final int unit) {
         return date2Millis(date) + timeSpan2Millis(timeSpan, unit);
     }
 
@@ -846,15 +846,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间字符串
      */
-    public static String getString(final long millis, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static String getString(final long millis, final long timeSpan, @TimeConstant.Unit final int unit) {
         return getString(millis, DEFAULT_FORMAT, timeSpan, unit);
     }
 
@@ -867,15 +867,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间字符串
      */
-    public static String getString(final long millis, final DateFormat format, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static String getString(final long millis, final DateFormat format, final long timeSpan, @TimeConstant.Unit final int unit) {
         return millis2String(millis + timeSpan2Millis(timeSpan, unit), format);
     }
 
@@ -887,15 +887,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间字符串
      */
-    public static String getString(final String time, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static String getString(final String time, final long timeSpan, @TimeConstant.Unit final int unit) {
         return getString(time, DEFAULT_FORMAT, timeSpan, unit);
     }
 
@@ -908,15 +908,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间字符串
      */
-    public static String getString(final String time, final DateFormat format, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static String getString(final String time, final DateFormat format, final long timeSpan, @TimeConstant.Unit final int unit) {
         return millis2String(string2Millis(time, format) + timeSpan2Millis(timeSpan, unit), format);
     }
 
@@ -928,15 +928,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间字符串
      */
-    public static String getString(final Date date, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static String getString(final Date date, final long timeSpan, @TimeConstant.Unit final int unit) {
         return getString(date, DEFAULT_FORMAT, timeSpan, unit);
     }
 
@@ -949,15 +949,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的时间字符串
      */
-    public static String getString(final Date date, final DateFormat format, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static String getString(final Date date, final DateFormat format, final long timeSpan, @TimeConstant.Unit final int unit) {
         return millis2String(date2Millis(date) + timeSpan2Millis(timeSpan, unit), format);
     }
 
@@ -968,15 +968,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的 Date
      */
-    public static Date getDate(final long millis, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static Date getDate(final long millis, final long timeSpan, @TimeConstant.Unit final int unit) {
         return millis2Date(millis + timeSpan2Millis(timeSpan, unit));
     }
 
@@ -988,15 +988,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的 Date
      */
-    public static Date getDate(final String time, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static Date getDate(final String time, final long timeSpan, @TimeConstant.Unit final int unit) {
         return getDate(time, DEFAULT_FORMAT, timeSpan, unit);
     }
 
@@ -1009,15 +1009,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的 Date
      */
-    public static Date getDate(final String time, final DateFormat format, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static Date getDate(final String time, final DateFormat format, final long timeSpan, @TimeConstant.Unit final int unit) {
         return millis2Date(string2Millis(time, format) + timeSpan2Millis(timeSpan, unit));
     }
 
@@ -1028,15 +1028,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与给定时间等于时间差的 Date
      */
-    public static Date getDate(final Date date, final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static Date getDate(final Date date, final long timeSpan, @TimeConstant.Unit final int unit) {
         return millis2Date(date2Millis(date) + timeSpan2Millis(timeSpan, unit));
     }
 
@@ -1046,15 +1046,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与当前时间等于时间差的时间戳
      */
-    public static long getMillisByNow(final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static long getMillisByNow(final long timeSpan, @TimeConstant.Unit final int unit) {
         return getMillis(getNowMills(), timeSpan, unit);
     }
 
@@ -1065,15 +1065,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与当前时间等于时间差的时间字符串
      */
-    public static String getStringByNow(final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static String getStringByNow(final long timeSpan, @TimeConstant.Unit final int unit) {
         return getStringByNow(timeSpan, DEFAULT_FORMAT, unit);
     }
 
@@ -1085,15 +1085,15 @@ public final class TimeUtils {
      * @param format   时间格式
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与当前时间等于时间差的时间字符串
      */
-    public static String getStringByNow(final long timeSpan, final DateFormat format, @TimeConstants.Unit final int unit) {
+    public static String getStringByNow(final long timeSpan, final DateFormat format, @TimeConstant.Unit final int unit) {
         return getString(getNowMills(), format, timeSpan, unit);
     }
 
@@ -1103,15 +1103,15 @@ public final class TimeUtils {
      * @param timeSpan 时间差的毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link TimeConstants#MSEC}: 毫秒</li>
-     *                 <li>{@link TimeConstants#SEC }: 秒</li>
-     *                 <li>{@link TimeConstants#MIN }: 分</li>
-     *                 <li>{@link TimeConstants#HOUR}: 小时</li>
-     *                 <li>{@link TimeConstants#DAY }: 天</li>
+     *                 <li>{@link TimeConstant#MSEC}: 毫秒</li>
+     *                 <li>{@link TimeConstant#SEC }: 秒</li>
+     *                 <li>{@link TimeConstant#MIN }: 分</li>
+     *                 <li>{@link TimeConstant#HOUR}: 小时</li>
+     *                 <li>{@link TimeConstant#DAY }: 天</li>
      *                 </ul>
      * @return 与当前时间等于时间差的 Date
      */
-    public static Date getDateByNow(final long timeSpan, @TimeConstants.Unit final int unit) {
+    public static Date getDateByNow(final long timeSpan, @TimeConstant.Unit final int unit) {
         return getDate(getNowMills(), timeSpan, unit);
     }
 
@@ -1156,7 +1156,7 @@ public final class TimeUtils {
      */
     public static boolean isToday(final long millis) {
         long wee = getWeeOfToday();
-        return millis >= wee && millis < wee + TimeConstants.DAY;
+        return millis >= wee && millis < wee + TimeConstant.DAY;
     }
 
     /**
@@ -1596,11 +1596,11 @@ public final class TimeUtils {
                 : (month + 10) % 12];
     }
 
-    private static long timeSpan2Millis(final long timeSpan, @TimeConstants.Unit final int unit) {
+    private static long timeSpan2Millis(final long timeSpan, @TimeConstant.Unit final int unit) {
         return timeSpan * unit;
     }
 
-    private static long millis2TimeSpan(final long millis, @TimeConstants.Unit final int unit) {
+    private static long millis2TimeSpan(final long millis, @TimeConstant.Unit final int unit) {
         return millis / unit;
     }
 
