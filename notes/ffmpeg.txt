@@ -3,12 +3,16 @@ mount -t vboxsf Share /media/Share
 
 unzip android-ndk-r14b-linux-x86_64.zip
 chmod a+x android-ndk-r14b
+apt-get install git
 git clone https://git.ffmpeg.org/ffmpeg.git FFmpeg
 cd FFmpeg/
 chmod 777 build_android.sh
 ./build_android.sh
 
 
+
+
+#-----   build_android.sh   -----
 
 #!/bin/bash
 #Change NDK to your Android NDK location
