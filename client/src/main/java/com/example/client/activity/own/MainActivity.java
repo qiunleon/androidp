@@ -226,6 +226,16 @@ public class MainActivity extends Activity {
         db.insert("person", null, values);
     }
 
+    @OnClick(R.id.button_eventbus_normal)
+    public void onClickNormalEvent() {
+        this.startActivity(new Intent(this, EventNormalActivity.class));
+    }
+
+    @OnClick(R.id.button_eventbus_normal)
+    public void onClickStickyEvent() {
+        this.startActivity(new Intent(this, EventStickyActivity.class));
+    }
+
     @OnCheckedChanged(R.id.switch_wifi)
     public void onCheckedChangedWifiMode(boolean isChecked) {
         NetworkManager.getInstance().setWifiEnabled(isChecked);
