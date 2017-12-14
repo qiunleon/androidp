@@ -4,7 +4,7 @@ apply from: "${rootDir}/version.gradle"
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.example.client"
         minSdkVersion 21
@@ -77,11 +77,17 @@ android {
     }
 
     applicationVariants.all { variant ->
-        def output = variant.outputs.get(0)
-        File apk = output.outputFile
-        String Name = output.outputFile.name
-                .replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
-        output.outputFile = new File(apk.parentFile, Name)
+//        def output = variant.outputs[0]
+//        File apk = output.outputFile
+//        String Name = output.outputFile.name
+//                .replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
+//        //output.outputFile = new File(apk.parentFile, Name)
+//        outputFileName = Name
+//        destinationDir = apk.parentFile
+        variant.outputs.all { outputs ->
+            def apkFileName = outputs.name.replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
+            outputFileName = apkFileName
+        }
     }
 
 //    project.tasks.whenTaskAdded { task ->
@@ -120,21 +126,21 @@ dependencies {
 }
 
 afterEvaluate {
-//    tasks.getByName("assembleDebug").doLast {
-//        copy {
-//            from("$buildDir/outputs/apk") {
-//                exclude '**/*unsigned.apk', '**/*unaligned.apk'
-//                include "**/${project.name}*.apk"
-//            }
-//            into "${rootDir.absolutePath}\\apk"
-//            rename(/(.)*\.apk/, "${project.name}.apk")
-//        }
-//        println install()
-//    }
+    tasks.getByName("assembleDebug").doLast {
+        copy {
+            from("$buildDir/outputs/apk") {
+                exclude '**/*unsigned.apk', '**/*unaligned.apk'
+                include "**/${project.name}*.apk"
+            }
+            into "${rootDir.absolutePath}\\apk"
+            rename(/(.)*\.apk/, "${project.name}.apk")
+        }
+        println install()
+    }
 
-//    tasks.getByName("assembleRelease").doLast {
-//        delete "${projectDir.absolutePath}/build"
-//    }
+    tasks.getByName("assembleRelease").doLast {
+        delete "${projectDir.absolutePath}/build"
+    }
 }
 
 static def buildTime() {
