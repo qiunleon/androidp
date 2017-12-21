@@ -34,6 +34,8 @@ import android.widget.TextView;
 import com.example.client.R;
 import com.example.client.VersionInfo;
 
+import hugo.weaving.DebugLog;
+
 public class AboutActivity extends AppCompatActivity {
 
     @Override

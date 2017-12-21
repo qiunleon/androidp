@@ -253,6 +253,29 @@
                     android:layout_weight="1"
                     android:text="THREAD B" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llyt_greendao_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llyt_sync_view"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_greendao"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="GreenDAO" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_sync_thread_a"
+                    android:layout_weight="1"
+                    android:text="THREAD B" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

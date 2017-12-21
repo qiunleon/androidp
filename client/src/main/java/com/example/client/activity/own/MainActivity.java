@@ -9,12 +9,16 @@ import android.widget.Button;
 import android.widget.Switch;
 
 import com.example.client.R;
+import com.example.client.application.ClientApp;
+import com.example.client.data.User;
+import com.example.client.gen.UserDao;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
 import com.example.client.sqlite.SQLiteDatabaseHelper;
 import com.example.client.ui.dialog.CustomDialog;
 import com.example.client.ui.dialog.EvProgressDialog;
 
+import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
 import butterknife.BindView;
@@ -224,6 +228,29 @@ public class MainActivity extends Activity {
         values.put("name", "john");
         values.put("age", 18);
         db.insert("person", null, values);
+    }
+
+    @OnClick(R.id.button_greendao)
+    public void onClickCreateGreenDAO() {
+        UserDao mUserDao = ClientApp.getInstance().getDaoSession().getUserDao();
+
+        // add
+        User mUser = new User((long) 2, "client");
+        mUserDao.insert(mUser);//添加一个
+
+        // delete
+        mUserDao.deleteByKey(0L);
+
+        // update
+        mUser = new User((long) 2, "client");
+        mUserDao.update(mUser);
+
+        // query
+        List<User> users = mUserDao.loadAll();
+        String userName = "";
+        for (int i = 0; i < users.size(); i++) {
+            userName += users.get(i).getName() + ",";
+        }
     }
 
     @OnCheckedChanged(R.id.switch_wifi)
