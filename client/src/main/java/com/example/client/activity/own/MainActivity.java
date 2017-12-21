@@ -230,6 +230,7 @@ public class MainActivity extends Activity {
         db.insert("person", null, values);
     }
 
+<<<<<<< HEAD
     @OnClick(R.id.button_greendao)
     public void onClickCreateGreenDAO() {
         UserDao mUserDao = ClientApp.getInstance().getDaoSession().getUserDao();
@@ -251,6 +252,16 @@ public class MainActivity extends Activity {
         for (int i = 0; i < users.size(); i++) {
             userName += users.get(i).getName() + ",";
         }
+=======
+    @OnClick(R.id.button_eventbus_normal)
+    public void onClickNormalEvent() {
+        this.startActivity(new Intent(this, EventNormalActivity.class));
+    }
+
+    @OnClick(R.id.button_eventbus_normal)
+    public void onClickStickyEvent() {
+        this.startActivity(new Intent(this, EventStickyActivity.class));
+>>>>>>> f04049627a2ebbcc1f4a88b149330eb662e56dcb
     }
 
     @OnCheckedChanged(R.id.switch_wifi)

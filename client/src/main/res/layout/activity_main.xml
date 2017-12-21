@@ -255,13 +255,18 @@
             </LinearLayout>
 
             <LinearLayout
+<<<<<<< HEAD
                 android:id="@+id/llyt_greendao_view"
+=======
+                android:id="@+id/llyt_event"
+>>>>>>> f04049627a2ebbcc1f4a88b149330eb662e56dcb
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/llyt_sync_view"
                 android:orientation="horizontal">
 
                 <Button
+<<<<<<< HEAD
                     android:id="@+id/button_greendao"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -276,6 +281,24 @@
                     android:layout_weight="1"
                     android:text="THREAD B" />
             </LinearLayout>
+=======
+                    android:id="@+id/button_eventbus_normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="EventBus Normal" />
+
+                <Button
+                    android:id="@+id/button_eventbus_sticky"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_eventbus_normal"
+                    android:layout_weight="1"
+                    android:text="EventBus Sticky" />
+
+            </LinearLayout>
+
+>>>>>>> f04049627a2ebbcc1f4a88b149330eb662e56dcb
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
