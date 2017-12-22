@@ -31,13 +31,13 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("${rootDir.absolutePath}/androidp.keystore")
+            storeFile file("${rootDir.absolutePath}/android.keystore")
             keyAlias rootProject.name
             storePassword rootProject.name
             keyPassword rootProject.name
         }
         release {
-            storeFile file("${rootDir.absolutePath}/androidp.keystore")
+            storeFile file("${rootDir.absolutePath}/android.keystore")
             keyAlias rootProject.name
             storePassword rootProject.name
             keyPassword rootProject.name
@@ -126,7 +126,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support:design:25.3.1'
-    compile project(':scrollview')
+    compile project(':ScrollView')
     compile 'com.android.support:support-v4:25.0.0'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'org.greenrobot:greendao:3.2.2'
