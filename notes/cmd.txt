@@ -1,0 +1,5 @@
+# 查询文件是否被哪个进程占用
+lsof | grep "\/mnt\/usb_storage\/USB_DISK2\/udisk0\/kmbox\/resource\/90058515.mp4"
+
+# 查看安卓内核日志
+dmesg | grep "avc:"
