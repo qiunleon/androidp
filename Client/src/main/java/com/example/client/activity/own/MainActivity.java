@@ -19,9 +19,15 @@ import com.example.client.manager.RemoteServiceManager;
 import com.example.client.sqlite.SQLiteDatabaseHelper;
 import com.example.client.ui.dialog.CustomDialog;
 import com.example.client.ui.dialog.EvProgressDialog;
+import com.example.client.util.SPUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
 import butterknife.BindView;
@@ -31,6 +37,8 @@ import butterknife.OnClick;
 
 @SuppressWarnings("unused")
 public class MainActivity extends Activity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.button_start)
     Button mStartButton;
@@ -298,6 +306,14 @@ public class MainActivity extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    private void saveDataAsGson() {
+        Gson gson = new Gson();
+        String relationship = gson.toJson(
+                new HashMap<>(), new TypeToken<Map<String, ArrayList<String>>>() {}.getType());
+        Log.d(TAG, "write relationship: " + relationship);
+        SPUtils.getInstance().put("shared_preference_file", relationship);
     }
 
     static {
