@@ -5,11 +5,13 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Switch;
 
 import com.example.client.R;
 import com.example.client.application.ClientApp;
+import com.example.client.constant.TimeConstant;
 import com.example.client.data.User;
 import com.example.client.gen.UserDao;
 import com.example.client.manager.NetworkManager;
@@ -18,6 +20,7 @@ import com.example.client.sqlite.SQLiteDatabaseHelper;
 import com.example.client.ui.dialog.CustomDialog;
 import com.example.client.ui.dialog.EvProgressDialog;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -45,6 +48,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            Class clz = Class.forName("TimeConstant");
+            Annotation annotation = clz.getAnnotation(TimeConstant.Unit.class);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isStop = true;
@@ -230,7 +240,7 @@ public class MainActivity extends Activity {
         db.insert("person", null, values);
     }
 
-<<<<<<< HEAD
+
     @OnClick(R.id.button_greendao)
     public void onClickCreateGreenDAO() {
         UserDao mUserDao = ClientApp.getInstance().getDaoSession().getUserDao();
@@ -252,16 +262,16 @@ public class MainActivity extends Activity {
         for (int i = 0; i < users.size(); i++) {
             userName += users.get(i).getName() + ",";
         }
-=======
+    }
+
     @OnClick(R.id.button_eventbus_normal)
     public void onClickNormalEvent() {
         this.startActivity(new Intent(this, EventNormalActivity.class));
     }
 
-    @OnClick(R.id.button_eventbus_normal)
+    @OnClick(R.id.button_eventbus_sticky)
     public void onClickStickyEvent() {
         this.startActivity(new Intent(this, EventStickyActivity.class));
->>>>>>> f04049627a2ebbcc1f4a88b149330eb662e56dcb
     }
 
     @OnCheckedChanged(R.id.switch_wifi)

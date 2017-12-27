@@ -146,9 +146,9 @@ afterEvaluate {
         println install()
     }
 
-    tasks.getByName("assembleRelease").doLast {
-        delete "${projectDir.absolutePath}/build"
-    }
+//    tasks.getByName("assembleRelease").doLast {
+//        delete "${projectDir.absolutePath}/build"
+//    }
 }
 
 static def buildTime() {
