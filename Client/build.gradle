@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
@@ -15,10 +17,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
+        // NDK编译多个平台
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
 
+        //APK打包多个平台
 //        splits {
 //            abi {
 //                enable true
@@ -32,15 +36,15 @@ android {
     signingConfigs {
         debug {
             storeFile file("${rootDir.absolutePath}/android.keystore")
-            keyAlias rootProject.name
-            storePassword rootProject.name
-            keyPassword rootProject.name
+            keyAlias 'androidp'
+            storePassword 'androidp'
+            keyPassword 'androidp'
         }
         release {
             storeFile file("${rootDir.absolutePath}/android.keystore")
-            keyAlias rootProject.name
-            storePassword rootProject.name
-            keyPassword rootProject.name
+            keyAlias 'androidp'
+            storePassword 'androidp'
+            keyPassword 'androidp'
         }
     }
 
@@ -83,19 +87,19 @@ android {
         abortOnError false
     }
 
-    applicationVariants.all { variant ->
-//        def output = variant.outputs[0]
-//        File apk = output.outputFile
-//        String Name = output.outputFile.name
-//                .replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
-//        //output.outputFile = new File(apk.parentFile, Name)
-//        outputFileName = Name
-//        destinationDir = apk.parentFile
-        variant.outputs.all { outputs ->
-            def apkFileName = outputs.name.replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
-            outputFileName = apkFileName
-        }
-    }
+//    applicationVariants.all { variant ->
+////        def output = variant.outputs[0]
+////        File apk = output.outputFile
+////        String Name = output.outputFile.name
+////                .replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
+////        //output.outputFile = new File(apk.parentFile, Name)
+////        outputFileName = Name
+////        destinationDir = apk.parentFile
+//        variant.outputs.all { outputs ->
+//            def apkFileName = outputs.name.replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
+//            outputFileName = apkFileName
+//        }
+//    }
 
 //    project.tasks.whenTaskAdded { task ->
 //        android.applicationVariants.all { variant ->
@@ -134,21 +138,18 @@ dependencies {
 }
 
 afterEvaluate {
-    tasks.getByName("assembleDebug").doLast {
+    tasks.getByName("assembleRelease").doLast {
         copy {
-            from("$buildDir/outputs/apk") {
+            from("$buildDir/outputs/apk/release") {
                 exclude '**/*unsigned.apk', '**/*unaligned.apk'
                 include "**/${project.name}*.apk"
             }
-            into "${rootDir.absolutePath}\\apk"
+            into "${rootDir.absolutePath}\\Client\\release"
             rename(/(.)*\.apk/, "${project.name}.apk")
         }
         println install()
+        println date()
     }
-
-//    tasks.getByName("assembleRelease").doLast {
-//        delete "${projectDir.absolutePath}/build"
-//    }
 }
 
 static def buildTime() {
@@ -176,9 +177,8 @@ task swig(type: Exec, dependsOn: ['createCoreWrapperDir']) {
 
 // adb install [-r] [xxx.apk]
 def install() {
-    String cmd = "adb -s 192.168.193.101:5555 install -r ${rootDir.absolutePath}\\apk\\${project.name}.apk"
+    String cmd = "adb install -r ${rootDir.absolutePath}\\${project.name}\\release\\${project.name}.apk"
     cmd.execute().text.trim()
-//    commandLine 'cmd', '/c', 'adb', '-s', '192.168.193.101:5555', 'install', '-r', rootDir.absolutePath + "\\apk\\${project.name}.apk"
 }
 
 // adb push [xxx.apk] [destination]
@@ -212,6 +212,12 @@ task makeJar2(type: Jar, dependsOn: ['compileReleaseJavaWithJavac']){
     exclude('**/R.class')
     include('com/example/client/**')
     into('com/example/')
+}
+
+// adb install [-r] [xxx.apk]
+def date() {
+    File file = new File("${rootDir.absolutePath}\\${project.name}\\release\\${project.name}.apk")
+    return "[${project.name}.apk] last modified time: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(file.lastModified())
 }
 
 // call deleteApk when makeJar finished

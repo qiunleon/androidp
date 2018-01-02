@@ -1,22 +1,29 @@
 package com.example.client.activity.own;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.client.R;
 import com.example.client.application.ClientApp;
-import com.example.client.constant.TimeConstant;
 import com.example.client.data.User;
 import com.example.client.gen.UserDao;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
 import com.example.client.sqlite.SQLiteDatabaseHelper;
+import com.example.client.ui.custom.CustomTextView;
+import com.example.client.ui.custom.CustomViewGroup;
 import com.example.client.ui.dialog.CustomDialog;
 import com.example.client.ui.dialog.EvProgressDialog;
 import com.example.client.util.SPUtils;
@@ -34,6 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
 @SuppressWarnings("unused")
 public class MainActivity extends Activity {
@@ -56,13 +64,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        try {
-            Class clz = Class.forName("TimeConstant");
-            Annotation annotation = clz.getAnnotation(TimeConstant.Unit.class);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     private boolean isStop = true;
@@ -314,6 +315,11 @@ public class MainActivity extends Activity {
                 new HashMap<>(), new TypeToken<Map<String, ArrayList<String>>>() {}.getType());
         Log.d(TAG, "write relationship: " + relationship);
         SPUtils.getInstance().put("shared_preference_file", relationship);
+    }
+
+    @OnClick(R.id.touch_event_dispatch_text_view)
+    public void clickEventDispatch() {
+        this.startActivity(new Intent(MainActivity.this, EventDispatchActivity.class));
     }
 
     static {
