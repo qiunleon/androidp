@@ -7,6 +7,8 @@ import android.os.Looper;
 
 import com.example.client.gen.DaoMaster;
 import com.example.client.gen.DaoSession;
+import com.example.client.util.SPUtils;
+import com.example.client.util.Utils;
 
 /**
  * 应用基类
@@ -23,6 +25,7 @@ public class ClientApp extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        Utils.init(this);
         setDatabase();
     }
 
