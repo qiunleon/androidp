@@ -298,10 +298,22 @@
                     android:layout_toRightOf="@+id/button_eventbus_normal"
                     android:layout_weight="1"
                     android:text="EventBus Sticky" />
-
             </LinearLayout>
 
-            >>>>>>> f04049627a2ebbcc1f4a88b149330eb662e56dcb
+            <LinearLayout
+                android:id="@+id/touch_event_dispatch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llyt_sync_view"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/touch_event_dispatch_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Event Dispatch" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

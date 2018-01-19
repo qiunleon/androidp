@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
@@ -15,10 +17,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
+        // NDK编译多个平台
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
 
+        //APK打包多个平台
 //        splits {
 //            abi {
 //                enable true
@@ -41,6 +45,7 @@ android {
             keyAlias "androidp"
             storePassword "androidp"
             keyPassword "androidp"
+
         }
     }
 
@@ -87,6 +92,7 @@ android {
     lintOptions {
         abortOnError false
     }
+
 
     applicationVariants.all { variant ->
         // old gradle version
@@ -139,7 +145,7 @@ dependencies {
 }
 
 afterEvaluate {
-    tasks.getByName("assembleDebug").doLast {
+    tasks.getByName("assembleRelease").doLast {
         copy {
             println buildDir
             println rootDir.absolutePath
@@ -147,16 +153,18 @@ afterEvaluate {
                 exclude '**/*unsigned.apk', '**/*unaligned.apk'
                 include "**/${project.name}*.apk"
             }
-            into "${rootDir.absolutePath}\\apk"
+            into "${rootDir.absolutePath}\\Client\\release"
             rename(/(.)*\.apk/, "${project.name}.apk")
         }
         println install()
+        println date()
     }
 
     // 删除build文件夹
 //    tasks.getByName("assembleRelease").doLast {
 //        delete "${projectDir.absolutePath}/build"
 //    }
+
 }
 
 static def buildTime() {
@@ -184,9 +192,8 @@ task swig(type: Exec, dependsOn: ['createCoreWrapperDir']) {
 
 // adb install [-r] [xxx.apk]
 def install() {
-    String cmd = "adb install -r ${rootDir.absolutePath}\\apk\\${project.name}.apk"
+    String cmd = "adb install -r ${rootDir.absolutePath}\\${project.name}\\release\\${project.name}.apk"
     cmd.execute().text.trim()
-//    commandLine 'cmd', '/c', 'adb', '-s', '192.168.193.101:5555', 'install', '-r', rootDir.absolutePath + "\\apk\\${project.name}.apk"
 }
 
 // adb push [xxx.apk] [destination]
@@ -220,6 +227,12 @@ task makeJar2(type: Jar, dependsOn: ['compileReleaseJavaWithJavac']){
     exclude('**/R.class')
     include('com/example/client/**')
     into('com/example/')
+}
+
+// adb install [-r] [xxx.apk]
+def date() {
+    File file = new File("${rootDir.absolutePath}\\${project.name}\\release\\${project.name}.apk")
+    return "[${project.name}.apk] last modified time: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(file.lastModified())
 }
 
 // call deleteApk when makeJar finished

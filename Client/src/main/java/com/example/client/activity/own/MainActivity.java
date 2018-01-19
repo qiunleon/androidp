@@ -1,5 +1,6 @@
 package com.example.client.activity.own;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -7,8 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.client.R;
 import com.example.client.application.ClientApp;
@@ -17,6 +23,8 @@ import com.example.client.gen.UserDao;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
 import com.example.client.sqlite.SQLiteDatabaseHelper;
+import com.example.client.ui.custom.CustomTextView;
+import com.example.client.ui.custom.CustomViewGroup;
 import com.example.client.ui.dialog.CustomDialog;
 import com.example.client.ui.dialog.EvProgressDialog;
 import com.example.client.util.SPUtils;
@@ -38,6 +46,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
 @SuppressWarnings("unused")
 public class MainActivity extends Activity {
@@ -62,6 +71,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
         saveDataAsGson();
 
             new AsyncTask<Void, Void, Void>() {
@@ -102,6 +112,8 @@ public class MainActivity extends Activity {
 //        } catch (ClassNotFoundException e) {
 //            e.printStackTrace();
 //        }
+=======
+>>>>>>> b6368ca5ccf286a3e24410518682a7d270ab436c
     }
 
     private boolean isStop = true;
@@ -355,6 +367,7 @@ public class MainActivity extends Activity {
         SPUtils.getInstance().put("shared_preference_file", "aaaaaaaaaaaaaaa");
     }
 
+<<<<<<< HEAD
 //    private void getDataAsGson() {
 //        Gson gson = new Gson();
 //        String relationship = gson.toJson(
@@ -362,6 +375,12 @@ public class MainActivity extends Activity {
 //
 //        Log.d(TAG, "get relationship: " + SPUtils.getInstance().getString("shared_preference_file", "bbbbbbbb"));
 //    }
+=======
+    @OnClick(R.id.touch_event_dispatch_text_view)
+    public void clickEventDispatch() {
+        this.startActivity(new Intent(MainActivity.this, EventDispatchActivity.class));
+    }
+>>>>>>> b6368ca5ccf286a3e24410518682a7d270ab436c
 
     static {
         System.loadLibrary("example");
