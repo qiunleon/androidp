@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -27,10 +28,14 @@ import com.example.client.ui.custom.CustomViewGroup;
 import com.example.client.ui.dialog.CustomDialog;
 import com.example.client.ui.dialog.EvProgressDialog;
 import com.example.client.util.SPUtils;
+import com.example.client.util.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.annotation.Annotation;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,10 +65,55 @@ public class MainActivity extends Activity {
     @BindView(R.id.switch_ap)
     Switch mApSwitch;
 
+    private Process mStartRecordProcess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
+        saveDataAsGson();
+
+            new AsyncTask<Void, Void, Void>() {
+                protected Void doInBackground(Void... var1) {
+                    try {
+                        mStartRecordProcess = Runtime.getRuntime().exec(
+                                "mkdir -p /sdcard/nas");
+                        InputStream stdin = mStartRecordProcess.getInputStream();
+                        InputStreamReader isr = new InputStreamReader(stdin);
+                        BufferedReader br = new BufferedReader(isr);
+                        String line = null;
+                        System.out.println("<output></output>");
+                        while ((line = br.readLine()) != null){
+                            System.out.println(line);
+                        }
+                        Log.d("QIU", "mkdir: " + mStartRecordProcess.toString());
+                        mStartRecordProcess = Runtime.getRuntime().exec(
+                                "busybox mount -t nfs -o nolock 192.168.199.232:/volume1/kmbox /sdcard/nas");
+                         stdin = mStartRecordProcess.getInputStream();
+                         isr = new InputStreamReader(stdin);
+                         br = new BufferedReader(isr);
+                         line = null;
+                        System.out.println("<output></output>");
+                        while ((line = br.readLine()) != null){
+                            System.out.println(line);
+                        }
+                        Log.d("QIU", "mount: " + mStartRecordProcess.toString());
+                    } catch (IOException e) {
+                        Log.e("QIU", "Start record with IOException: " + e.getMessage());
+                    }
+                    return null;
+                }
+            }.execute();
+
+//        try {
+//            Class clz = Class.forName("TimeConstant");
+//            Annotation annotation = clz.getAnnotation(TimeConstant.Unit.class);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+=======
+>>>>>>> b6368ca5ccf286a3e24410518682a7d270ab436c
     }
 
     private boolean isStop = true;
@@ -314,13 +364,23 @@ public class MainActivity extends Activity {
         String relationship = gson.toJson(
                 new HashMap<>(), new TypeToken<Map<String, ArrayList<String>>>() {}.getType());
         Log.d(TAG, "write relationship: " + relationship);
-        SPUtils.getInstance().put("shared_preference_file", relationship);
+        SPUtils.getInstance().put("shared_preference_file", "aaaaaaaaaaaaaaa");
     }
 
+<<<<<<< HEAD
+//    private void getDataAsGson() {
+//        Gson gson = new Gson();
+//        String relationship = gson.toJson(
+//                new HashMap<>(), new TypeToken<Map<String, ArrayList<String>>>() {}.getType());
+//
+//        Log.d(TAG, "get relationship: " + SPUtils.getInstance().getString("shared_preference_file", "bbbbbbbb"));
+//    }
+=======
     @OnClick(R.id.touch_event_dispatch_text_view)
     public void clickEventDispatch() {
         this.startActivity(new Intent(MainActivity.this, EventDispatchActivity.class));
     }
+>>>>>>> b6368ca5ccf286a3e24410518682a7d270ab436c
 
     static {
         System.loadLibrary("example");

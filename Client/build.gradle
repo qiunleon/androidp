@@ -36,27 +36,33 @@ android {
     signingConfigs {
         debug {
             storeFile file("${rootDir.absolutePath}/android.keystore")
-            keyAlias 'androidp'
-            storePassword 'androidp'
-            keyPassword 'androidp'
+            keyAlias "androidp"
+            storePassword "androidp"
+            keyPassword "androidp"
         }
         release {
             storeFile file("${rootDir.absolutePath}/android.keystore")
-            keyAlias 'androidp'
-            storePassword 'androidp'
-            keyPassword 'androidp'
+            keyAlias "androidp"
+            storePassword "androidp"
+            keyPassword "androidp"
+
         }
     }
 
     buildTypes {
         debug {
-//            minifyEnabled true
-//            shrinkResources true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            buildConfigField 'String','CUSTOMIZED_VERSION','"common"'
             signingConfig signingConfigs.debug
         }
         release {
-//            minifyEnabled true
-//            shrinkResources true
+            // 混淆设置
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            buildConfigField 'String','CUSTOMIZED_VERSION','"common"'
             signingConfig signingConfigs.release
         }
     }
@@ -87,19 +93,20 @@ android {
         abortOnError false
     }
 
-//    applicationVariants.all { variant ->
-////        def output = variant.outputs[0]
-////        File apk = output.outputFile
-////        String Name = output.outputFile.name
-////                .replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
-////        //output.outputFile = new File(apk.parentFile, Name)
-////        outputFileName = Name
-////        destinationDir = apk.parentFile
-//        variant.outputs.all { outputs ->
-//            def apkFileName = outputs.name.replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
-//            outputFileName = apkFileName
-//        }
-//    }
+
+    applicationVariants.all { variant ->
+        // old gradle version
+//        def output = variant.outputs[0]
+//        File apk = output.outputFile
+//        String Name = output.outputFile.name
+//                .replace(".apk", "-${buildTime()}-${project.ext.versionInfo.build}.apk")
+//        //output.outputFile = new File(apk.parentFile, Name)
+//        outputFileName = Name
+//        destinationDir = apk.parentFile
+        variant.outputs.all { outputs ->
+            outputFileName = "${project.name}-${buildTime()}-${project.ext.versionInfo.build}.apk"
+        }
+    }
 
 //    project.tasks.whenTaskAdded { task ->
 //        android.applicationVariants.all { variant ->
@@ -140,7 +147,9 @@ dependencies {
 afterEvaluate {
     tasks.getByName("assembleRelease").doLast {
         copy {
-            from("$buildDir/outputs/apk/release") {
+            println buildDir
+            println rootDir.absolutePath
+            from("$buildDir/outputs/apk/debug/") {
                 exclude '**/*unsigned.apk', '**/*unaligned.apk'
                 include "**/${project.name}*.apk"
             }
@@ -150,6 +159,12 @@ afterEvaluate {
         println install()
         println date()
     }
+
+    // 删除build文件夹
+//    tasks.getByName("assembleRelease").doLast {
+//        delete "${projectDir.absolutePath}/build"
+//    }
+
 }
 
 static def buildTime() {
