@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        applicationId "com.example.jniswig"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets{
+        main {
+            jniLibs.srcDir('src/main/libs')
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
+
+// 指定创建创建JNI接口调用类的包名（即自动生成的.java文件保存路径）
+def coreWrapperDir = new File("${projectDir}/src/main/java/com/example/swig/jni")
+
+// 创建保存.java文件的文件夹
+task createCoreWrapperDir {
+    coreWrapperDir.mkdirs()
+}
+
+// For this to work, it's assumed SWIG is installed
+// FIXME: This only works when called from Command Line (gradlew swig)
+task swig(type: Exec, dependsOn: ['createCoreWrapperDir']) {
+    String osName = System.getProperty("os.name").toLowerCase();
+    if (osName.contains("windows")) {
+        commandLine 'cmd', '/c', 'swig'
+        args '-java', '-package', 'com.example.swig.jni', '-outdir', coreWrapperDir.absolutePath, '-o', "${projectDir}/src/main/jni/example_wrap.c", "${projectDir}/src/main/jni/Example.i"
+    } else {
+        commandLine 'swig'
+        args '-c++', '-java', '-package', 'com.example.swig.jni', '-outdir', coreWrapperDir.absolutePath, '-o', "${projectDir}/src/main/jni/example_wrap.c", "${projectDir}/src/main/jni/Example.i"
+    }
+}
