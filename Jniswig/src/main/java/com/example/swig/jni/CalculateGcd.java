@@ -8,9 +8,9 @@
 
 package com.example.swig.jni;
 
-public class example {
+public class CalculateGcd {
   public static int gcd(int x, int y) {
-    return exampleJNI.gcd(x, y);
+    return CalculateGcdJNI.gcd(x, y);
   }
 
 }

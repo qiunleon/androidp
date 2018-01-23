@@ -8,6 +8,6 @@
 
 package com.example.swig.jni;
 
-public class exampleJNI {
+public class CalculateGcdJNI {
   public final static native int gcd(int jarg1, int jarg2);
 }

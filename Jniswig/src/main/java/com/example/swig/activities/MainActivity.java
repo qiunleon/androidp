@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.swig.R;
-import com.example.swig.jni.example;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +17,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(this, ""+example.gcd(3, 12), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ""+example.gcd(3, 12), Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,3 +1,3 @@
-%module example
+%module CalculateGcd
 
 int gcd(int x, int y);
