@@ -11,6 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        // 指定生成的so库ABI
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -23,12 +24,14 @@ android {
         }
     }
 
+    // 指定jni库
     sourceSets{
         main {
             jniLibs.srcDir('src/main/libs')
         }
     }
 
+    // 指定外挂编译脚本路径
     externalNativeBuild {
         ndkBuild {
             path 'src/main/jni/Android.mk'
