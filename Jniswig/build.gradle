@@ -13,7 +13,7 @@ android {
 
         // 指定生成的so库ABI
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi-v7a"
         }
     }
 

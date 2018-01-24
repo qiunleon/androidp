@@ -20,7 +20,7 @@ endif
 
 
 # 追加SWIG封装源文件
-LOCAL_SRC_FILES+= $(foreach SWIG_INTERFACE, $(SWIG_INTERFACES), $(basename $(SWIG_INTERFACE)))_wrap.$(SWIG_TYPE)
+LOCAL_SRC_FILES += $(foreach SWIG_INTERFACE, $(SWIG_INTERFACES), $(basename $(SWIG_INTERFACE)))_wrap.$(SWIG_TYPE)
 
 
 # 添加.cxx作为c++文件扩展名
@@ -29,5 +29,5 @@ LOCAL_CPP_EXTENSION += .cxx
 
 # 生成SWIG封代码
 %_wrap.$(SWIG_TYPE):%.i
-	$(call host-mkdir, $(SWIG_OUT_DIR))
+	# $(call host-mkdir, $(SWIG_OUT_DIR))
 	swig -java $(MY_SWIG_MODE) -package $(SWIG_PACKAGE) -outdir $(SWIG_OUT_DIR) $<
