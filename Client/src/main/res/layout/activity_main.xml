@@ -100,17 +100,17 @@
                 android:layout_below="@+id/switch_wifi_ap">
 
                 <Button
-                    android:id="@+id/button_start"
+                    android:id="@+id/button_start_service"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Start Service" />
 
                 <Button
-                    android:id="@+id/button_stop"
+                    android:id="@+id/button_stop_service"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/button_start"
+                    android:layout_toRightOf="@+id/button_start_service"
                     android:layout_weight="1"
                     android:text="Stop Service" />
             </LinearLayout>
@@ -251,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/button_sync_thread_a"
                     android:layout_weight="1"
-                    android:text="THREAD B" />
+                    android:text="STOP THREAD" />
             </LinearLayout>
 
             <LinearLayout
@@ -274,7 +274,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/button_sync_thread_a"
                     android:layout_weight="1"
-                    android:text="THREAD B" />
+                    android:text="sdafda" />
             </LinearLayout>
 
             <LinearLayout
@@ -313,7 +313,39 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Event Dispatch" />
+
+                <Button
+                    android:id="@+id/custom_dialog"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Custom Dialog Toast" />
+
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/execute_cmd_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llyt_sync_view"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/execute_cmd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="CMD" />
+
+                <Button
+                    android:id="@+id/other"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Other" />
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

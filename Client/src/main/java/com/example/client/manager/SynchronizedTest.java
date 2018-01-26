@@ -25,13 +25,13 @@ public class SynchronizedTest {
             return;
         }
 
-//        synchronized (this.mList) {
+        synchronized (this.mList) {
             if (!mList.contains(objects)) {
                 //EvLog.d(TAG, "before add: " + content + ", size: " + mList.size());
                 mList.add(objects);
                 Log.d(TAG, "after add: " + objects + ", size: " + mList.size());
             }
-//        }
+        }
     }
 
     public void removeElement(Object objects) {
@@ -39,13 +39,13 @@ public class SynchronizedTest {
             return;
         }
 
-//        synchronized (this.mList) {
+        synchronized (this.mList) {
             if (mList.contains(objects)) {
                 //EvLog.d(TAG, "before remove: " + content + ", size: " + mList.size());
                 mList.remove(objects);
                 Log.d(TAG, "after remove: " + objects + ", size: " + mList.size());
             }
-//        }
+        }
     }
 
     public void showElement() {
@@ -53,7 +53,7 @@ public class SynchronizedTest {
             return;
         }
 
-//        synchronized (this.mList) {
+        synchronized (this.mList) {
             int size = this.mList.size();
             //EvLog.d(TAG, "before start show, size: " + mList.size());
             for (int i = 0; i < size; i++) {
@@ -61,6 +61,6 @@ public class SynchronizedTest {
                 Log.e(TAG, "i: " + i + ", content: " + mList.get(i) + ", size: " + mList.size());
                 //EvLog.d(TAG, "after show: " + mList.get(i) + ", size: " + mList.size());
             }
-//        }
+        }
     }
 }

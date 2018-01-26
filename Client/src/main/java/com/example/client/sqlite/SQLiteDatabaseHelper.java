@@ -12,7 +12,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     private static int version = 1;
 
-    private static String name = "androidp";
+    private static String name = "android";
 
     public SQLiteDatabaseHelper(Context context) {
         super(new DatabaseContext(context), name, null, version);

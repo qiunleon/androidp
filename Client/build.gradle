@@ -145,7 +145,7 @@ dependencies {
 }
 
 afterEvaluate {
-    tasks.getByName("assembleRelease").doLast {
+    tasks.getByName("assembleDebug").doLast {
         copy {
             println buildDir
             println rootDir.absolutePath

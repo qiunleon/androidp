@@ -23,7 +23,7 @@ public class ImageActivity extends Activity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.button_start)
+    @OnClick(R.id.button_start_service)
     void startImageView() {
         Intent intent = new Intent(this, DetailActivity.class);
         startActivity(intent);
