@@ -5,9 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.example.client.gen.DaoMaster;
-import com.example.client.gen.DaoSession;
-import com.example.client.util.SPUtils;
+import com.example.client.dao.DaoMaster;
+import com.example.client.dao.DaoSession;
 import com.example.client.util.Utils;
 
 /**

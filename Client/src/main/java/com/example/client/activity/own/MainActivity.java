@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +15,8 @@ import android.widget.Toast;
 import com.example.client.R;
 import com.example.client.activity.imported.ScrollViewMainActivity;
 import com.example.client.application.ClientApp;
-import com.example.client.data.User;
-import com.example.client.gen.UserDao;
+import com.example.client.dao.UserDao;
+import com.example.client.greendao.User;
 import com.example.client.jni.Example;
 import com.example.client.manager.NetworkManager;
 import com.example.client.manager.RemoteServiceManager;
@@ -31,16 +30,11 @@ import com.example.client.util.SPUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.locks.ReentrantLock;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -218,11 +212,11 @@ public class MainActivity extends Activity {
     @OnClick(R.id.button_greendao)
     public void onClickCreateGreenDAO() {
         UserDao mUserDao = ClientApp.getInstance().getDaoSession().getUserDao();
-        User mUser = new User((long) 2, "client");
+        User mUser = new User((long) 2, "1", "client", "client horse");
         mUserDao.insert(mUser);  // add
         mUserDao.deleteByKey(0L);  // delete
-        mUser = new User((long) 2, "update");
-        mUserDao.update(mUser);  // update
+        mUser = new User((long) 2, "1", "update", "update horse");
+        mUserDao.insertOrReplace(mUser);  // update
         List<User> users = mUserDao.loadAll();  // query
         String userName = "";
         for (int i = 0; i < users.size(); i++) {
