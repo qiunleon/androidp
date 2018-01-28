@@ -65,31 +65,27 @@ public class User {
     @Property(nameInDb = "USERNAME")
     private String name;
 
-//    // 索引，unique设置唯一，name设置索引别名
-//    @Index(unique = true)
-//    private long fk_dogId;
+    // 索引，unique设置唯一，name设置索引别名
+    @Index(unique = true)
+    private long fk_dogId;
 
     // 非空
     @NotNull
-    private String horseName;
+    private String alias;
 
     // 忽略，不持久化，可用关键字transient替代
     @Transient
     private int tempUsageCount;
 
-//    // 对一，实体属性 joinProperty 对应外联实体ID
-//    @ToOne(joinProperty = "fk_dogId")
-//    private Dog dog;
-
     // 对多。实体ID对应外联实体属性 referencedJoinProperty
     @ToMany(referencedJoinProperty = "fk_userId")
     private List<Cat> cats;
 
-//    // 对多。@JoinProperty：name 实体属性对应外联实体属性 referencedName
-//    @ToMany(joinProperties = {
-//            @JoinProperty(name = "horseName", referencedName = "name")
-//    })
-//    private List<Horse> horses;
+    // 对多。@JoinProperty：name 实体属性对应外联实体属性 referencedName
+    @ToMany(joinProperties = {
+            @JoinProperty(name = "alias", referencedName = "dogAlias")
+    })
+    private List<Dog> dogs;
 
     // 对多。@JoinEntity：entity 中间表；中间表属性 sourceProperty 对应实体ID；中间表属性 targetProperty 对应外联实体ID
     @ToMany
@@ -110,11 +106,11 @@ private transient DaoSession daoSession;
 private transient UserDao myDao;
 
 @Generated(hash = 1738034108)
-public User(Long id, String userId, String name, @NotNull String horseName) {
+public User(Long id, String userId, String name, @NotNull String alias) {
     this.id = id;
     this.userId = userId;
     this.name = name;
-    this.horseName = horseName;
+    this.alias = alias;
 }
 
 @Generated(hash = 586692638)
@@ -145,13 +141,7 @@ public void setName(String name) {
     this.name = name;
 }
 
-public String getHorseName() {
-    return this.horseName;
-}
 
-public void setHorseName(String horseName) {
-    this.horseName = horseName;
-}
 
 /**
  * To-many relationship, resolved on first access (and after reset).
