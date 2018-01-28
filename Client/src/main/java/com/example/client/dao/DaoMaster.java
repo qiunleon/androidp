@@ -22,6 +22,7 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         CatDao.createTable(db, ifNotExists);
+        DogDao.createTable(db, ifNotExists);
         JoinUserWithSheepDao.createTable(db, ifNotExists);
         SheepDao.createTable(db, ifNotExists);
         UserDao.createTable(db, ifNotExists);
@@ -30,6 +31,7 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         CatDao.dropTable(db, ifExists);
+        DogDao.dropTable(db, ifExists);
         JoinUserWithSheepDao.dropTable(db, ifExists);
         SheepDao.dropTable(db, ifExists);
         UserDao.dropTable(db, ifExists);
@@ -52,6 +54,7 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(CatDao.class);
+        registerDaoClass(DogDao.class);
         registerDaoClass(JoinUserWithSheepDao.class);
         registerDaoClass(SheepDao.class);
         registerDaoClass(UserDao.class);

@@ -9,11 +9,13 @@ import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
 import com.example.client.greendao.Cat;
+import com.example.client.greendao.Dog;
 import com.example.client.greendao.JoinUserWithSheep;
 import com.example.client.greendao.Sheep;
 import com.example.client.greendao.User;
 
 import com.example.client.dao.CatDao;
+import com.example.client.dao.DogDao;
 import com.example.client.dao.JoinUserWithSheepDao;
 import com.example.client.dao.SheepDao;
 import com.example.client.dao.UserDao;
@@ -28,11 +30,13 @@ import com.example.client.dao.UserDao;
 public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig catDaoConfig;
+    private final DaoConfig dogDaoConfig;
     private final DaoConfig joinUserWithSheepDaoConfig;
     private final DaoConfig sheepDaoConfig;
     private final DaoConfig userDaoConfig;
 
     private final CatDao catDao;
+    private final DogDao dogDao;
     private final JoinUserWithSheepDao joinUserWithSheepDao;
     private final SheepDao sheepDao;
     private final UserDao userDao;
@@ -44,6 +48,9 @@ public class DaoSession extends AbstractDaoSession {
         catDaoConfig = daoConfigMap.get(CatDao.class).clone();
         catDaoConfig.initIdentityScope(type);
 
+        dogDaoConfig = daoConfigMap.get(DogDao.class).clone();
+        dogDaoConfig.initIdentityScope(type);
+
         joinUserWithSheepDaoConfig = daoConfigMap.get(JoinUserWithSheepDao.class).clone();
         joinUserWithSheepDaoConfig.initIdentityScope(type);
 
@@ -54,11 +61,13 @@ public class DaoSession extends AbstractDaoSession {
         userDaoConfig.initIdentityScope(type);
 
         catDao = new CatDao(catDaoConfig, this);
+        dogDao = new DogDao(dogDaoConfig, this);
         joinUserWithSheepDao = new JoinUserWithSheepDao(joinUserWithSheepDaoConfig, this);
         sheepDao = new SheepDao(sheepDaoConfig, this);
         userDao = new UserDao(userDaoConfig, this);
 
         registerDao(Cat.class, catDao);
+        registerDao(Dog.class, dogDao);
         registerDao(JoinUserWithSheep.class, joinUserWithSheepDao);
         registerDao(Sheep.class, sheepDao);
         registerDao(User.class, userDao);
@@ -66,6 +75,7 @@ public class DaoSession extends AbstractDaoSession {
     
     public void clear() {
         catDaoConfig.clearIdentityScope();
+        dogDaoConfig.clearIdentityScope();
         joinUserWithSheepDaoConfig.clearIdentityScope();
         sheepDaoConfig.clearIdentityScope();
         userDaoConfig.clearIdentityScope();
@@ -73,6 +83,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public CatDao getCatDao() {
         return catDao;
+    }
+
+    public DogDao getDogDao() {
+        return dogDao;
     }
 
     public JoinUserWithSheepDao getJoinUserWithSheepDao() {

@@ -17,9 +17,9 @@ public class Cat {
 
     private String name;
 
-    private long fk_userId;
+    private long catUserId;
 
-    @ToOne(joinProperty = "fk_userId")
+    @ToOne(joinProperty = "catUserId")
     private User user;
 
     /** Used to resolve relations */
@@ -31,10 +31,10 @@ public class Cat {
     private transient CatDao myDao;
 
     @Generated(hash = 1225191413)
-    public Cat(Long id, String name, long fk_userId) {
+    public Cat(Long id, String name, long catUserId) {
         this.id = id;
         this.name = name;
-        this.fk_userId = fk_userId;
+        this.catUserId = catUserId;
     }
 
     @Generated(hash = 205319056)
@@ -57,12 +57,12 @@ public class Cat {
         this.name = name;
     }
 
-    public long getFk_userId() {
-        return this.fk_userId;
+    public long getFk_catUserId() {
+        return this.catUserId;
     }
 
-    public void setFk_userId(long fk_userId) {
-        this.fk_userId = fk_userId;
+    public void setFk_catUserId(long catUserId) {
+        this.catUserId = catUserId;
     }
 
     @Generated(hash = 251390918)
@@ -71,7 +71,7 @@ public class Cat {
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 2013157836)
     public User getUser() {
-        long __key = this.fk_userId;
+        long __key = this.catUserId;
         if (user__resolvedKey == null || !user__resolvedKey.equals(__key)) {
             final DaoSession daoSession = this.daoSession;
             if (daoSession == null) {
@@ -92,12 +92,12 @@ public class Cat {
     public void setUser(@NotNull User user) {
         if (user == null) {
             throw new DaoException(
-                    "To-one property 'fk_userId' has not-null constraint; cannot set to-one to null");
+                    "To-one property 'catUserId' has not-null constraint; cannot set to-one to null");
         }
         synchronized (this) {
             this.user = user;
-            fk_userId = user.getId();
-            user__resolvedKey = fk_userId;
+            catUserId = user.getId();
+            user__resolvedKey = catUserId;
         }
     }
 

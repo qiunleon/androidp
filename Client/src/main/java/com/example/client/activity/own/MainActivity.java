@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.client.R;
 import com.example.client.activity.imported.ScrollViewMainActivity;
 import com.example.client.application.ClientApp;
+import com.example.client.dao.DaoMaster;
+import com.example.client.dao.DaoSession;
 import com.example.client.dao.UserDao;
 import com.example.client.greendao.User;
 import com.example.client.jni.Example;
@@ -30,6 +32,9 @@ import com.example.client.util.SPUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.greenrobot.greendao.rx.RxDao;
+import org.greenrobot.greendao.rx.RxQuery;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +45,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 @SuppressWarnings("unused")
 public class MainActivity extends Activity {
@@ -212,16 +219,66 @@ public class MainActivity extends Activity {
     @OnClick(R.id.button_greendao)
     public void onClickCreateGreenDAO() {
         UserDao mUserDao = ClientApp.getInstance().getDaoSession().getUserDao();
-        User mUser = new User((long) 2, "1", "client", "client horse");
+        User mUser = new User((long) 2, "1", "client", 1L, "client horse");
         mUserDao.insert(mUser);  // add
         mUserDao.deleteByKey(0L);  // delete
-        mUser = new User((long) 2, "1", "update", "update horse");
+        mUser = new User((long) 2, "1", "update", 2L, "update horse");
         mUserDao.insertOrReplace(mUser);  // update
         List<User> users = mUserDao.loadAll();  // query
         String userName = "";
         for (int i = 0; i < users.size(); i++) {
             userName += users.get(i).getName() + ",";
         }
+
+        // RxDao初始化
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, "rxDao.db", null);
+        DaoMaster daoMaster = new DaoMaster(devOpenHelper.getWritableDb());
+        DaoSession daoSession = daoMaster.newSession();
+        RxDao<User, Long> userLongRxDao = daoSession.getUserDao().rx();
+
+        // 增
+        userLongRxDao.insert(mUser)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<User>() {
+                    @Override
+                    public void call(User user) {
+                        // 插入完成操作
+                    }
+                });
+
+        // 删
+        userLongRxDao.delete(mUser)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        // 删除完成操作
+                    }
+                });
+
+        // 改
+        userLongRxDao.update(mUser)
+                //.updateInTx(user1, user2) // 更新多个
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<User>() {
+                    @Override
+                    public void call(User user) {
+                        // 修改完成操作
+                    }
+                });
+
+        // 查
+        RxQuery<User> userRxQuery = daoSession.getUserDao().queryBuilder().rx();
+        userRxQuery.unique() // 查询单个或空集合
+                //.list() // 查询多个结果集合
+                //.oneByOne() // 一次发射一个实例
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<User>() {
+                    @Override
+                    public void call(User user) {
+                        // 查询完成后动作
+                    }
+                });
     }
 
     @OnClick(R.id.button_eventbus_normal)

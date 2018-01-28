@@ -19,6 +19,7 @@ import com.example.client.dao.DaoSession;
 import com.example.client.dao.SheepDao;
 import com.example.client.dao.CatDao;
 import com.example.client.dao.UserDao;
+import com.example.client.dao.DogDao;
 
 @Entity(
         // schema 名,多个 schema 时设置关联实体.插件产生不支持,需使用产生器.
@@ -66,22 +67,25 @@ public class User {
     private String name;
 
     // 索引，unique设置唯一，name设置索引别名
-    @Index(unique = true)
-    private long fk_dogId;
-
-    // 非空
-    @NotNull
-    private String alias;
+    @Index(unique = true, name = "indexAlias")
+    private long index;
 
     // 忽略，不持久化，可用关键字transient替代
     @Transient
     private int tempUsageCount;
 
-    // 对多。实体ID对应外联实体属性 referencedJoinProperty
-    @ToMany(referencedJoinProperty = "fk_userId")
+    // 对一，User实体类持有外键pigId，pigId是Pig实体类的id
+    @Property(nameInDb = "PIG_ID")
+    private Long pigId;
+    @ToOne(joinProperty = "pigId")
+    private Pig pig;
+
+    // 对多。实体类User的id对应外联属性referencedJoinProperty指定实体类Cat的catUserId
+    @ToMany(referencedJoinProperty = "catUserId")
     private List<Cat> cats;
 
-    // 对多。@JoinProperty：name 实体属性对应外联实体属性 referencedName
+    // 对多。@JoinProperty：name属性只能怪实体类alias对应外联属性referencedName指定实体类Dog的dogAlias
+    @NotNull private String alias;
     @ToMany(joinProperties = {
             @JoinProperty(name = "alias", referencedName = "dogAlias")
     })
@@ -94,7 +98,6 @@ public class User {
             sourceProperty = "uId",
             targetProperty = "sId"
     )
-
     private List<Sheep> sheep;
 
 /** Used to resolve relations */
@@ -105,11 +108,12 @@ private transient DaoSession daoSession;
 @Generated(hash = 1507654846)
 private transient UserDao myDao;
 
-@Generated(hash = 1738034108)
-public User(Long id, String userId, String name, @NotNull String alias) {
+@Generated(hash = 184124449)
+public User(Long id, String userId, String name, long index, @NotNull String alias) {
     this.id = id;
     this.userId = userId;
     this.name = name;
+    this.index = index;
     this.alias = alias;
 }
 
@@ -233,6 +237,50 @@ public void update() {
         throw new DaoException("Entity is detached from DAO context");
     }
     myDao.update(this);
+}
+
+public long getFk_dogId() {
+    return this.index;
+}
+
+public void setFk_dogId(long index) {
+    this.index = index;
+}
+
+public String getAlias() {
+    return this.alias;
+}
+
+public void setAlias(String alias) {
+    this.alias = alias;
+}
+
+/**
+ * To-many relationship, resolved on first access (and after reset).
+ * Changes to to-many relations are not persisted, make changes to the target entity.
+ */
+@Generated(hash = 356172989)
+public List<Dog> getDogs() {
+    if (dogs == null) {
+        final DaoSession daoSession = this.daoSession;
+        if (daoSession == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        DogDao targetDao = daoSession.getDogDao();
+        List<Dog> dogsNew = targetDao._queryUser_Dogs(alias);
+        synchronized (this) {
+            if (dogs == null) {
+                dogs = dogsNew;
+            }
+        }
+    }
+    return dogs;
+}
+
+/** Resets a to-many relationship, making the next get call to query for a fresh result. */
+@Generated(hash = 1473265060)
+public synchronized void resetDogs() {
+    dogs = null;
 }
 
 /** called by internal mechanisms, do not call yourself. */

@@ -32,7 +32,8 @@ public class UserDao extends AbstractDao<User, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property UserId = new Property(1, String.class, "userId", false, "USER_ID");
         public final static Property Name = new Property(2, String.class, "name", false, "USERNAME");
-        public final static Property HorseName = new Property(3, String.class, "horseName", false, "HORSE_NAME");
+        public final static Property Fk_dogId = new Property(3, long.class, "fk_dogId", false, "FK_DOG_ID");
+        public final static Property Alias = new Property(4, String.class, "alias", false, "ALIAS");
     }
 
     private DaoSession daoSession;
@@ -55,8 +56,11 @@ public class UserDao extends AbstractDao<User, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"USER_ID\" TEXT UNIQUE ," + // 1: userId
                 "\"USERNAME\" TEXT," + // 2: name
-                "\"HORSE_NAME\" TEXT NOT NULL );"); // 3: horseName
+                "\"FK_DOG_ID\" INTEGER NOT NULL ," + // 3: fk_dogId
+                "\"ALIAS\" TEXT NOT NULL );"); // 4: alias
         // Add Indexes
+        db.execSQL("CREATE UNIQUE INDEX " + constraint + "IDX_AWESOME_USERS_FK_DOG_ID ON \"AWESOME_USERS\"" +
+                " (\"FK_DOG_ID\" ASC);");
         db.execSQL("CREATE UNIQUE INDEX " + constraint + "IDX_AWESOME_USERS_USERNAME_DESC ON \"AWESOME_USERS\"" +
                 " (\"USERNAME\" DESC);");
     }
@@ -85,7 +89,8 @@ public class UserDao extends AbstractDao<User, Long> {
         if (name != null) {
             stmt.bindString(3, name);
         }
-        stmt.bindString(4, entity.getHorseName());
+        stmt.bindLong(4, entity.getFk_dogId());
+        stmt.bindString(5, entity.getAlias());
     }
 
     @Override
@@ -106,7 +111,8 @@ public class UserDao extends AbstractDao<User, Long> {
         if (name != null) {
             stmt.bindString(3, name);
         }
-        stmt.bindString(4, entity.getHorseName());
+        stmt.bindLong(4, entity.getFk_dogId());
+        stmt.bindString(5, entity.getAlias());
     }
 
     @Override
@@ -126,7 +132,8 @@ public class UserDao extends AbstractDao<User, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // userId
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
-            cursor.getString(offset + 3) // horseName
+            cursor.getLong(offset + 3), // fk_dogId
+            cursor.getString(offset + 4) // alias
         );
         return entity;
     }
@@ -136,7 +143,8 @@ public class UserDao extends AbstractDao<User, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setUserId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setHorseName(cursor.getString(offset + 3));
+        entity.setFk_dogId(cursor.getLong(offset + 3));
+        entity.setAlias(cursor.getString(offset + 4));
      }
     
     @Override
