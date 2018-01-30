@@ -6,6 +6,7 @@ package com.example.client.pattern.builder;
 
 public class Car {
 
+
     private String engine; // 发动机引擎
 
     private String transmission; // 变速箱
@@ -33,6 +34,7 @@ public class Car {
     }
 
     public void setChassis(String chassis) {
+        Person person = new Person.PersonBuilder("", 1).setEmail("").build();
         this.chassis = chassis;
     }
 

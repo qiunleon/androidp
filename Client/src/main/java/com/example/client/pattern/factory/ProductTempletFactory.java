@@ -4,10 +4,10 @@ package com.example.client.pattern.factory;
  * Created by Qiu on 2017/12/12.
  */
 
-public class ProductTempletFactory extends TempletFactory {
+public class ProductTempletFactory extends TemplateFactory {
 
     public static void main(String[] args) {
-        TempletFactory factory = new ProductTempletFactory();
+        TemplateFactory factory = new ProductTempletFactory();
         Product product = factory.createProduct(Product.class);
         product.introduction();
     }
