@@ -20,6 +20,7 @@ import com.example.client.dao.SheepDao;
 import com.example.client.dao.CatDao;
 import com.example.client.dao.UserDao;
 import com.example.client.dao.DogDao;
+import com.example.client.dao.PigDao;
 
 @Entity(
         // schema 名,多个 schema 时设置关联实体.插件产生不支持,需使用产生器.
@@ -85,7 +86,8 @@ public class User {
     private List<Cat> cats;
 
     // 对多。@JoinProperty：name属性只能怪实体类alias对应外联属性referencedName指定实体类Dog的dogAlias
-    @NotNull private String alias;
+    @NotNull
+    private String alias;
     @ToMany(joinProperties = {
             @JoinProperty(name = "alias", referencedName = "dogAlias")
     })
@@ -100,193 +102,241 @@ public class User {
     )
     private List<Sheep> sheep;
 
-/** Used to resolve relations */
-@Generated(hash = 2040040024)
-private transient DaoSession daoSession;
+    /** Used to resolve relations */
+    @Generated(hash = 2040040024)
+    private transient DaoSession daoSession;
 
-/** Used for active entity operations. */
-@Generated(hash = 1507654846)
-private transient UserDao myDao;
+    /** Used for active entity operations. */
+    @Generated(hash = 1507654846)
+    private transient UserDao myDao;
 
-@Generated(hash = 184124449)
-public User(Long id, String userId, String name, long index, @NotNull String alias) {
-    this.id = id;
-    this.userId = userId;
-    this.name = name;
-    this.index = index;
-    this.alias = alias;
-}
+    @Generated(hash = 1629487557)
+    public User(Long id, String userId, String name, long index, Long pigId,
+            @NotNull String alias) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+        this.index = index;
+        this.pigId = pigId;
+        this.alias = alias;
+    }
 
-@Generated(hash = 586692638)
-public User() {
-}
+    @Generated(hash = 586692638)
+    public User() {
+    }
 
-public Long getId() {
-    return this.id;
-}
+    @Generated(hash = 594216294)
+    private transient Long pig__resolvedKey;
 
-public void setId(Long id) {
-    this.id = id;
-}
+    public Long getId() {
+        return this.id;
+    }
 
-public String getUserId() {
-    return this.userId;
-}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-public void setUserId(String userId) {
-    this.userId = userId;
-}
+    public String getUserId() {
+        return this.userId;
+    }
 
-public String getName() {
-    return this.name;
-}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-public void setName(String name) {
-    this.name = name;
-}
+    public String getName() {
+        return this.name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public long getFk_dogId() {
+        return this.index;
+    }
 
-/**
- * To-many relationship, resolved on first access (and after reset).
- * Changes to to-many relations are not persisted, make changes to the target entity.
- */
-@Generated(hash = 860374627)
-public List<Cat> getCats() {
-    if (cats == null) {
-        final DaoSession daoSession = this.daoSession;
-        if (daoSession == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        CatDao targetDao = daoSession.getCatDao();
-        List<Cat> catsNew = targetDao._queryUser_Cats(id);
-        synchronized (this) {
-            if (cats == null) {
-                cats = catsNew;
+    public void setFk_dogId(long index) {
+        this.index = index;
+    }
+
+    public String getAlias() {
+        return this.alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public long getIndex() {
+        return this.index;
+    }
+
+    public void setIndex(long index) {
+        this.index = index;
+    }
+
+    public Long getPigId() {
+        return this.pigId;
+    }
+
+    public void setPigId(Long pigId) {
+        this.pigId = pigId;
+    }
+
+    /** To-one relationship, resolved on first access. */
+    @Generated(hash = 576199129)
+    public Pig getPig() {
+        Long __key = this.pigId;
+        if (pig__resolvedKey == null || !pig__resolvedKey.equals(__key)) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            PigDao targetDao = daoSession.getPigDao();
+            Pig pigNew = targetDao.load(__key);
+            synchronized (this) {
+                pig = pigNew;
+                pig__resolvedKey = __key;
             }
         }
+        return pig;
     }
-    return cats;
-}
 
-/** Resets a to-many relationship, making the next get call to query for a fresh result. */
-@Generated(hash = 1845368239)
-public synchronized void resetCats() {
-    cats = null;
-}
-
-/**
- * To-many relationship, resolved on first access (and after reset).
- * Changes to to-many relations are not persisted, make changes to the target entity.
- */
-@Generated(hash = 900285892)
-public List<Sheep> getSheep() {
-    if (sheep == null) {
-        final DaoSession daoSession = this.daoSession;
-        if (daoSession == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        SheepDao targetDao = daoSession.getSheepDao();
-        List<Sheep> sheepNew = targetDao._queryUser_Sheep(id);
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 829111118)
+    public void setPig(Pig pig) {
         synchronized (this) {
-            if (sheep == null) {
-                sheep = sheepNew;
+            this.pig = pig;
+            pigId = pig == null ? null : pig.getId();
+            pig__resolvedKey = pigId;
+        }
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 860374627)
+    public List<Cat> getCats() {
+        if (cats == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            CatDao targetDao = daoSession.getCatDao();
+            List<Cat> catsNew = targetDao._queryUser_Cats(id);
+            synchronized (this) {
+                if (cats == null) {
+                    cats = catsNew;
+                }
             }
         }
+        return cats;
     }
-    return sheep;
-}
 
-/** Resets a to-many relationship, making the next get call to query for a fresh result. */
-@Generated(hash = 952268405)
-public synchronized void resetSheep() {
-    sheep = null;
-}
-
-/**
- * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
- * Entity must attached to an entity context.
- */
-@Generated(hash = 128553479)
-public void delete() {
-    if (myDao == null) {
-        throw new DaoException("Entity is detached from DAO context");
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1845368239)
+    public synchronized void resetCats() {
+        cats = null;
     }
-    myDao.delete(this);
-}
 
-/**
- * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
- * Entity must attached to an entity context.
- */
-@Generated(hash = 1942392019)
-public void refresh() {
-    if (myDao == null) {
-        throw new DaoException("Entity is detached from DAO context");
-    }
-    myDao.refresh(this);
-}
-
-/**
- * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
- * Entity must attached to an entity context.
- */
-@Generated(hash = 713229351)
-public void update() {
-    if (myDao == null) {
-        throw new DaoException("Entity is detached from DAO context");
-    }
-    myDao.update(this);
-}
-
-public long getFk_dogId() {
-    return this.index;
-}
-
-public void setFk_dogId(long index) {
-    this.index = index;
-}
-
-public String getAlias() {
-    return this.alias;
-}
-
-public void setAlias(String alias) {
-    this.alias = alias;
-}
-
-/**
- * To-many relationship, resolved on first access (and after reset).
- * Changes to to-many relations are not persisted, make changes to the target entity.
- */
-@Generated(hash = 356172989)
-public List<Dog> getDogs() {
-    if (dogs == null) {
-        final DaoSession daoSession = this.daoSession;
-        if (daoSession == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        DogDao targetDao = daoSession.getDogDao();
-        List<Dog> dogsNew = targetDao._queryUser_Dogs(alias);
-        synchronized (this) {
-            if (dogs == null) {
-                dogs = dogsNew;
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 356172989)
+    public List<Dog> getDogs() {
+        if (dogs == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            DogDao targetDao = daoSession.getDogDao();
+            List<Dog> dogsNew = targetDao._queryUser_Dogs(alias);
+            synchronized (this) {
+                if (dogs == null) {
+                    dogs = dogsNew;
+                }
             }
         }
+        return dogs;
     }
-    return dogs;
-}
 
-/** Resets a to-many relationship, making the next get call to query for a fresh result. */
-@Generated(hash = 1473265060)
-public synchronized void resetDogs() {
-    dogs = null;
-}
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1473265060)
+    public synchronized void resetDogs() {
+        dogs = null;
+    }
 
-/** called by internal mechanisms, do not call yourself. */
-@Generated(hash = 2059241980)
-public void __setDaoSession(DaoSession daoSession) {
-    this.daoSession = daoSession;
-    myDao = daoSession != null ? daoSession.getUserDao() : null;
-}
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 900285892)
+    public List<Sheep> getSheep() {
+        if (sheep == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            SheepDao targetDao = daoSession.getSheepDao();
+            List<Sheep> sheepNew = targetDao._queryUser_Sheep(id);
+            synchronized (this) {
+                if (sheep == null) {
+                    sheep = sheepNew;
+                }
+            }
+        }
+        return sheep;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 952268405)
+    public synchronized void resetSheep() {
+        sheep = null;
+    }
+
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 128553479)
+    public void delete() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.delete(this);
+    }
+
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 1942392019)
+    public void refresh() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.refresh(this);
+    }
+
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 713229351)
+    public void update() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.update(this);
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 2059241980)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getUserDao() : null;
+    }
 }

@@ -30,7 +30,7 @@ public class Cat {
     @Generated(hash = 1725686194)
     private transient CatDao myDao;
 
-    @Generated(hash = 1225191413)
+    @Generated(hash = 992171957)
     public Cat(Long id, String name, long catUserId) {
         this.id = id;
         this.name = name;
@@ -40,6 +40,9 @@ public class Cat {
     @Generated(hash = 205319056)
     public Cat() {
     }
+
+    @Generated(hash = 251390918)
+    private transient Long user__resolvedKey;
 
     public Long getId() {
         return this.id;
@@ -65,11 +68,16 @@ public class Cat {
         this.catUserId = catUserId;
     }
 
-    @Generated(hash = 251390918)
-    private transient Long user__resolvedKey;
+    public long getCatUserId() {
+        return this.catUserId;
+    }
+
+    public void setCatUserId(long catUserId) {
+        this.catUserId = catUserId;
+    }
 
     /** To-one relationship, resolved on first access. */
-    @Generated(hash = 2013157836)
+    @Generated(hash = 353383576)
     public User getUser() {
         long __key = this.catUserId;
         if (user__resolvedKey == null || !user__resolvedKey.equals(__key)) {
@@ -88,7 +96,7 @@ public class Cat {
     }
 
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1320727664)
+    @Generated(hash = 1898888253)
     public void setUser(@NotNull User user) {
         if (user == null) {
             throw new DaoException(

@@ -219,10 +219,10 @@ public class MainActivity extends Activity {
     @OnClick(R.id.button_greendao)
     public void onClickCreateGreenDAO() {
         UserDao mUserDao = ClientApp.getInstance().getDaoSession().getUserDao();
-        User mUser = new User((long) 2, "1", "client", 1L, "client horse");
+        User mUser = new User((long) 2, "1", "client", (long) 1, 1L, "client horse");
         mUserDao.insert(mUser);  // add
         mUserDao.deleteByKey(0L);  // delete
-        mUser = new User((long) 2, "1", "update", 2L, "update horse");
+        mUser = new User((long) 2, "1", "update", (long) 2,2L, "update horse");
         mUserDao.insertOrReplace(mUser);  // update
         List<User> users = mUserDao.loadAll();  // query
         String userName = "";

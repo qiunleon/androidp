@@ -33,7 +33,7 @@ public class CatDao extends AbstractDao<Cat, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property Fk_userId = new Property(2, long.class, "fk_userId", false, "FK_USER_ID");
+        public final static Property CatUserId = new Property(2, long.class, "catUserId", false, "CAT_USER_ID");
     }
 
     private DaoSession daoSession;
@@ -55,7 +55,7 @@ public class CatDao extends AbstractDao<Cat, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"CAT\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
-                "\"FK_USER_ID\" INTEGER NOT NULL );"); // 2: fk_userId
+                "\"CAT_USER_ID\" INTEGER NOT NULL );"); // 2: catUserId
     }
 
     /** Drops the underlying database table. */
@@ -77,7 +77,7 @@ public class CatDao extends AbstractDao<Cat, Long> {
         if (name != null) {
             stmt.bindString(2, name);
         }
-        stmt.bindLong(3, entity.getFk_userId());
+        stmt.bindLong(3, entity.getCatUserId());
     }
 
     @Override
@@ -93,7 +93,7 @@ public class CatDao extends AbstractDao<Cat, Long> {
         if (name != null) {
             stmt.bindString(2, name);
         }
-        stmt.bindLong(3, entity.getFk_userId());
+        stmt.bindLong(3, entity.getCatUserId());
     }
 
     @Override
@@ -112,7 +112,7 @@ public class CatDao extends AbstractDao<Cat, Long> {
         Cat entity = new Cat( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.getLong(offset + 2) // fk_userId
+            cursor.getLong(offset + 2) // catUserId
         );
         return entity;
     }
@@ -121,7 +121,7 @@ public class CatDao extends AbstractDao<Cat, Long> {
     public void readEntity(Cursor cursor, Cat entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setFk_userId(cursor.getLong(offset + 2));
+        entity.setCatUserId(cursor.getLong(offset + 2));
      }
     
     @Override
@@ -150,16 +150,16 @@ public class CatDao extends AbstractDao<Cat, Long> {
     }
     
     /** Internal query to resolve the "cats" to-many relationship of User. */
-    public List<Cat> _queryUser_Cats(long fk_userId) {
+    public List<Cat> _queryUser_Cats(long catUserId) {
         synchronized (this) {
             if (user_CatsQuery == null) {
                 QueryBuilder<Cat> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.Fk_userId.eq(null));
+                queryBuilder.where(Properties.CatUserId.eq(null));
                 user_CatsQuery = queryBuilder.build();
             }
         }
         Query<Cat> query = user_CatsQuery.forCurrentThread();
-        query.setParameter(0, fk_userId);
+        query.setParameter(0, catUserId);
         return query.list();
     }
 
@@ -172,7 +172,7 @@ public class CatDao extends AbstractDao<Cat, Long> {
             builder.append(',');
             SqlUtils.appendColumns(builder, "T0", daoSession.getUserDao().getAllColumns());
             builder.append(" FROM CAT T");
-            builder.append(" LEFT JOIN AWESOME_USERS T0 ON T.\"FK_USER_ID\"=T0.\"_id\"");
+            builder.append(" LEFT JOIN AWESOME_USERS T0 ON T.\"CAT_USER_ID\"=T0.\"_id\"");
             builder.append(' ');
             selectDeep = builder.toString();
         }

@@ -29,7 +29,7 @@ public class DogDao extends AbstractDao<Dog, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property UserId = new Property(2, long.class, "userId", false, "USER_ID");
+        public final static Property DogUserId = new Property(2, long.class, "dogUserId", false, "DOG_USER_ID");
         public final static Property DogAlias = new Property(3, String.class, "dogAlias", false, "DOG_ALIAS");
     }
 
@@ -49,7 +49,7 @@ public class DogDao extends AbstractDao<Dog, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"DOG\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
-                "\"USER_ID\" INTEGER NOT NULL ," + // 2: userId
+                "\"DOG_USER_ID\" INTEGER NOT NULL ," + // 2: dogUserId
                 "\"DOG_ALIAS\" TEXT);"); // 3: dogAlias
     }
 
@@ -72,7 +72,7 @@ public class DogDao extends AbstractDao<Dog, Long> {
         if (name != null) {
             stmt.bindString(2, name);
         }
-        stmt.bindLong(3, entity.getUserId());
+        stmt.bindLong(3, entity.getDogUserId());
  
         String dogAlias = entity.getDogAlias();
         if (dogAlias != null) {
@@ -93,7 +93,7 @@ public class DogDao extends AbstractDao<Dog, Long> {
         if (name != null) {
             stmt.bindString(2, name);
         }
-        stmt.bindLong(3, entity.getUserId());
+        stmt.bindLong(3, entity.getDogUserId());
  
         String dogAlias = entity.getDogAlias();
         if (dogAlias != null) {
@@ -111,7 +111,7 @@ public class DogDao extends AbstractDao<Dog, Long> {
         Dog entity = new Dog( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.getLong(offset + 2), // userId
+            cursor.getLong(offset + 2), // dogUserId
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // dogAlias
         );
         return entity;
@@ -121,7 +121,7 @@ public class DogDao extends AbstractDao<Dog, Long> {
     public void readEntity(Cursor cursor, Dog entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setUserId(cursor.getLong(offset + 2));
+        entity.setDogUserId(cursor.getLong(offset + 2));
         entity.setDogAlias(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
      }
     

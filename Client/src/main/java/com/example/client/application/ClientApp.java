@@ -7,6 +7,9 @@ import android.os.Looper;
 
 import com.example.client.dao.DaoMaster;
 import com.example.client.dao.DaoSession;
+import com.example.client.pattern.servicelocator.AvServiceLocator;
+import com.example.client.pattern.servicelocator.EvService;
+import com.example.client.pattern.servicelocator.EvServiceLocator;
 import com.example.client.util.Utils;
 
 /**
@@ -26,6 +29,15 @@ public class ClientApp extends Application {
         sInstance = this;
         Utils.init(this);
         setDatabase();
+
+        AvServiceLocator avServiceLocator = AvServiceLocator.getInstance();
+        avServiceLocator.showCacheService();
+        avServiceLocator.init();
+        avServiceLocator.showCacheService();
+        EvService serviceA = avServiceLocator.getService("serviceImpla");
+        serviceA.execute();
+        EvService serviceB = avServiceLocator.getService("serviceImplb");
+        serviceB.execute();
     }
 
     /**

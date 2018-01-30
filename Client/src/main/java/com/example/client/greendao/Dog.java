@@ -14,7 +14,7 @@ public class Dog {
 
     private String dogAlias;
 
-    @Generated(hash = 582171981)
+    @Generated(hash = 1658864713)
     public Dog(Long id, String name, long dogUserId, String dogAlias) {
         this.id = id;
         this.name = name;
@@ -56,5 +56,13 @@ public class Dog {
 
     public void setDogAlias(String dogAlias) {
         this.dogAlias = dogAlias;
+    }
+
+    public long getDogUserId() {
+        return this.dogUserId;
+    }
+
+    public void setDogUserId(long dogUserId) {
+        this.dogUserId = dogUserId;
     }
 }

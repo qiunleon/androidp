@@ -24,6 +24,7 @@ public class DaoMaster extends AbstractDaoMaster {
         CatDao.createTable(db, ifNotExists);
         DogDao.createTable(db, ifNotExists);
         JoinUserWithSheepDao.createTable(db, ifNotExists);
+        PigDao.createTable(db, ifNotExists);
         SheepDao.createTable(db, ifNotExists);
         UserDao.createTable(db, ifNotExists);
     }
@@ -33,6 +34,7 @@ public class DaoMaster extends AbstractDaoMaster {
         CatDao.dropTable(db, ifExists);
         DogDao.dropTable(db, ifExists);
         JoinUserWithSheepDao.dropTable(db, ifExists);
+        PigDao.dropTable(db, ifExists);
         SheepDao.dropTable(db, ifExists);
         UserDao.dropTable(db, ifExists);
     }
@@ -56,6 +58,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(CatDao.class);
         registerDaoClass(DogDao.class);
         registerDaoClass(JoinUserWithSheepDao.class);
+        registerDaoClass(PigDao.class);
         registerDaoClass(SheepDao.class);
         registerDaoClass(UserDao.class);
     }
