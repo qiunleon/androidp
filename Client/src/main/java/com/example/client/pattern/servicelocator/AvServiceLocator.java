@@ -24,6 +24,7 @@ public class AvServiceLocator {
     }
 
     public void register(String code, EvService evService) {
+        System.out.println("code: " + code);
         if (!maps.containsKey(code)) {
             maps.put(code, evService);
         }
@@ -37,8 +38,11 @@ public class AvServiceLocator {
     }
 
     public void showCacheService() {
-        for (String s : maps.keySet()) {
-            System.out.println(this.getClass().getSimpleName() + " show cache service: " + maps.get(s));
+//        for (String s : maps.keySet()) {
+//            System.out.println(this.getClass().getSimpleName() + " show cache service: " + maps.get(s));
+//        }
+        for (Map.Entry<String, EvService> entry : maps.entrySet()) {
+            System.out.println(this.getClass().getSimpleName() + "show cache service, code: " + entry.getKey() + ", service: " + entry.getValue());
         }
     }
 
