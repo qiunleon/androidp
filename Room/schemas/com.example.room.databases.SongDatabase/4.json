@@ -1,0 +1,199 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "2b5da554ef7b1a56181f3d1a218a0730",
+    "entities": [
+      {
+        "tableName": "tblSong",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`SongID` INTEGER NOT NULL, `SongName` TEXT NOT NULL, `SongPy` TEXT NOT NULL, `SongWord` INTEGER NOT NULL, `songsterName` TEXT, `SongsterID1` INTEGER, `SongsterID2` INTEGER, `SongsterID3` INTEGER, `SongsterID4` INTEGER, `SongTypeID1` INTEGER, `SongTypeID2` INTEGER, `SongTypeID3` INTEGER, `SongTypeID4` INTEGER, `LanguageTypeID` INTEGER NOT NULL, `LanguageTypeID2` INTEGER, `LanguageTypeID3` INTEGER, `LanguageTypeID4` INTEGER, `PlayNum` INTEGER, `IsGrand` INTEGER, `IsMShow` INTEGER, `album` TEXT, `ercVersion` TEXT, `hasRemote` INTEGER, `LastUpdateTime` TEXT, `IsLocalExist` INTEGER, PRIMARY KEY(`SongID`))",
+        "fields": [
+          {
+            "fieldPath": "SongID",
+            "columnName": "SongID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "songName",
+            "columnName": "SongName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "songPy",
+            "columnName": "SongPy",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "songWord",
+            "columnName": "SongWord",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "singerName",
+            "columnName": "songsterName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "singerID1",
+            "columnName": "SongsterID1",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "singerID2",
+            "columnName": "SongsterID2",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "singerID3",
+            "columnName": "SongsterID3",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "singerID4",
+            "columnName": "SongsterID4",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "songTypeID1",
+            "columnName": "SongTypeID1",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "songTypeID2",
+            "columnName": "SongTypeID2",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "songTypeID3",
+            "columnName": "SongTypeID3",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "songTypeID4",
+            "columnName": "SongTypeID4",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "languageTypeID",
+            "columnName": "LanguageTypeID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "languageTypeID2",
+            "columnName": "LanguageTypeID2",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "languageTypeID3",
+            "columnName": "LanguageTypeID3",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "languageTypeID4",
+            "columnName": "LanguageTypeID4",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "playNumber",
+            "columnName": "PlayNum",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isGrand",
+            "columnName": "IsGrand",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isMShow",
+            "columnName": "IsMShow",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "album",
+            "columnName": "album",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ercVersion",
+            "columnName": "ercVersion",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "hasRemote",
+            "columnName": "hasRemote",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastUpdateTime",
+            "columnName": "LastUpdateTime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isLocalExist",
+            "columnName": "IsLocalExist",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "SongID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_tblSong_SongID",
+            "unique": true,
+            "columnNames": [
+              "SongID"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_tblSong_SongID` ON `${TABLE_NAME}` (`SongID`)"
+          },
+          {
+            "name": "index_tblSong_PlayNum_SongPy_SongsterID1_SongsterID2_SongsterID3_SongsterID4",
+            "unique": true,
+            "columnNames": [
+              "PlayNum",
+              "SongPy",
+              "SongsterID1",
+              "SongsterID2",
+              "SongsterID3",
+              "SongsterID4"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_tblSong_PlayNum_SongPy_SongsterID1_SongsterID2_SongsterID3_SongsterID4` ON `${TABLE_NAME}` (`PlayNum`, `SongPy`, `SongsterID1`, `SongsterID2`, `SongsterID3`, `SongsterID4`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2b5da554ef7b1a56181f3d1a218a0730\")"
+    ]
+  }
+}
