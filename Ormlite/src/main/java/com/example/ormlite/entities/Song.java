@@ -1,116 +1,119 @@
-package com.example.room.entities;
+package com.example.ormlite.entities;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-//, indices = {@Index(name = "tblSong_index_PlayNum", value = {"PlayNum"}), @Index(name = "tblSong_index_SongPy", value = {"SongPy"}),
-//@Index(name = "tblSong_index_SongsterID1", value = {"SongsterID1"}),@Index(name = "tblSong_index_SongsterID2", value = {"SongsterID2"}),@Index(name = "tblSong_index_SongsterID3", value = {"SongsterID3"}),
-//@Index(name = "tblSong_index_SongsterID4", value = {"SongsterID4"})}
-@Entity(tableName = "tblSong")
-public class Song {
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@DatabaseTable(tableName = "tblSong")
+public class Song implements Serializable {
+
+    public Song() {
+    }
+
     @NonNull
-    @ColumnInfo(name = "SongID")
-    @PrimaryKey
+    @DatabaseField(id = true, columnName = "SongID", defaultValue = "-1")
     private Integer SongID = 0;
 
     @NonNull
-    @ColumnInfo(name = "SongName")
+    @DatabaseField(columnName = "SongName", defaultValue = "")
     private String songName = "";
-    
+
     @NonNull
-    @ColumnInfo(name = "SongPy")
+    @DatabaseField(columnName = "SongPy", defaultValue = "")
     private String songPy = "";
 
     @NonNull
-    @ColumnInfo(name = "SongWord")
+    @DatabaseField(columnName = "SongWord", defaultValue = "0")
     private Integer songWord = 0;
 
     @Nullable
-    @ColumnInfo(name = "songsterName")
+    @DatabaseField(columnName = "songsterName", defaultValue = "")
     private String singerName = null;
 
     @Nullable
-    @ColumnInfo(name = "SongsterID1")
+    @DatabaseField(columnName = "SongsterID1", defaultValue = "-1")
     private Integer singerID1 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongsterID2")
+    @DatabaseField(columnName = "SongsterID2", defaultValue = "-1")
     private Integer singerID2 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongsterID3")
+    @DatabaseField(columnName = "SongsterID3", defaultValue = "-1")
     private Integer singerID3 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongsterID4")
+    @DatabaseField(columnName = "SongsterID4", defaultValue = "-1")
     private Integer singerID4 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongTypeID1")
+    @DatabaseField(columnName = "SongTypeID1", defaultValue = "-1")
     private Integer songTypeID1 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongTypeID2")
+    @DatabaseField(columnName = "SongTypeID2", defaultValue = "-1")
     private Integer songTypeID2 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongTypeID3")
+    @DatabaseField(columnName = "SongTypeID3", defaultValue = "-1")
     private Integer songTypeID3 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongTypeID4")
+    @DatabaseField(columnName = "SongTypeID4", defaultValue = "-1")
     private Integer songTypeID4 = -1;
 
     @NonNull
-    @ColumnInfo(name = "LanguageTypeID")
+    @DatabaseField(columnName = "LanguageTypeID", defaultValue = "-1")
     private Integer languageTypeID = -1;
 
     @Nullable
-    @ColumnInfo(name = "LanguageTypeID2")
+    @DatabaseField(columnName = "LanguageTypeID2", defaultValue = "-1")
     private Integer languageTypeID2 = -1;
 
     @Nullable
-    @ColumnInfo(name = "LanguageTypeID3")
+    @DatabaseField(columnName = "LanguageTypeID3", defaultValue = "-1")
     private Integer languageTypeID3 = -1;
 
     @Nullable
-    @ColumnInfo(name = "LanguageTypeID4")
+    @DatabaseField(columnName = "LanguageTypeID4", defaultValue = "-1")
     private Integer languageTypeID4 = -1;
 
     @Nullable
-    @ColumnInfo(name = "PlayNum")
+    @DatabaseField(columnName = "PlayNum", defaultValue = "0")
     private Integer playNumber = 0;
 
     @Nullable
-    @ColumnInfo(name = "IsGrand")
+    @DatabaseField(columnName = "IsGrand", defaultValue = "0")
     private Integer isGrand = 0;
 
     @Nullable
-    @ColumnInfo(name = "IsMShow")
+    @DatabaseField(columnName = "IsMShow", defaultValue = "0")
     private Integer isMShow = 0;
 
     @Nullable
-    @ColumnInfo(name = "album")
+    @DatabaseField(columnName = "album", defaultValue = "")
     private String album = null;
 
     @Nullable
-    @ColumnInfo(name = "ercVersion")
+    @DatabaseField(columnName = "ercVersion", defaultValue = "")
     private String ercVersion = null;
 
     @Nullable
-    @ColumnInfo(name = "hasRemote")
+    @DatabaseField(columnName = "hasRemote", defaultValue = "0")
     private Integer hasRemote = 0;
 
     @Nullable
-    @ColumnInfo(name = "LastUpdateTime")
+    @DatabaseField(columnName = "LastUpdateTime", defaultValue = "")
     private String lastUpdateTime = null;
 
     @Nullable
-    @ColumnInfo(name = "IsLocalExist")
+    @DatabaseField(columnName = "IsLocalExist", defaultValue = "0")
     private Integer isLocalExist = 0;
 
     @NonNull

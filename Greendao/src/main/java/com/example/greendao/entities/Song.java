@@ -1,156 +1,193 @@
-package com.example.room.entities;
+package com.example.greendao.entities;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-//, indices = {@Index(name = "tblSong_index_PlayNum", value = {"PlayNum"}), @Index(name = "tblSong_index_SongPy", value = {"SongPy"}),
-//@Index(name = "tblSong_index_SongsterID1", value = {"SongsterID1"}),@Index(name = "tblSong_index_SongsterID2", value = {"SongsterID2"}),@Index(name = "tblSong_index_SongsterID3", value = {"SongsterID3"}),
-//@Index(name = "tblSong_index_SongsterID4", value = {"SongsterID4"})}
-@Entity(tableName = "tblSong")
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Generated;
+
+
+@Entity(nameInDb = "tblSong")
 public class Song {
+
+    @Id
     @NonNull
-    @ColumnInfo(name = "SongID")
-    @PrimaryKey
-    private Integer SongID = 0;
+    @Property(nameInDb = "SongID")
+    private Long SongID = 0L;
 
     @NonNull
-    @ColumnInfo(name = "SongName")
+    @Property(nameInDb = "SongName")
     private String songName = "";
     
     @NonNull
-    @ColumnInfo(name = "SongPy")
+    @Property(nameInDb = "SongPy")
     private String songPy = "";
 
     @NonNull
-    @ColumnInfo(name = "SongWord")
+    @Property(nameInDb = "SongWord")
     private Integer songWord = 0;
 
     @Nullable
-    @ColumnInfo(name = "songsterName")
+    @Property(nameInDb = "songsterName")
     private String singerName = null;
 
     @Nullable
-    @ColumnInfo(name = "SongsterID1")
+    @Property(nameInDb = "SongsterID1")
     private Integer singerID1 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongsterID2")
+    @Property(nameInDb = "SongsterID2")
     private Integer singerID2 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongsterID3")
+    @Property(nameInDb = "SongsterID3")
     private Integer singerID3 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongsterID4")
+    @Property(nameInDb = "SongsterID4")
     private Integer singerID4 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongTypeID1")
+    @Property(nameInDb = "SongTypeID1")
     private Integer songTypeID1 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongTypeID2")
+    @Property(nameInDb = "SongTypeID2")
     private Integer songTypeID2 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongTypeID3")
+    @Property(nameInDb = "SongTypeID3")
     private Integer songTypeID3 = -1;
 
     @Nullable
-    @ColumnInfo(name = "SongTypeID4")
+    @Property(nameInDb = "SongTypeID4")
     private Integer songTypeID4 = -1;
 
     @NonNull
-    @ColumnInfo(name = "LanguageTypeID")
+    @Property(nameInDb = "LanguageTypeID")
     private Integer languageTypeID = -1;
 
     @Nullable
-    @ColumnInfo(name = "LanguageTypeID2")
+    @Property(nameInDb = "LanguageTypeID2")
     private Integer languageTypeID2 = -1;
 
     @Nullable
-    @ColumnInfo(name = "LanguageTypeID3")
+    @Property(nameInDb = "LanguageTypeID3")
     private Integer languageTypeID3 = -1;
 
     @Nullable
-    @ColumnInfo(name = "LanguageTypeID4")
+    @Property(nameInDb = "LanguageTypeID4")
     private Integer languageTypeID4 = -1;
 
     @Nullable
-    @ColumnInfo(name = "PlayNum")
+    @Property(nameInDb = "PlayNum")
     private Integer playNumber = 0;
 
     @Nullable
-    @ColumnInfo(name = "IsGrand")
+    @Property(nameInDb = "IsGrand")
     private Integer isGrand = 0;
 
     @Nullable
-    @ColumnInfo(name = "IsMShow")
+    @Property(nameInDb = "IsMShow")
     private Integer isMShow = 0;
 
     @Nullable
-    @ColumnInfo(name = "album")
+    @Property(nameInDb = "album")
     private String album = null;
 
     @Nullable
-    @ColumnInfo(name = "ercVersion")
+    @Property(nameInDb = "ercVersion")
     private String ercVersion = null;
 
     @Nullable
-    @ColumnInfo(name = "hasRemote")
+    @Property(nameInDb = "hasRemote")
     private Integer hasRemote = 0;
 
     @Nullable
-    @ColumnInfo(name = "LastUpdateTime")
+    @Property(nameInDb = "LastUpdateTime")
     private String lastUpdateTime = null;
 
     @Nullable
-    @ColumnInfo(name = "IsLocalExist")
+    @Property(nameInDb = "IsLocalExist")
     private Integer isLocalExist = 0;
 
-    @NonNull
-    public Integer getSongID() {
-        return SongID;
+    @Generated(hash = 1276491603)
+    public Song(@NonNull Long SongID, @NonNull String songName,
+            @NonNull String songPy, @NonNull Integer songWord, String singerName,
+            Integer singerID1, Integer singerID2, Integer singerID3,
+            Integer singerID4, Integer songTypeID1, Integer songTypeID2,
+            Integer songTypeID3, Integer songTypeID4,
+            @NonNull Integer languageTypeID, Integer languageTypeID2,
+            Integer languageTypeID3, Integer languageTypeID4, Integer playNumber,
+            Integer isGrand, Integer isMShow, String album, String ercVersion,
+            Integer hasRemote, String lastUpdateTime, Integer isLocalExist) {
+        this.SongID = SongID;
+        this.songName = songName;
+        this.songPy = songPy;
+        this.songWord = songWord;
+        this.singerName = singerName;
+        this.singerID1 = singerID1;
+        this.singerID2 = singerID2;
+        this.singerID3 = singerID3;
+        this.singerID4 = singerID4;
+        this.songTypeID1 = songTypeID1;
+        this.songTypeID2 = songTypeID2;
+        this.songTypeID3 = songTypeID3;
+        this.songTypeID4 = songTypeID4;
+        this.languageTypeID = languageTypeID;
+        this.languageTypeID2 = languageTypeID2;
+        this.languageTypeID3 = languageTypeID3;
+        this.languageTypeID4 = languageTypeID4;
+        this.playNumber = playNumber;
+        this.isGrand = isGrand;
+        this.isMShow = isMShow;
+        this.album = album;
+        this.ercVersion = ercVersion;
+        this.hasRemote = hasRemote;
+        this.lastUpdateTime = lastUpdateTime;
+        this.isLocalExist = isLocalExist;
     }
 
-    public void setSongID(@NonNull Integer songID) {
-        SongID = songID;
+    @Generated(hash = 87031450)
+    public Song() {
     }
 
-    @NonNull
+    public Long getSongID() {
+        return this.SongID;
+    }
+
+    public void setSongID(Long SongID) {
+        this.SongID = SongID;
+    }
+
     public String getSongName() {
-        return songName;
+        return this.songName;
     }
 
-    public void setSongName(@NonNull String songName) {
+    public void setSongName(String songName) {
         this.songName = songName;
     }
 
-    @NonNull
     public String getSongPy() {
-        return songPy;
+        return this.songPy;
     }
 
-    public void setSongPy(@NonNull String songPy) {
+    public void setSongPy(String songPy) {
         this.songPy = songPy;
     }
 
-    @NonNull
     public Integer getSongWord() {
-        return songWord;
+        return this.songWord;
     }
 
-    public void setSongWord(@NonNull Integer songWord) {
+    public void setSongWord(Integer songWord) {
         this.songWord = songWord;
     }
 
     public String getSingerName() {
-        return singerName;
+        return this.singerName;
     }
 
     public void setSingerName(String singerName) {
@@ -158,7 +195,7 @@ public class Song {
     }
 
     public Integer getSingerID1() {
-        return singerID1;
+        return this.singerID1;
     }
 
     public void setSingerID1(Integer singerID1) {
@@ -166,7 +203,7 @@ public class Song {
     }
 
     public Integer getSingerID2() {
-        return singerID2;
+        return this.singerID2;
     }
 
     public void setSingerID2(Integer singerID2) {
@@ -174,7 +211,7 @@ public class Song {
     }
 
     public Integer getSingerID3() {
-        return singerID3;
+        return this.singerID3;
     }
 
     public void setSingerID3(Integer singerID3) {
@@ -182,7 +219,7 @@ public class Song {
     }
 
     public Integer getSingerID4() {
-        return singerID4;
+        return this.singerID4;
     }
 
     public void setSingerID4(Integer singerID4) {
@@ -190,7 +227,7 @@ public class Song {
     }
 
     public Integer getSongTypeID1() {
-        return songTypeID1;
+        return this.songTypeID1;
     }
 
     public void setSongTypeID1(Integer songTypeID1) {
@@ -198,7 +235,7 @@ public class Song {
     }
 
     public Integer getSongTypeID2() {
-        return songTypeID2;
+        return this.songTypeID2;
     }
 
     public void setSongTypeID2(Integer songTypeID2) {
@@ -206,7 +243,7 @@ public class Song {
     }
 
     public Integer getSongTypeID3() {
-        return songTypeID3;
+        return this.songTypeID3;
     }
 
     public void setSongTypeID3(Integer songTypeID3) {
@@ -214,24 +251,23 @@ public class Song {
     }
 
     public Integer getSongTypeID4() {
-        return songTypeID4;
+        return this.songTypeID4;
     }
 
     public void setSongTypeID4(Integer songTypeID4) {
         this.songTypeID4 = songTypeID4;
     }
 
-    @NonNull
     public Integer getLanguageTypeID() {
-        return languageTypeID;
+        return this.languageTypeID;
     }
 
-    public void setLanguageTypeID(@NonNull Integer languageTypeID) {
+    public void setLanguageTypeID(Integer languageTypeID) {
         this.languageTypeID = languageTypeID;
     }
 
     public Integer getLanguageTypeID2() {
-        return languageTypeID2;
+        return this.languageTypeID2;
     }
 
     public void setLanguageTypeID2(Integer languageTypeID2) {
@@ -239,7 +275,7 @@ public class Song {
     }
 
     public Integer getLanguageTypeID3() {
-        return languageTypeID3;
+        return this.languageTypeID3;
     }
 
     public void setLanguageTypeID3(Integer languageTypeID3) {
@@ -247,7 +283,7 @@ public class Song {
     }
 
     public Integer getLanguageTypeID4() {
-        return languageTypeID4;
+        return this.languageTypeID4;
     }
 
     public void setLanguageTypeID4(Integer languageTypeID4) {
@@ -255,7 +291,7 @@ public class Song {
     }
 
     public Integer getPlayNumber() {
-        return playNumber;
+        return this.playNumber;
     }
 
     public void setPlayNumber(Integer playNumber) {
@@ -263,7 +299,7 @@ public class Song {
     }
 
     public Integer getIsGrand() {
-        return isGrand;
+        return this.isGrand;
     }
 
     public void setIsGrand(Integer isGrand) {
@@ -271,7 +307,7 @@ public class Song {
     }
 
     public Integer getIsMShow() {
-        return isMShow;
+        return this.isMShow;
     }
 
     public void setIsMShow(Integer isMShow) {
@@ -279,7 +315,7 @@ public class Song {
     }
 
     public String getAlbum() {
-        return album;
+        return this.album;
     }
 
     public void setAlbum(String album) {
@@ -287,7 +323,7 @@ public class Song {
     }
 
     public String getErcVersion() {
-        return ercVersion;
+        return this.ercVersion;
     }
 
     public void setErcVersion(String ercVersion) {
@@ -295,7 +331,7 @@ public class Song {
     }
 
     public Integer getHasRemote() {
-        return hasRemote;
+        return this.hasRemote;
     }
 
     public void setHasRemote(Integer hasRemote) {
@@ -303,7 +339,7 @@ public class Song {
     }
 
     public String getLastUpdateTime() {
-        return lastUpdateTime;
+        return this.lastUpdateTime;
     }
 
     public void setLastUpdateTime(String lastUpdateTime) {
@@ -311,7 +347,7 @@ public class Song {
     }
 
     public Integer getIsLocalExist() {
-        return isLocalExist;
+        return this.isLocalExist;
     }
 
     public void setIsLocalExist(Integer isLocalExist) {

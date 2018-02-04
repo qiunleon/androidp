@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
     compileSdkVersion 26
@@ -6,18 +7,14 @@ android {
 
 
     defaultConfig {
-        applicationId "com.example.room"
+        applicationId "com.example.greendao"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
-        }
+
     }
 
     buildTypes {
@@ -27,6 +24,11 @@ android {
         }
     }
 
+    greendao {
+        schemaVersion 4                      // 指定数据库schema版本号，迁移等操作会用到;
+        daoPackage 'com.example.greendao.daos'  // 生成DAOs、DaoMaster、DaoSession的包名。默认为entities所在包名。
+        targetGenDir 'src/main/java'         // 生成DAOs、DaoMaster和DaoSession的目录, 默认为build/generated/source/greendao
+    }
 }
 
 dependencies {
@@ -37,6 +39,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation "android.arch.persistence.room:runtime:1.0.0"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+    compile 'org.greenrobot:greendao:3.2.2'
 }
