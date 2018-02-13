@@ -1,1 +1,1 @@
-include ':Service', ':Client', ':ScrollView', ':Architecture', ':Demo', ':Jniswig', ':ObjectBox', ':Common', ':Greendao', ':Room', ':Ormlite', ':Apt'
+include ':Service', ':Client', ':ScrollView', ':Architecture', ':Demo', ':Jniswig', ':ObjectBox', ':Common', ':Greendao', ':Room', ':Ormlite', ':AptDemo', ':AptAnnotation', ':AptCompiler'
