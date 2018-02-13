@@ -3,6 +3,7 @@ buildscript {
     ext.objectboxVersion = '1.4.1'
     repositories {
         mavenLocal()
+        mavenCentral()
         jcenter()
         google()
         maven { url "http://objectbox.net/beta-repo/" }

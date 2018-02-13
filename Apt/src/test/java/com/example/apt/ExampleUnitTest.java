@@ -1,4 +1,4 @@
-package com.example.core;
+package com.example.apt;
 
 import org.junit.Test;
 
