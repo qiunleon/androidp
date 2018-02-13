@@ -34,5 +34,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':AptAnnotation')
-    annotationProcessor  project(':AptCompiler')
+
+    annotationProcessor  project(':AptCompiler')    // Gradle Plugin V2.x Version, "apt  project(':AptCompiler')" for V3.0.1
 }
